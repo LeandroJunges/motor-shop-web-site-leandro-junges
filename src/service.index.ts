@@ -1,1 +1,0 @@
-export const axios = "só para não subir em branco"
