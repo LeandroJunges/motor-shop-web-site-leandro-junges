@@ -8,20 +8,7 @@ export const Main = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  h2 {
-    font-family: "Lexend";
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-  }
-
   .product-description {
-    font-family: "Inter";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    color: var(--grey-2);
-
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -58,21 +45,16 @@ export const Main = styled.div`
 
       border-radius: 150px;
       background-color: var(--random-12);
+
       color: #fff;
       font-size: 14px;
+      font-family: "Inter", sans-serif;
     }
 
     .user-img {
       width: 32px;
 
       border-radius: 150px;
-    }
-
-    h3 {
-      font-family: "Inter";
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 24px;
     }
   }
 
@@ -88,6 +70,8 @@ export const Main = styled.div`
       display: flex;
       gap: 12px;
 
+      color: var(--brand-1);
+
       span {
         width: fit-content;
         height: 32px;
@@ -100,22 +84,7 @@ export const Main = styled.div`
 
         border-radius: 4px;
         background-color: var(--brand-4);
-
-        p {
-          font-family: "Inter";
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 24px;
-          color: var(--brand-1);
-        }
       }
-    }
-
-    .product-price {
-      font-family: "Lexend";
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
     }
   }
 `;

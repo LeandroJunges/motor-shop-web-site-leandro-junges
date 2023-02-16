@@ -14,9 +14,9 @@ const ProductCard = ({ product }: IProps) => {
           <img src={product.img} alt={`${product.title} main image`} />
         </section>
 
-        <h2>{product.title}</h2>
+        <h2 className="heading-7-600">{product.title}</h2>
 
-        <p className="product-description">{product.description}</p>
+        <p className="product-description body-2-400">{product.description}</p>
 
         <section className="user-wrapper">
           <span className="user-icon">
@@ -29,11 +29,11 @@ const ProductCard = ({ product }: IProps) => {
               </span>
             )}
           </span>
-          <h3>{user.name}</h3>
+          <h3 className="body-2-500">{user.name}</h3>
         </section>
 
         <section className="info-wrapper">
-          <div className="info">
+          <div className="info body-2-500">
             <span>
               <p>{product.mileage} KM</p>
             </span>
@@ -42,7 +42,7 @@ const ProductCard = ({ product }: IProps) => {
             </span>
           </div>
 
-          <p className="product-price">
+          <p className="heading-7-500">
             {product.price.toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
