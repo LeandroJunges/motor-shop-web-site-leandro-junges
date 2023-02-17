@@ -1,5 +1,7 @@
 const ProductionCardAuction = ()=>{
-    return
+    return(
+        
+    )
 }
 
 export default ProductionCardAuction

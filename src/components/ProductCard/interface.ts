@@ -1,3 +1,8 @@
+export interface IProps {
+  product: IProduct;
+  isOwner?: boolean;
+}
+
 export interface IProduct {
   id: string;
   title: string;
@@ -7,6 +12,7 @@ export interface IProduct {
   year: number;
   price: number;
   img: string;
+  isActive: boolean;
 }
 
 export interface IUser {
