@@ -1,6 +1,6 @@
 import logo from "../../assets/logo.png"
-import { ContainerFooter } from "./sytled"
 import {MdOutlineKeyboardArrowUp}from "react-icons/md"
+import { ContainerFooter } from "./styles"
 
 const Footer = ()=>{
     return (

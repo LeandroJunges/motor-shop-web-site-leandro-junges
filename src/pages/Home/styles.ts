@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const ContainerBannerHome = styled.div`
     display: flex;
-    background-color: #5126e6;
+    background-color: var(--brand-2);
     justify-content: center;
     height: 400px;
     align-items: center;
@@ -16,7 +16,7 @@ export const ContainerBannerHome = styled.div`
         justify-content: space-evenly;
         align-items: center;
         flex-wrap: wrap;
-        color: #FFFFFF;
+        color: var(--whiteFixed);
     }
 
     h2{
@@ -36,11 +36,11 @@ export const ContainerBannerHome = styled.div`
 
         button{
             width: 150px;
-            border: 1.5px solid #FDFDFD;
+            border: 1.5px solid var(--grey-10);
             border-radius: 4px;
             height: 48px;
             background-color: transparent;
-            color: #FFFFFF;
+            color: var(--whiteFixed);
             cursor: pointer;
         }
     }

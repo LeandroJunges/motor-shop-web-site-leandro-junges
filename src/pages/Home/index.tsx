@@ -1,5 +1,5 @@
 import Footer from "../../components/Footer"
-import { ContainerBannerHome } from "./style"
+import { ContainerBannerHome } from "./styles"
 
 const Home = () =>{
     return(

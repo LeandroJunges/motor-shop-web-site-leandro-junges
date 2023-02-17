@@ -11,7 +11,7 @@ export const ContainerFooter = styled.footer`
     justify-content: space-between;
     align-items: center;
 
-    background-color: #0B0D0D;
+    background-color: var(--grey-0);
 
     img{
     width: 153px;
@@ -19,7 +19,7 @@ export const ContainerFooter = styled.footer`
     }
 
     span{
-    color: #ffffff;
+    color: var(--whiteFixed);
     font-family: "Inter";
     font-weight: 400;
     font-size: 14px;
@@ -31,8 +31,8 @@ export const ContainerFooter = styled.footer`
         height: 50px;
         margin-right: 15px;
         
-        color: #ffffff;
-        background-color: #212529;
+        color: var(--whiteFixed);
+        background-color: var(--grey-1);
     
         border: none;
         border-radius: 4px;
