@@ -87,6 +87,155 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Inter';
     }
 
+    .heading-base, 
+    .heading-1-700,
+    .heading-2-600,
+    .heading-3-600,
+    .heading-3-500,
+    .heading-4-600,
+    .heading-4-500,
+    .heading-5-600,
+    .heading-5-500,
+    .heading-6-600,
+    .heading-6-500,
+    .heading-7-600,
+    .heading-7-500
+    {
+        font-family: 'Lexend', sans-serif;
+        color: var(--grey-1)
+    }
+
+    .heading-1-700 {
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 56px;
+    }
+
+    .heading-2-600 {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 45px;
+    }
+
+    .heading-3-600 {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .heading-3-500 {
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .heading-4-600 {
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 35px;
+    }
+
+    .heading-4-500 {
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 35px;
+    }
+
+    .heading-5-600 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .heading-5-500 {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .heading-6-600 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .heading-6-500 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .heading-7-600 {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .heading-7-500 {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .body-base,
+    .body-1-400,
+    .body-1-600,
+    .body-2-400,
+    .body-2-500,
+    .button-big-text,
+    .button-medium-text,
+    .input-placeholder,
+    .input-label
+    {
+        font-family: 'Inter', sans-serif;
+        color: var(--grey-2)
+    }
+
+    .body-1-400{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .body-1-600{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .body-2-400{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .body-2-500{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .button-big-text{
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .button-medium-text{
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .input-placeholder{
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .input-label{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+
 `;
 
 export default GlobalStyle;
