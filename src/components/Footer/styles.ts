@@ -52,6 +52,7 @@ export const ContainerFooter = styled.footer`
 
         flex-direction: row;
         justify-content: space-between;
+        width: 98.4%;
     }
 
 

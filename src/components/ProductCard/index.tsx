@@ -11,7 +11,7 @@ const ProductCard = ({ product }: IProps) => {
     <>
       <Main>
         <section className="img-wrapper">
-          <img src={product.img} alt={`${product.title} main image`} />
+          <img src={product.imgMain} alt={`${product.title} main image`} />
         </section>
 
         <h2 className="heading-7-600">{product.title}</h2>
@@ -43,10 +43,8 @@ const ProductCard = ({ product }: IProps) => {
           </div>
 
           <p className="heading-7-500">
-            {product.price.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
+            {Number(product.price!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })
+            }
           </p>
         </section>
       </Main>

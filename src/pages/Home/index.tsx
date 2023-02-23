@@ -1,7 +1,16 @@
 import Footer from "../../components/Footer"
-import { ContainerBannerHome } from "./styles"
+import { ContainerAuction, ContainerBannerHome, ContainerListCar, ContainerListMotorcycle } from "./styles"
+import mercedesA200 from "../../assets/mercedesA200.png"
+import {BsArrowRight} from "react-icons/bs"
+import {FiClock} from "react-icons/fi"
+import { useContext } from "react"
+import { UserContext } from "../../context/UserContext"
+import ProductCard from "../../components/ProductCard"
 
 const Home = () =>{
+
+    const {cars,motorcycles} = useContext(UserContext)
+
     return(
         <div>
             <ContainerBannerHome>
@@ -17,20 +26,129 @@ const Home = () =>{
 
                 </div>
             </ContainerBannerHome>
-            <div>
+            <ContainerAuction>
                 <h4>Leilão</h4>
                 <ul>
-                    <p>lista de carros para o leilão</p>
+                    <li>
+                        <img src={mercedesA200} alt="" />
+                        <span className="hour"><FiClock /> 01:58:00</span>
+                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
+                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
+                        <abbr title="Rodrigo">R</abbr>
+                        <p className="name">Rodrigo Tavares</p>
+
+                        <div>
+                            <div className="containerInfos">
+                                <span>2013</span>
+                                <span>0 KM</span>
+                            </div>
+
+                            <p className="price">R$ 00.0000,00</p>
+                        </div>
+
+                        <div className="containerLink">
+                            <a href="#">acessar a pagina de leilão</a>
+                            <BsArrowRight />
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <img src={mercedesA200} alt="" />
+                        <span className="hour"><FiClock /> 01:58:00</span>
+                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
+                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
+                        <abbr title="Rodrigo">R</abbr>
+                        <p className="name">Rodrigo Tavares</p>
+
+                        <div>
+                            <div className="containerInfos">
+                                <span>2013</span>
+                                <span>0 KM</span>
+                            </div>
+
+                            <p className="price">R$ 00.0000,00</p>
+                        </div>
+
+                        <div className="containerLink">
+                            <a href="#">acessar a pagina de leilão</a>
+                            <BsArrowRight />
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <img src={mercedesA200} alt="" />
+                        <span className="hour"><FiClock /> 01:58:00</span>
+                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
+                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
+                        <abbr title="Rodrigo">R</abbr>
+                        <p className="name">Rodrigo Tavares</p>
+
+                        <div>
+                            <div className="containerInfos">
+                                <span>2013</span>
+                                <span>0 KM</span>
+                            </div>
+
+                            <p className="price">R$ 00.0000,00</p>
+                        </div>
+
+                        <div className="containerLink">
+                            <a href="#">acessar a pagina de leilão</a>
+                            <BsArrowRight />
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <img src={mercedesA200} alt="" />
+                        <span className="hour"><FiClock /> 01:58:00</span>
+                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
+                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
+                        <abbr title="Rodrigo">R</abbr>
+                        <p className="name">Rodrigo Tavares</p>
+
+                        <div>
+                            <div className="containerInfos">
+                                <span>2013</span>
+                                <span>0 KM</span>
+                            </div>
+
+                            <p className="price">R$ 00.0000,00</p>
+                        </div>
+
+                        <div className="containerLink">
+                            <a href="#">acessar a pagina de leilão</a>
+                            <BsArrowRight />
+                        </div>
+
+                    </li>
+                    
                 </ul>
-            </div>
-            <div>
-                <h4>Carros</h4>
-                <p>lista de carro </p>
-            </div>
-            <div>
-                <h4>Motos</h4>
-                <p>lista de motos</p>
-            </div>
+            </ContainerAuction>
+            <ContainerListCar>
+            <h4>Carros</h4>
+            <ul>               
+            {cars.map((car)=>{
+               return (
+                   <li key={car.id}><ProductCard  product={car} /></li>
+               ) 
+            })}
+            </ul>
+                
+            </ContainerListCar>
+            <ContainerListMotorcycle>
+            <h4>Motos</h4>
+            <ul>
+                {motorcycles.map((motorcycle)=>{
+                  return(
+                    <li key={motorcycle.id}><ProductCard  product={motorcycle} /></li>
+                  ) 
+                    
+                })}
+            </ul>
+            </ContainerListMotorcycle>
             <Footer />
         </div>
     )

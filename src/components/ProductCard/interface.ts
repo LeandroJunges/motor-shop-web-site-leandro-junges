@@ -4,9 +4,9 @@ export interface IProduct {
   description: string;
   user: IUser;
   mileage: number;
-  year: number;
-  price: number;
-  img: string;
+  year: string;
+  price: number | undefined
+  imgMain: string;
 }
 
 export interface IUser {
