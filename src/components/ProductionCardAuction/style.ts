@@ -22,13 +22,13 @@ export const Main = styled.div`
       transform: scale(1.2);
     }
 
-    button > svg {
+    .button-wrapper > .button-container > svg {
       width: 30px;
     }
   }
 
   .img-wrapper {
-    width: 100%;
+    width: 90%;
     height: 230px;
     position: relative;
 
@@ -42,10 +42,11 @@ export const Main = styled.div`
 
       display: flex;
       align-items: center;
+      box-sizing: border-box;
 
       position: absolute;
-      left: 13px;
-      top: 13px;
+      left: 0;
+      top: 24px;
 
       background-color: #fff;
       border-radius: 32px;
@@ -53,6 +54,10 @@ export const Main = styled.div`
       p {
         width: fit-content;
         margin: 3px auto;
+      }
+
+      svg {
+        color: var(--brand-1);
       }
     }
 
@@ -62,34 +67,42 @@ export const Main = styled.div`
     }
   }
 
-  button {
+  .button-wrapper {
     width: 100%;
     height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 36px;
 
     position: absolute;
     bottom: 0px;
 
-    border: none;
-    border-radius: 0 0 4px 4px;
-    background-color: var(--brand-1);
-    color: #fff;
+    display: flex;
+    justify-content: center;
+
     cursor: pointer;
 
-    svg {
-      width: 60px;
-      font-size: 26px;
-      transition: all 300ms;
+    border-radius: 0 0 4px 4px;
+    border: none;
+
+    background-color: var(--brand-1);
+
+    .button-container {
+      width: 90%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: #fff;
+      svg {
+        font-size: 26px;
+        transition: all 300ms;
+      }
     }
   }
 `;
 
 export const Container = styled.div`
-  width: 95%;
+  width: 90%;
   height: 150px;
   position: absolute;
   bottom: 50px;

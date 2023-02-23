@@ -54,10 +54,12 @@ const ProductionCardAuction = ({ product }: IProps) => {
         </section>
       </Container>
 
-      <button className="button-big-text ">
-        <span>Acessar página do leilão</span>
-        <BsArrowRight />
-      </button>
+      <div className="button-wrapper">
+        <div className="button-container button-big-text">
+          <span>Acessar página do leilão</span>
+          <BsArrowRight />
+        </div>
+      </div>
     </Main>
   );
 };
