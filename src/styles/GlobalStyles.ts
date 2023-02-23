@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
         --brand-2:      #5126ea;
         --brand-3:      #b0a6f0;
         --brand-4:      #edeafd;
+        --black-1:      #000000;
         --grey-0:       #0b0d0d;
         --grey-1:       #212529;    
         --grey-2:       #495057;
@@ -79,6 +80,11 @@ const GlobalStyle = createGlobalStyle`
     table {
     	border-collapse: collapse;
     	border-spacing: 0;
+    }
+    #root {
+        width: 100vw;
+        height: 100vh;
+        font-family: 'Inter';
     }
 
 `;
