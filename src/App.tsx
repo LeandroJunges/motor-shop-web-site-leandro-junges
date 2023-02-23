@@ -1,6 +1,7 @@
 import UserProvider from "./context/UserContext";
 import Home from "./pages/Home";
 import GlobalStyle from "./styles/GlobalStyles";
+import Routes from "./routes/routes"
 
 function App() {
   return (
@@ -8,9 +9,11 @@ function App() {
     <UserProvider>
       <Home />
       <GlobalStyle />
+      <Routes/ >
     </UserProvider>
     </div>
   );
 }
+
 
 export default App;

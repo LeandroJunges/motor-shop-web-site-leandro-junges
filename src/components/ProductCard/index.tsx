@@ -1,17 +1,22 @@
-import { IProduct } from "./interface";
+import { IProps } from "./interface";
 import { Main } from "./style";
 
-interface IProps {
-  product: IProduct;
-}
-
-const ProductCard = ({ product }: IProps) => {
+const ProductCard = ({ product, isOwner }: IProps) => {
   const { user } = product;
   return (
     <>
-      <Main>
+      <Main isActive={product.isActive}>
         <section className="img-wrapper">
+
+
+          {isOwner && (
+            <span className="ad-status body-2-500">
+              <p>{product.isActive ? "Ativo" : "Inativo"}</p>
+            </span>
+          )}
+
           <img src={product.imgMain} alt={`${product.title} main image`} />
+
         </section>
 
         <h2 className="heading-7-600">{product.title}</h2>

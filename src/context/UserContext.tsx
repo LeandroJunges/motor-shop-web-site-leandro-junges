@@ -26,6 +26,7 @@ interface IAnnouncementsData{
     initialBid: number | undefined
     year: string
     isSold: boolean | undefined
+    isActive: boolean
 }
 
 

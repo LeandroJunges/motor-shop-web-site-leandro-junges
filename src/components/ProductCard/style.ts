@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
+interface IProps {
+  isActive: boolean;
+}
+
+export const Main = styled.div<IProps>`
   width: 312px;
   height: 350px;
 
@@ -17,14 +21,39 @@ export const Main = styled.div`
   .img-wrapper {
     width: 100%;
     height: 152px;
+    position: relative;
 
     display: flex;
     justify-content: center;
 
     background-color: var(--grey-7);
+    border: 2px solid transparent;
+    transition: 300ms all;
 
     img {
       height: 100%;
+    }
+
+    .ad-status {
+      width: 51px;
+      height: 24px;
+      position: absolute;
+
+      left: 16px;
+      top: 10px;
+
+      background-color: ${(props) =>
+        props.isActive ? "var(--brand-1)" : "var(--grey-4)"};
+      color: #fff;
+
+      p {
+        width: min-content;
+        margin: 0 auto;
+      }
+    }
+
+    &:hover {
+      border: 2px solid var(--brand-1);
     }
   }
 
