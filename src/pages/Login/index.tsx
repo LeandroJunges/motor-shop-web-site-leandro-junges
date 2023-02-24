@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationLogin } from "../../validations";
+import { UserContext } from "../../context/userContext";
+import { useContext } from "react";
 
 interface ILogin {
   email: string;
@@ -15,6 +17,7 @@ interface ILogin {
 }
 
 const Login = () => {
+  const { loginUser } = useContext(UserContext);
   const navigate = useNavigate();
   const {
     register,
@@ -22,6 +25,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<ILogin>({ resolver: yupResolver(validationLogin) });
   const login = (data: ILogin) => {
+    loginUser(data);
     console.log(data);
   };
   return (
