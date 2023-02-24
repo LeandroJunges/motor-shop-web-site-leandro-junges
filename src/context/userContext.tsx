@@ -44,6 +44,7 @@ export const UserProvider = ({ children }: IChildren) => {
       const { data } = await api.post("/login", user);
       setUser(data.user);
       localStorage.setItem("@motorshop: token", data.token);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
