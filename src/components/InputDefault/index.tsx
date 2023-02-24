@@ -5,9 +5,16 @@ interface IInputProps {
   type: "text" | "password" | "email" | string;
   placeholder?: string;
   textarea?: boolean;
+  register?: any;
 }
 
-const Input = ({ label, type, placeholder, textarea }: IInputProps) => {
+const Input = ({
+  label,
+  type,
+  placeholder,
+  textarea,
+  register,
+}: IInputProps) => {
   return (
     <Main textarea={textarea}>
       <h3 className="input-label">{label}</h3>
@@ -16,6 +23,7 @@ const Input = ({ label, type, placeholder, textarea }: IInputProps) => {
         <textarea className="input-placeholder" placeholder={placeholder} />
       ) : (
         <input
+          {...register}
           className="input-placeholder"
           type={type}
           placeholder={placeholder}

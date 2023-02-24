@@ -52,6 +52,7 @@ export const Content = styled.div`
 `;
 
 export const Footer = styled(Header)`
+  width: 90%;
   gap: 11px;
   margin: 20px 0;
 

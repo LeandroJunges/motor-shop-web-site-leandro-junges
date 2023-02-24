@@ -1,8 +1,27 @@
-import { Backdrop, Content, Footer, Header, Main } from "./style";
+import {
+  Backdrop,
+  ButtonForAdd,
+  Content,
+  DivForTriple,
+  Footer,
+  Header,
+  Main,
+  Title,
+} from "./style";
 import { GrClose } from "react-icons/gr";
-import Input from "../InputDefault";
+import {
+  InputDiv,
+  Input,
+  InputArea,
+  InputDivLarge,
+  InputDivSmall,
+} from "./style";
 import Button from "../Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../services";
 
 interface IProps {
   open?: boolean;
@@ -11,13 +30,84 @@ interface IProps {
 const CreateAnnouncementModal = ({ open }: IProps) => {
   const [sellType, setSellType] = useState("sell");
   const [vehicleType, setVehicleType] = useState("car");
-  const [publicated, setPublicated] = useState(1);
+  const [images, setImages] = useState<String[]>([]);
+  const [urls, setUrls] = useState<String[]>([]);
+  const [im1, setIm1] = useState("");
+  const [im2, setIm2] = useState("");
+  const [im3, setIm3] = useState("");
+  const [im4, setIm4] = useState("");
+  const [im5, setIm5] = useState("");
+  const [im6, setIm6] = useState("");
+
+  console.log(im1);
+  console.log(im2);
+
+  const formSchema = yup.object().shape({
+    title: yup.string().required("Campo obrigatório"),
+    year: yup.number().required("Ano obrigatório"),
+    mileage: yup.number().required("Quilimetragem obrigatório"),
+    price: yup.number().required("Valor obrigatório"),
+    description: yup.string().required("Descrição obrigatória"),
+    imgMain: yup.string().required("Imagem obrigatória"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+  const userToken: string | null = localStorage.getItem("@motorshop: token");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+  };
+
+  const onSubmitFunction = async (data: any) => {
+    const { title, year, mileage, price, description, imgMain } = data;
+    const isAuction = sellType === "sell" ? false : true;
+    if (isAuction === true) {
+      const obj = {
+        isAuction,
+        title,
+        year,
+        mileage,
+        description,
+        imgMain,
+        initialBid: price,
+      };
+      await api
+        .post("/announcements", obj, config)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    }
+    const obj = {
+      isAuction,
+      title,
+      year: String(year),
+      mileage,
+      vehicleType,
+      price,
+      description,
+      imgMain,
+    };
+    console.log(obj);
+
+    await api
+      .post("/announcements", obj, config)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
       {open && (
         <Backdrop>
-          <Main>
+          <Main onSubmit={handleSubmit(onSubmitFunction)}>
             <Header>
               <h2 className="heading-7-500">Criar anúncio</h2>
               <GrClose />
@@ -44,7 +134,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
                   font_size={16}
                   font_weight={600}
                   width="100%"
-                  type="submit"
+                  type="button"
                   onClick={() => {
                     setSellType("sell");
                   }}
@@ -67,7 +157,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
                   font_size={16}
                   font_weight={600}
                   width="100%"
-                  type="submit"
+                  type="button"
                   onClick={() => {
                     setSellType("auction");
                   }}
@@ -75,28 +165,58 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               </div>
 
               <h2 className="body-2-500">Informações do veículo</h2>
-              <Input
-                label="Título"
-                placeholder="Mercedes Benz A 200 CGI"
-                type="text"
-              />
-
-              <div className="input-group">
-                <Input type="number" label="Ano" placeholder="2018" />
-                <Input type="number" label="Quilometragem" placeholder="0" />
+              <InputDiv>
+                <Title>Título</Title>
                 <Input
-                  type="number"
-                  label={sellType === "sell" ? "Preço" : "Lance inicial"}
-                  placeholder="50.000,00"
+                  {...register("title")}
+                  // label="Título"
+                  placeholder="Mercedes Benz A 200 CGI"
+                  type="text"
                 />
-              </div>
+              </InputDiv>
 
-              <Input
-                label="Descrição"
-                placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus cumque doloremque minus exercitationem"
-                type="text"
-                textarea
-              />
+              <DivForTriple>
+                <InputDivSmall>
+                  <Title>Ano</Title>
+                  <Input
+                    {...register("year")}
+                    type="number"
+                    // label="Ano"
+                    placeholder="2018"
+                  />
+                </InputDivSmall>
+                <InputDivSmall>
+                  <Title>Quilometragem</Title>
+                  <Input
+                    {...register("mileage")}
+                    type="number"
+                    // label="Ano"
+                    placeholder="0"
+                  />
+                </InputDivSmall>
+                <InputDivSmall>
+                  <Title>
+                    {sellType === "sell" ? "Preço" : "Lance inicial"}
+                  </Title>
+                  <Input
+                    {...register("price")}
+                    type="number"
+                    // label={sellType === "sell" ? "Preço" : "Lance inicial"}
+                    placeholder="50.000,00"
+                  />
+                </InputDivSmall>
+              </DivForTriple>
+
+              <InputDivLarge>
+                <Title>Description</Title>
+                <InputArea
+                  {...register("description")}
+                  // label="Descrição"
+                  placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus cumque doloremque minus exercitationem"
+                  // type="text"
+                  // textarea
+                />
+              </InputDivLarge>
 
               <h2 className="body-2-500">Tipo de veículo</h2>
               <div className="input-group">
@@ -118,17 +238,19 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
                   font_size={16}
                   font_weight={600}
                   width="100%"
-                  type="submit"
+                  type="button"
                   onClick={() => {
                     setVehicleType("car");
                   }}
                 />
                 <Button
                   background={
-                    vehicleType === "bike" ? "var(--brand-1)" : "transparent"
+                    vehicleType === "motorcycle"
+                      ? "var(--brand-1)"
+                      : "transparent"
                   }
                   border={
-                    vehicleType === "bike"
+                    vehicleType === "motorcycle"
                       ? "1.5px solid var(--brand-1)"
                       : "1.5px solid var(--grey-4)"
                   }
@@ -141,35 +263,120 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
                   font_size={16}
                   font_weight={600}
                   width="100%"
-                  type="submit"
+                  type="button"
                   onClick={() => {
-                    setVehicleType("bike");
+                    setVehicleType("motorcycle");
                   }}
                 />
               </div>
 
-              <Input
+              <InputDiv>
+                <Title>Imagem da capa</Title>
+                <Input
+                  {...register("imgMain")}
+                  type="text"
+                  // label="Imagem da capa"
+                  placeholder="https://image.com"
+                />
+              </InputDiv>
+              {images.map((i) => {
+                return (
+                  <>
+                    {i[0] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm1(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                    {i[1] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm2(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                    {i[2] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm3(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                    {i[3] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm4(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                    {i[4] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm5(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                    {i[5] && (
+                      <InputDiv>
+                        <Title>Imagem da galeria</Title>
+                        <Input
+                          onChange={(e) => setIm6(e.target.value)}
+                          type="text"
+                          // label="Imagem da capa"
+                          placeholder="https://image.com"
+                        />
+                      </InputDiv>
+                    )}
+                  </>
+                );
+              })}
+              <ButtonForAdd
+                type="button"
+                onClick={() => setImages([...images, "1"])}
+              >
+                Adicionar campo para imagem da galeria
+              </ButtonForAdd>
+
+              {/* <input
+                {...register("img1")}
                 type="text"
-                label="Imagem da capa"
+                // label="1° Imagem da galeria"
                 placeholder="https://image.com"
               />
-              <Input
+              <input
+                {...register("img2")}
                 type="text"
-                label="1° Imagem da galeria"
+                // label="2° Imagem da galeria"
                 placeholder="https://image.com"
-              />
-              <Input
-                type="text"
-                label="2° Imagem da galeria"
-                placeholder="https://image.com"
-              />
+              /> */}
             </Content>
 
             <Footer>
               <button className="button-big-text delete-button">
                 Cancelar
               </button>
-              <button className="button-big-text save-button">
+              <button type="submit" className="button-big-text save-button">
                 Criar anúncio
               </button>
             </Footer>

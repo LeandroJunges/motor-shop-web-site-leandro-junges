@@ -33,8 +33,8 @@ const Login = () => {
       <Container>
         <Form title="Login" onSubmit={handleSubmit(login)}>
           <Fields
-            placeholder="Digitar usuário"
-            description="Usuário"
+            placeholder="E-mail"
+            description="E-mail"
             color="var(--grey-1)"
             size={14}
             weight={500}
