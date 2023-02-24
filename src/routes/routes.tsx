@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import AnnouncementPage from "../components/ProductPage";
 import Home from "../pages/Home";
 import ProductDeleteModal from "../components/ProductDeleteModal";
+import CreateAnnouncementModal from "../components/createAnnouncementModal";
+import EditAnnouncementModal from "../components/editAnnouncementModal";
 
 const Routes = () => {
   return (
@@ -12,7 +14,11 @@ const Routes = () => {
       <Route element={<Login />} path="/login/" />
       <Route element={<Register />} path="/register/" />
       <Route element={<AnnouncementPage />} path="/product" />
-      <Route element={<ProductDeleteModal />} path="/product-delete" />
+      <Route
+        element={<CreateAnnouncementModal open={true} />}
+        path="/create-ann"
+      />
+      <Route element={<EditAnnouncementModal open={true} />} path="/edit-ann" />
       <Route path="*" element={<Navigate replace to={"/"} />} />
     </RouteComponent>
   );
