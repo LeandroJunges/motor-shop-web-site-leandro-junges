@@ -89,6 +89,10 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
         navigate("/product")
     }
 
+    const openModalEdit =()=>{
+
+    }
+
 
     return (
     <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar}}>
