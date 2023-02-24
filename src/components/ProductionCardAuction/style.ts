@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Main = styled.div`
   width: 100%;
   max-width: 550px;
-  height: 270px;
+  height: 300px;
   position: relative;
 
   display: flex;
@@ -13,7 +13,7 @@ export const Main = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%);
 
   transition: 300ms all;
-  cursor: pointer;
+  /* cursor: grab; */
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.51);
@@ -47,6 +47,7 @@ export const Main = styled.div`
       position: absolute;
       left: 0;
       top: 24px;
+      z-index: 10;
 
       background-color: #fff;
       border-radius: 32px;

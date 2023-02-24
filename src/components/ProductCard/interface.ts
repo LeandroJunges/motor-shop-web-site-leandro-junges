@@ -9,10 +9,11 @@ export interface IProduct {
   description: string;
   user: IUser;
   mileage: number;
-  year: number;
-  price: number;
-  img: string;
+  year: string;
+  price: number | undefined
   isActive: boolean;
+  imgMain: string;
+
 }
 
 export interface IUser {

@@ -7,13 +7,16 @@ const ProductCard = ({ product, isOwner }: IProps) => {
     <>
       <Main isActive={product.isActive}>
         <section className="img-wrapper">
+
+
           {isOwner && (
             <span className="ad-status body-2-500">
               <p>{product.isActive ? "Ativo" : "Inativo"}</p>
             </span>
           )}
 
-          <img src={product.img} alt={`${product.title} main image`} />
+          <img src={product.imgMain} alt={`${product.title} main image`} />
+
         </section>
 
         <h2 className="heading-7-600">{product.title}</h2>
@@ -45,10 +48,8 @@ const ProductCard = ({ product, isOwner }: IProps) => {
           </div>
 
           <p className="heading-7-500">
-            {product.price.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
+            {Number(product.price!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })
+            }
           </p>
         </section>
       </Main>
