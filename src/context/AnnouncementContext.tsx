@@ -1,10 +1,12 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IUser } from "../components/ProductCard/interface";
 import { api } from "../services";
 
 interface IAnnouncementsProviderProps {
     showCar: () => Promise<void>
     showMotorcycle: () => Promise<void>
+    goProduct: () => void
     cars: IAnnouncementsData[]
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
@@ -38,7 +40,7 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
     const [cars, setCars] = useState<IAnnouncementsData[]> ([])
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
     const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
-
+    const navigate = useNavigate()
     
 
     const showCar = async ()=>{
@@ -71,9 +73,13 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
         showMotorcycle()
     },[])
 
+    const goProduct = ()=>{
+        navigate("/product")
+    }
+
 
     return (
-    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct}}>
         {children}
     </AnnouncementContext.Provider>
     )

@@ -10,7 +10,7 @@ import {motion} from "framer-motion"
 
 const Home = () =>{
 
-    const {cars,motorcycles, auctions} = useContext(AnnouncementContext)
+    const {cars,motorcycles, auctions, goProduct} = useContext(AnnouncementContext)
     const [width, setWidth] = useState(0)
 
     const carousel = useRef<HTMLUListElement>(null)
@@ -51,7 +51,7 @@ const Home = () =>{
             <ul>               
             {cars.map((car)=>{
                return (
-                   <li key={car.id}><ProductCard  product={car} /></li>
+                   <li onClick={goProduct} key={car.id}><ProductCard  product={car} /></li>
                ) 
             })}
             </ul>

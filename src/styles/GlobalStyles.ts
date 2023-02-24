@@ -236,6 +236,14 @@ const GlobalStyle = createGlobalStyle`
         line-height: 16.94px;
     }
 
+    #root {
+        height: 100vh;
+    }
+
+    .App {
+        height: 100%;
+    }
+
 `;
 
 export default GlobalStyle;
