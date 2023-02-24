@@ -26,7 +26,6 @@ const Login = () => {
   } = useForm<ILogin>({ resolver: yupResolver(validationLogin) });
   const login = (data: ILogin) => {
     loginUser(data);
-    console.log(data);
   };
   return (
     <>
