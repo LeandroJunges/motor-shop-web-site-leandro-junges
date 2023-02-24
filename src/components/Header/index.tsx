@@ -8,10 +8,14 @@ import Button from "../Button";
 const Header = () => {
   const [ isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
+
+  const backHome = ()=>{
+    navigate("/")
+  }
   return(
       <HeaderStyle>
         <FigureStyle>
-          <img src="../../motors-shop.png" alt="logo motorshop" />
+          <img src="../../motors-shop.png" alt="logo motorshop" onClick={backHome} />
         </FigureStyle>
         <NavStyle>
           <ButtonIcon background="var(--grey-10)" border="none" onClick={() => setIsOpen(!isOpen)} className="button-icon">

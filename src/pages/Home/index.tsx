@@ -1,18 +1,26 @@
 import Footer from "../../components/Footer"
 import { ContainerAuction, ContainerBannerHome, ContainerListCar, ContainerListMotorcycle } from "./styles"
-import mercedesA200 from "../../assets/mercedesA200.png"
-import {BsArrowRight} from "react-icons/bs"
-import {FiClock} from "react-icons/fi"
-import { useContext } from "react"
-import { UserContext } from "../../context/UserContext"
+import { useContext, useEffect, useRef, useState } from "react"
+import { AnnouncementContext } from "../../context/AnnouncementContext"
 import ProductCard from "../../components/ProductCard"
+import ProductionCardAuction from "../../components/ProductionCardAuction"
+import Header from "../../components/Header"
+import {motion} from "framer-motion"
+
 
 const Home = () =>{
 
-    const {cars,motorcycles} = useContext(UserContext)
+    const {cars,motorcycles, auctions} = useContext(AnnouncementContext)
+    const [width, setWidth] = useState(0)
+
+    const carousel = useRef<HTMLUListElement>(null)
+    useEffect(()=>{
+        setWidth(carousel.current!.scrollWidth - carousel.current!.offsetWidth)
+    },[])
 
     return(
         <div>
+            <Header />
             <ContainerBannerHome>
                 <div className="containerBannerContent ">
                     
@@ -28,104 +36,15 @@ const Home = () =>{
             </ContainerBannerHome>
             <ContainerAuction>
                 <h4>Leilão</h4>
-                <ul>
-                    <li>
-                        <img src={mercedesA200} alt="" />
-                        <span className="hour"><FiClock /> 01:58:00</span>
-                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
-                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
-                        <abbr title="Rodrigo">R</abbr>
-                        <p className="name">Rodrigo Tavares</p>
-
-                        <div>
-                            <div className="containerInfos">
-                                <span>2013</span>
-                                <span>0 KM</span>
-                            </div>
-
-                            <p className="price">R$ 00.0000,00</p>
-                        </div>
-
-                        <div className="containerLink">
-                            <a href="#">acessar a pagina de leilão</a>
-                            <BsArrowRight />
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <img src={mercedesA200} alt="" />
-                        <span className="hour"><FiClock /> 01:58:00</span>
-                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
-                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
-                        <abbr title="Rodrigo">R</abbr>
-                        <p className="name">Rodrigo Tavares</p>
-
-                        <div>
-                            <div className="containerInfos">
-                                <span>2013</span>
-                                <span>0 KM</span>
-                            </div>
-
-                            <p className="price">R$ 00.0000,00</p>
-                        </div>
-
-                        <div className="containerLink">
-                            <a href="#">acessar a pagina de leilão</a>
-                            <BsArrowRight />
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <img src={mercedesA200} alt="" />
-                        <span className="hour"><FiClock /> 01:58:00</span>
-                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
-                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
-                        <abbr title="Rodrigo">R</abbr>
-                        <p className="name">Rodrigo Tavares</p>
-
-                        <div>
-                            <div className="containerInfos">
-                                <span>2013</span>
-                                <span>0 KM</span>
-                            </div>
-
-                            <p className="price">R$ 00.0000,00</p>
-                        </div>
-
-                        <div className="containerLink">
-                            <a href="#">acessar a pagina de leilão</a>
-                            <BsArrowRight />
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <img src={mercedesA200} alt="" />
-                        <span className="hour"><FiClock /> 01:58:00</span>
-                        <p className="titleAnnouncement">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200</p>
-                        <span className="description">Um carro que não compensa você ter não ser que seja bonado na grana!</span>
-                        <abbr title="Rodrigo">R</abbr>
-                        <p className="name">Rodrigo Tavares</p>
-
-                        <div>
-                            <div className="containerInfos">
-                                <span>2013</span>
-                                <span>0 KM</span>
-                            </div>
-
-                            <p className="price">R$ 00.0000,00</p>
-                        </div>
-
-                        <div className="containerLink">
-                            <a href="#">acessar a pagina de leilão</a>
-                            <BsArrowRight />
-                        </div>
-
-                    </li>
+                <motion.ul ref={carousel} className="carousel" whileTap={{cursor:"grabbing"}}>
+                    {auctions.map((auction)=>{
+                        return(
+                            <motion.li drag="x" dragConstraints={{right:0, left: -width}} className="inner" key={auction.id} ><ProductionCardAuction product={auction} /></motion.li>
+                        )
+                    })}
                     
-                </ul>
+                    
+                </motion.ul>
             </ContainerAuction>
             <ContainerListCar>
             <h4>Carros</h4>

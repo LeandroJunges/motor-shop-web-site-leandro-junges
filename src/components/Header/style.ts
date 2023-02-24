@@ -14,6 +14,7 @@ export const HeaderStyle = styled.header`
 `
 export const FigureStyle = styled.figure`
 display: flex;
+cursor: pointer;
 `
 export const NavStyle = styled.nav`
     height: 100%;

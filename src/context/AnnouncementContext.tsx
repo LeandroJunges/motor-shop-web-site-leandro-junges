@@ -2,11 +2,12 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { IUser } from "../components/ProductCard/interface";
 import { api } from "../services";
 
-interface IUserProviderProps {
+interface IAnnouncementsProviderProps {
     showCar: () => Promise<void>
     showMotorcycle: () => Promise<void>
     cars: IAnnouncementsData[]
     motorcycles: IAnnouncementsData[]
+    auctions: IAnnouncementsData[]
 }
 
 interface IUserProps{
@@ -30,43 +31,52 @@ interface IAnnouncementsData{
 }
 
 
-export const UserContext = createContext({} as IUserProviderProps)
+export const AnnouncementContext = createContext({} as IAnnouncementsProviderProps)
 
-const UserProvider = ({children}:IUserProps)=>{
+const AnnouncementsProvider = ({children}:IUserProps)=>{
 
     const [cars, setCars] = useState<IAnnouncementsData[]> ([])
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
+    const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
 
     
 
     const showCar = async ()=>{
     //    await api.get("/announcement?vehicleType=car&isAuction=false").then((response)=>{console.log(response)}).catch((error)=> console.log(error))
-        await api.get("/announcements?vehicleType=car")
+        await api.get("/announcements?vehicleType=car&isAuction=false")
         .then((response)=>{
-            console.log(response)
             setCars(response.data)})
         .catch((error)=> console.log(error))
     }
     const showMotorcycle = async ()=>{
-        await api.get("/announcements?vehicleType=motorcycle")
+        await api.get("/announcements?vehicleType=motorcycle&isAuction=false")
         .then((response)=>{
-            console.log(response)
             setMotorcycles(response.data)})
-        .catch((error)=> console.log(error))
+        .catch((error)=> console.error(error))
      }
+
+    
+    const showAuction = async()=>{
+
+        await api.get("/announcements?isAuction=true")
+        .then((response)=>{
+            setAuctions(response.data)
+        }).catch((error)=> console.error(error))
+    }
 
 
     useEffect(()=>{
+        showAuction()
         showCar()
         showMotorcycle()
     },[])
 
 
     return (
-    <UserContext.Provider value={{showCar, showMotorcycle, cars, motorcycles}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions}}>
         {children}
-    </UserContext.Provider>
+    </AnnouncementContext.Provider>
     )
 
 }
-export default UserProvider
+export default AnnouncementsProvider

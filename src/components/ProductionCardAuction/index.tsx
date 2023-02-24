@@ -13,7 +13,7 @@ const ProductionCardAuction = ({ product }: IProps) => {
           <AiOutlineClockCircle />
           <p>01:58:00</p>
         </span>
-        <img src={product.img} alt={product.title + "Image"} />
+        <img src={product.imgMain} alt={product.title + "Image"} />
       </div>
 
       <Container>
@@ -46,10 +46,7 @@ const ProductionCardAuction = ({ product }: IProps) => {
           </div>
 
           <p className="heading-7-500 ad-price">
-            {product.price.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
+            {Number(product.price!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })}
           </p>
         </section>
       </Container>
