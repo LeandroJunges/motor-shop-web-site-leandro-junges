@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IChildren, IUserResponse } from "../interfaces";
 import { api } from "../services";
@@ -44,7 +44,7 @@ export const UserProvider = ({ children }: IChildren) => {
       const { data } = await api.post("/login", user);
       setUser(data.user);
       localStorage.setItem("@motorshop: token", data.token);
-      navigate("/");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }
