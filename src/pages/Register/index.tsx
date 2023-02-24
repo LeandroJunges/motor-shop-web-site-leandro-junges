@@ -8,6 +8,7 @@ import Button from "../../components/Button"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationRegister } from "../../validations";
+import HeaderMocado from "../../components/HeaderMocado"
 interface IRegister {
   name: string
   email: string

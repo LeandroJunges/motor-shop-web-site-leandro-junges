@@ -33,6 +33,7 @@ export const NavStyle = styled.nav`
             display: flex;
             align-items: center;
             padding-right: 20px;
+            gap: 10px;
             ul{
                 display: flex;
                 flex-direction: row;
@@ -53,4 +54,14 @@ export const NavStyle = styled.nav`
             color:var(--brand-1);
         }
     }
+`
+export const DivAvatar = styled.div`
+background: var(--brand-1);
+width: 32px;
+height: 32px;
+border-radius: 150px;
+display: flex;
+justify-content: center;
+align-items: center;
+
 `
