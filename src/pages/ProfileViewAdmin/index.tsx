@@ -11,12 +11,17 @@ import { ContainerBannerAdmin } from "./styles"
 
 const ProfileViewAdmin = ()=>{
 
-    const {cars,motorcycles, auctions, goProduct} = useContext(AnnouncementContext)
+    const {cars,motorcycles, auctions, goProduct,showUserAnnouncements} = useContext(AnnouncementContext)
     const [width, setWidth] = useState(0)
+
+    const token = localStorage.getItem("@motorshop: token")
+    const person = localStorage.getItem("@motorshop: userId")
 
     const carousel = useRef<HTMLUListElement>(null)
     useEffect(()=>{
-        setWidth(carousel.current!.scrollWidth - carousel.current!.offsetWidth)
+        if(token){
+            showUserAnnouncements(person!)
+        }
     },[])
 
     return(

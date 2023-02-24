@@ -7,9 +7,11 @@ interface IAnnouncementsProviderProps {
     showCar: () => Promise<void>
     showMotorcycle: () => Promise<void>
     goProduct: () => void
+    showUserAnnouncements: (userId: string) => Promise<void>
     cars: IAnnouncementsData[]
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
+    admCar: IAnnouncementsData[]
 }
 
 interface IUserProps{
@@ -40,7 +42,10 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
     const [cars, setCars] = useState<IAnnouncementsData[]> ([])
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
     const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
+    const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([])
     const navigate = useNavigate()
+
+    console.log(admCar)
     
 
     const showCar = async ()=>{
@@ -73,13 +78,20 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
         showMotorcycle()
     },[])
 
+    const showUserAnnouncements = async (userId : string)=>{
+
+        await api.get(`announcements/user/${userId}?isAuction=false&vehicleType=car`).then((response)=>{
+            setAdmCar(response.data)
+        }).catch((error)=> console.log(error))
+    }
+
     const goProduct = ()=>{
         navigate("/product")
     }
 
 
     return (
-    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar}}>
         {children}
     </AnnouncementContext.Provider>
     )
