@@ -11,12 +11,8 @@ import ProductCard from "../../components/ProductCard";
 import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
 import { motion } from "framer-motion";
-import { UserContext } from "../../context/userContext";
 
 const Home = () => {
-  const { user } = useContext(UserContext);
-  console.log(user);
-
   const { cars, motorcycles, auctions, goProduct } =
     useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
