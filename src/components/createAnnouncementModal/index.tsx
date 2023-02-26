@@ -60,8 +60,6 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
   const [img5, setImg5] = useState("");
   const [img6, setImg6] = useState("");
 
-  console.log(images);
-
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     year: yup.number().required("Ano obrigatório"),
@@ -122,8 +120,6 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
         if (img6.length > 0) {
           imgs.img6 = img6;
         }
-        console.log("IMAGENS OBJECT", imgs);
-
         announcement.imgs = imgs;
       }
       await api
@@ -163,12 +159,8 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
       if (img6.length > 0) {
         imgs.img6 = img6;
       }
-      console.log("IMAGENS OBJECT", imgs);
-
       announcement.imgs = imgs;
     }
-
-    console.log("ANNOUNCEMENT", announcement);
 
     await api
       .post("/announcements", announcement, config)
