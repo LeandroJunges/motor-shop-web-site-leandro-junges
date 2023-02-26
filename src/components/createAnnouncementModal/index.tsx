@@ -346,7 +346,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               </InputDiv>
               {images.length > 0 && (
                 <InputDiv>
-                  <Title>Imagem da galeria1</Title>
+                  <Title>1º Imagem da galeria</Title>
                   <Input
                     value={img1}
                     onChange={(e) => setImg1(e.target.value)}
@@ -358,7 +358,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               )}
               {images.length > 1 && (
                 <InputDiv>
-                  <Title>Imagem da galeria2</Title>
+                  <Title>2º Imagem da galeria</Title>
                   <Input
                     value={img2}
                     onChange={(e) => setImg2(e.target.value)}
@@ -370,7 +370,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               )}
               {images.length > 2 && (
                 <InputDiv>
-                  <Title>Imagem da galeria3</Title>
+                  <Title>3º Imagem da galeria</Title>
                   <Input
                     value={img3}
                     onChange={(e) => setImg3(e.target.value)}
@@ -382,7 +382,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               )}
               {images.length > 3 && (
                 <InputDiv>
-                  <Title>Imagem da galeria4</Title>
+                  <Title>4º Imagem da galeria</Title>
                   <Input
                     value={img4}
                     onChange={(e) => setImg4(e.target.value)}
@@ -394,7 +394,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               )}
               {images.length > 4 && (
                 <InputDiv>
-                  <Title>Imagem da galeria5</Title>
+                  <Title>5º Imagem da galeria</Title>
                   <Input
                     value={img5}
                     onChange={(e) => setImg5(e.target.value)}
@@ -406,7 +406,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               )}
               {images.length > 5 && (
                 <InputDiv>
-                  <Title>Imagem da galeria6</Title>
+                  <Title>6º Imagem da galeria</Title>
                   <Input
                     value={img6}
                     onChange={(e) => setImg6(e.target.value)}
@@ -419,24 +419,13 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
               <ButtonForAdd
                 type="button"
                 onClick={() => {
-                  setImages([...images, "1"]);
+                  if (images.length < 6) {
+                    setImages([...images, "1"]);
+                  }
                 }}
               >
                 Adicionar campo para imagem da galeria
               </ButtonForAdd>
-
-              {/* <input
-                {...register("img1")}
-                type="text"
-                // label="1° Imagem da galeria"
-                placeholder="https://image.com"
-              />
-              <input
-                {...register("img2")}
-                type="text"
-                // label="2° Imagem da galeria"
-                placeholder="https://image.com"
-              /> */}
             </Content>
 
             <Footer>
