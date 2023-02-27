@@ -1,5 +1,3 @@
-
-import HeaderMocado from "../../components/HeaderMocado"
 import {motion} from "framer-motion"
 import { ContainerAuction, ContainerListCar, ContainerListMotorcycle } from "../Home/styles"
 import ProductCard from "../../components/ProductCard"
@@ -10,6 +8,7 @@ import { AnnouncementContext } from "../../context/AnnouncementContext"
 import { ContainerBannerAdmin } from "./styles"
 import Modal from "../../components/Modal"
 import { useNavigate } from "react-router-dom"
+import Header from "../../components/Header"
 
 const ProfileViewAdmin = ()=>{
 
@@ -32,7 +31,7 @@ const ProfileViewAdmin = ()=>{
         {token ? (
             <>
             {modal && <Modal />}
-                <HeaderMocado/>
+                <Header/>
             <ContainerBannerAdmin>
             <div className="containerContentAdmin">
                 <div className="content">

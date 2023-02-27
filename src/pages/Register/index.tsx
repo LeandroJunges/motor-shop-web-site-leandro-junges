@@ -8,7 +8,6 @@ import Button from "../../components/Button"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationRegister } from "../../validations";
-import HeaderMocado from "../../components/HeaderMocado"
 interface IRegister {
   name: string
   email: string
@@ -58,7 +57,8 @@ const Register = () => {
           <Text family="Inter" weight={500} size={14} color="--black-1" description="Tipo de conta"/>
           <div className="info">
             <Button background="var(--brand-1)" border="1px solid var(--brand-1)" border_radius={4}  color="var(--grey-10)" font_size={16} description="Comprador" width="100%" height="3rem" font_weight={600} onClick={(e) => e.currentTarget.value = "Comprador"} register={{...register("isAdvertiser")}} type="button"/>
-            <Button  background="var(--grey-10)" border="1px solid var(--grey-4)" border_radius={4}  color="var(--grey-0)" font_size={16} description = "Anunciante" width="100%" height="3rem" onClick={(e) => e.currentTarget.value = "Anuncinate"} register={{...register("isAdvertiser")}} type="button"/>
+            <Button  background="var(--grey-10)" border="1px solid var(--grey-4)" border_radius={4}  color="var(--grey-0)" font_size={16} description = "Anunciante" width="100%" height="3rem" onClick={(e) => e.currentTarget.value = "Anuncinate"} register={{...register("isAdvertiser")}} type="button" disabled={true}/>
+            <Input background="var(--brand-1)" border="1px solid var(--brand-1)" border_radius={4} color="var(--grey-10)" size={16} type="button" value={"true"}/>
           </div>
           <Fields placeholder="Digitar senha" description="Senha" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="password"register={{...register("password")}}/>
           <Fields placeholder="Digitar senha" description="Confirmar Senha" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="password" register={{...register("confirmPassword")}}/>
