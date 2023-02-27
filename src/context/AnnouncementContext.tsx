@@ -12,6 +12,8 @@ interface IAnnouncementsProviderProps {
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
     admCar: IAnnouncementsData[]
+    modal: string | null
+    setModal: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 interface IUserProps{
@@ -43,13 +45,13 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
     const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
     const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([])
+    const [modal, setModal] = useState<string | null>(null)
     const navigate = useNavigate()
 
-    console.log(admCar)
+    
     
 
     const showCar = async ()=>{
-    //    await api.get("/announcement?vehicleType=car&isAuction=false").then((response)=>{console.log(response)}).catch((error)=> console.log(error))
         await api.get("/announcements?vehicleType=car&isAuction=false")
         .then((response)=>{
             setCars(response.data)})
@@ -95,7 +97,7 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
 
 
     return (
-    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar, modal, setModal}}>
         {children}
     </AnnouncementContext.Provider>
     )

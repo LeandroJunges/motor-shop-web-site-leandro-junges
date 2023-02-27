@@ -8,14 +8,17 @@ import Footer from "../../components/Footer"
 import { useContext, useEffect, useRef, useState } from "react"
 import { AnnouncementContext } from "../../context/AnnouncementContext"
 import { ContainerBannerAdmin } from "./styles"
+import Modal from "../../components/Modal"
+import { useNavigate } from "react-router-dom"
 
 const ProfileViewAdmin = ()=>{
 
-    const {cars,motorcycles, auctions, goProduct,showUserAnnouncements} = useContext(AnnouncementContext)
+    const {cars,motorcycles, auctions, goProduct,showUserAnnouncements, setModal, modal} = useContext(AnnouncementContext)
     const [width, setWidth] = useState(0)
 
     const token = localStorage.getItem("@motorshop: token")
     const person = localStorage.getItem("@motorshop: userId")
+    const navigate = useNavigate()
 
     const carousel = useRef<HTMLUListElement>(null)
     useEffect(()=>{
@@ -26,15 +29,18 @@ const ProfileViewAdmin = ()=>{
 
     return(
         <>
-        <HeaderMocado/>
-        <ContainerBannerAdmin>
+        {token ? (
+            <>
+            {modal && <Modal />}
+                <HeaderMocado/>
+            <ContainerBannerAdmin>
             <div className="containerContentAdmin">
                 <div className="content">
                 <abbr title="Samuel Leao">SL</abbr>
                 <p>Samuel Leão <span>Anunciante</span></p>
                 </div>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                <button>Criar anuncio</button>
+                <button onClick={()=> setModal("add")}>Criar anuncio</button>
             </div>
         </ContainerBannerAdmin>
         <ContainerAuction>
@@ -56,7 +62,7 @@ const ProfileViewAdmin = ()=>{
                return (
                    <li  key={car.id}><ProductCard  product={car} />
                     <div>
-                        <button>editar</button>
+                        <button onClick={()=> setModal("edit")} >editar</button>
                         <button>ver como</button>
                     </div>
                    </li>
@@ -73,7 +79,7 @@ const ProfileViewAdmin = ()=>{
                   return(
                     <li key={motorcycle.id}><ProductCard  product={motorcycle} />
                     <div>
-                        <button>editar</button>
+                        <button onClick={()=> setModal("edit")}>editar</button>
                         <button>ver como</button>
                     </div>
                     </li>
@@ -83,6 +89,11 @@ const ProfileViewAdmin = ()=>{
             </ul>
             </ContainerListMotorcycle>
             <Footer />
+            </>
+        ):(
+            navigate("/")
+        )}
+        
         </>
     )
 }

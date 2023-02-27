@@ -17,17 +17,18 @@ import {
   InputDivSmall,
 } from "../createAnnouncementModal/style";
 import Button from "../Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
+import { AnnouncementContext } from "../../context/AnnouncementContext";
 
 interface IProps {
   open?: boolean;
 }
 
-const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
+const EditAnnouncementModal = (announcement: any) => {
   const [sellType, setSellType] = useState("sell");
   const [vehicleType, setVehicleType] = useState("car");
   const [images, setImages] = useState<String[]>([]);
@@ -39,8 +40,7 @@ const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
   const [im5, setIm5] = useState("");
   const [im6, setIm6] = useState("");
 
-  console.log(im1);
-  console.log(im2);
+  const {setModal} = useContext(AnnouncementContext)
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -95,7 +95,6 @@ const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
       description,
       imgMain,
     };
-    console.log(obj);
 
     await api
       .patch(`/announcements/${announcement.id}`, obj, config)
@@ -105,12 +104,12 @@ const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
 
   return (
     <>
-      {open && (
+     
         <Backdrop>
           <Main onSubmit={handleSubmit(onSubmitFunction)}>
             <Header>
-              <h2 className="heading-7-500">Criar anúncio</h2>
-              <GrClose />
+              <h2 className="heading-7-500">Editar anúncio</h2>
+              <GrClose onClick={()=> setModal(null)} />
             </Header>
 
             <Content>
@@ -373,7 +372,7 @@ const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
             </Content>
 
             <Footer>
-              <button className="button-big-text delete-button">
+              <button className="button-big-text delete-button"onClick={(e)=> console.log(e.target)}>
                 Excluir anúncio
               </button>
               <button type="submit" className="button-big-text save-button">
@@ -382,7 +381,6 @@ const EditAnnouncementModal = ({ open }: IProps, announcement: any) => {
             </Footer>
           </Main>
         </Backdrop>
-      )}
     </>
   );
 };
