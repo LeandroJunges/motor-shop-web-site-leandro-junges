@@ -11,11 +11,13 @@ import ProductCard from "../../components/ProductCard";
 import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { cars, motorcycles, auctions, goProduct } =
     useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
+  const navigate = useNavigate()
 
   const carousel = useRef<HTMLUListElement>(null);
   useEffect(() => {
@@ -61,7 +63,7 @@ const Home = () => {
         <ul>
           {cars.map((car) => {
             return (
-              <li onClick={goProduct} key={car.id}>
+              <li onClick={() => navigate(`/product/${car.id}`)} key={car.id}>
                 <ProductCard product={car} />
               </li>
             );
@@ -73,7 +75,7 @@ const Home = () => {
         <ul>
           {motorcycles.map((motorcycle) => {
             return (
-              <li key={motorcycle.id}>
+              <li key={motorcycle.id} onClick={() => navigate(`/product/${motorcycle.id}`)} >
                 <ProductCard product={motorcycle} />
               </li>
             );
