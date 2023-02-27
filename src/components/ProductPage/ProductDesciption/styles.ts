@@ -26,7 +26,22 @@ export const ImgDiv = styled.div`
 `;
 export const Img = styled.img`
   border-radius: 4px;
-  width: 295px;
+  width: 90%;
+  @media (min-width: 590px) {
+    width: 477px;
+  }
+  @media (min-width: 768px) {
+    width: 90%;
+  }
+  @media (min-width: 990px) {
+    width: 420px;
+  }
+  @media (min-width: 1064px) {
+    width: 320px;
+  }
+  @media (min-width: 1500px) {
+    width: 420px;
+  }
 `;
 export const DescriptionContainer = styled.div`
   width: 100%;

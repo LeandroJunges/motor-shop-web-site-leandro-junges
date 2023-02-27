@@ -1,5 +1,13 @@
 import { useContext, useEffect } from "react";
-import { Container } from "./styles";
+import {
+  BottomMain,
+  Container,
+  Main,
+  SubBottomMain,
+  UpperBottom,
+  UpperMain,
+  UpperUpper,
+} from "./styles";
 import ProductDescription from "./ProductDesciption";
 import ProductImage from "./ProductImage";
 import ProductOwner from "./ProductOwner";
@@ -10,6 +18,7 @@ import { useState } from "react";
 import Header from "../Header";
 import { useParams } from "react-router-dom";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
+import Footer from "../Footer";
 
 interface IImg {
   id: string;
@@ -69,11 +78,24 @@ const AnnouncementPage = () => {
   return (
     <Container>
       <Header />
-      {announcement && <ProductDescription product={announcement} />}
-      {announcement && <ProductImage imgs={announcement!.imgs} />}
-      {announcement && <ProductOwner user={announcement!.user} />}
-      {comments && <ProductComments comments={comments} />}
-      {announcement && <ProductCreateComment user={announcement!.user} />}
+      <Main>
+        <UpperMain>
+          <UpperUpper>
+            {announcement && <ProductDescription product={announcement} />}
+          </UpperUpper>
+          <UpperBottom>
+            {announcement && <ProductImage imgs={announcement!.imgs} />}
+            {announcement && <ProductOwner user={announcement!.user} />}
+          </UpperBottom>
+        </UpperMain>
+        <BottomMain>
+          <SubBottomMain>
+            {comments && <ProductComments comments={comments} />}
+            {announcement && <ProductCreateComment user={announcement!.user} />}
+          </SubBottomMain>
+        </BottomMain>
+        {/* <Footer /> */}
+      </Main>
     </Container>
   );
 };
