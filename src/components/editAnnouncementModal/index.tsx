@@ -17,57 +17,30 @@ import {
   InputDivSmall,
 } from "../createAnnouncementModal/style";
 import Button from "../Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
+import { AnnouncementContext } from "../../context/AnnouncementContext";
 
-interface IProps {
-  open?: boolean;
-}
 
-interface IImgs {
-  img1?: string;
-  img2?: string;
-  img3?: string;
-  img4?: string;
-  img5?: string;
-  img6?: string;
-}
 
-interface IAnnouncementCreate {
-  isAuction: boolean;
-  title: string;
-  year: number | string;
-  mileage: number;
-  vehicleType: string;
-  description: string;
-  imgMain: string;
-  initialBid?: number;
-  price?: number;
-  imgs?: IImgs;
-}
-
-const EditAnnouncementModal = ({ open }: IProps, announce: any) => {
-  const [sellType, setSellType] = useState(
-    announce.isAuction === false ? "sell" : "auction"
-  );
-  const [vehicleType, setVehicleType] = useState(announce.vehicleType);
+const EditAnnouncementModal = (announcement: any) => {
+  const [sellType, setSellType] = useState("sell");
+  const [vehicleType, setVehicleType] = useState("car");
   const [images, setImages] = useState<String[]>([]);
-  const [img1, setImg1] = useState(announce.imgs?.img1.link || "");
-  const [img2, setImg2] = useState(announce.imgs?.img2.link || "");
-  const [img3, setImg3] = useState(announce.imgs?.img3.link || "");
-  const [img4, setImg4] = useState(announce.imgs?.img4.link || "");
-  const [img5, setImg5] = useState(announce.imgs?.img5.link || "");
-  const [img6, setImg6] = useState(announce.imgs?.img6.link || "");
+  const [im1, setIm1] = useState("");
+  const [im2, setIm2] = useState("");
+  const [im3, setIm3] = useState("");
+  const [im4, setIm4] = useState("");
+  const [im5, setIm5] = useState("");
+  const [im6, setIm6] = useState("");
+  const {setModal} = useContext(AnnouncementContext)
+  
 
-  useEffect(() => {
-    announce.imgs?.map(() => {
-      setImages([...images, "1"]);
-    });
-  }, []);
 
+  
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     year: yup.number().required("Ano obrigatório"),
@@ -146,29 +119,6 @@ const EditAnnouncementModal = ({ open }: IProps, announce: any) => {
       imgMain,
     };
 
-    if (images.length > 0) {
-      let imgs: IImgs = {};
-
-      if (img1.length > 0) {
-        imgs.img1 = img1;
-      }
-      if (img2.length > 0) {
-        imgs.img2 = img2;
-      }
-      if (img3.length > 0) {
-        imgs.img3 = img3;
-      }
-      if (img4.length > 0) {
-        imgs.img4 = img4;
-      }
-      if (img5.length > 0) {
-        imgs.img5 = img5;
-      }
-      if (img6.length > 0) {
-        imgs.img6 = img6;
-      }
-      announcement.imgs = imgs;
-    }
 
     await api
       .post(`/announcements/${announce.id}`, announcement, config)
@@ -178,12 +128,12 @@ const EditAnnouncementModal = ({ open }: IProps, announce: any) => {
 
   return (
     <>
-      {open && (
+     
         <Backdrop>
           <Main onSubmit={handleSubmit(onSubmitFunction)}>
             <Header>
-              <h2 className="heading-7-500">Criar anúncio</h2>
-              <GrClose />
+              <h2 className="heading-7-500">Editar anúncio</h2>
+              <GrClose onClick={()=> setModal(null)} />
             </Header>
 
             <Content>
@@ -450,7 +400,7 @@ const EditAnnouncementModal = ({ open }: IProps, announce: any) => {
             </Content>
 
             <Footer>
-              <button className="button-big-text delete-button">
+              <button className="button-big-text delete-button"onClick={(e)=> console.log(e.target)}>
                 Excluir anúncio
               </button>
               <button type="submit" className="button-big-text save-button">
@@ -459,7 +409,6 @@ const EditAnnouncementModal = ({ open }: IProps, announce: any) => {
             </Footer>
           </Main>
         </Backdrop>
-      )}
     </>
   );
 };

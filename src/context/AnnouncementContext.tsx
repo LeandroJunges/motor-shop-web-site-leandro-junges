@@ -7,9 +7,13 @@ interface IAnnouncementsProviderProps {
     showCar: () => Promise<void>
     showMotorcycle: () => Promise<void>
     goProduct: () => void
+    showUserAnnouncements: (userId: string) => Promise<void>
     cars: IAnnouncementsData[]
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
+    admCar: IAnnouncementsData[]
+    modal: string | null
+    setModal: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 interface IUserProps{
@@ -40,11 +44,14 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
     const [cars, setCars] = useState<IAnnouncementsData[]> ([])
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
     const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
+    const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([])
+    const [modal, setModal] = useState<string | null>(null)
     const navigate = useNavigate()
+
+    
     
 
     const showCar = async ()=>{
-    //    await api.get("/announcement?vehicleType=car&isAuction=false").then((response)=>{console.log(response)}).catch((error)=> console.log(error))
         await api.get("/announcements?vehicleType=car&isAuction=false")
         .then((response)=>{
             setCars(response.data)})
@@ -73,13 +80,24 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
         showMotorcycle()
     },[])
 
+    const showUserAnnouncements = async (userId : string)=>{
+
+        await api.get(`announcements/user/${userId}?isAuction=false&vehicleType=car`).then((response)=>{
+            setAdmCar(response.data)
+        }).catch((error)=> console.log(error))
+    }
+
     const goProduct = ()=>{
         navigate("/product")
     }
 
+    const openModalEdit =()=>{
+
+    }
+
 
     return (
-    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar, modal, setModal}}>
         {children}
     </AnnouncementContext.Provider>
     )

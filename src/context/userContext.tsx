@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IChildren, IUserResponse } from "../interfaces";
@@ -59,7 +59,8 @@ export const UserProvider = ({ children }: IChildren) => {
         progress: undefined,
         theme: "light",
       });
-      navigate("/");
+      
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }

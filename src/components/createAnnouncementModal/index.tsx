@@ -17,11 +17,12 @@ import {
   InputDivSmall,
 } from "./style";
 import Button from "../Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
+import { AnnouncementContext } from "../../context/AnnouncementContext";
 
 interface IProps {
   open?: boolean;
@@ -48,17 +49,21 @@ interface IAnnouncementCreate {
   imgs?: IImgs;
 }
 
-const CreateAnnouncementModal = ({ open }: IProps) => {
+const CreateAnnouncementModal = () => {
   const [sellType, setSellType] = useState("sell");
   const [vehicleType, setVehicleType] = useState("car");
   const [images, setImages] = useState<String[]>([]);
   const [urls, setUrls] = useState<String[]>([]);
-  const [img1, setImg1] = useState("");
-  const [img2, setImg2] = useState("");
-  const [img3, setImg3] = useState("");
-  const [img4, setImg4] = useState("");
-  const [img5, setImg5] = useState("");
-  const [img6, setImg6] = useState("");
+  const [im1, setIm1] = useState("");
+  const [im2, setIm2] = useState("");
+  const [im3, setIm3] = useState("");
+  const [im4, setIm4] = useState("");
+  const [im5, setIm5] = useState("");
+  const [im6, setIm6] = useState("");
+
+  const {setModal} = useContext(AnnouncementContext)
+  
+
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -170,38 +175,37 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
 
   return (
     <>
-      {open && (
-        <Backdrop>
-          <Main onSubmit={handleSubmit(onSubmitFunction)}>
-            <Header>
-              <h2 className="heading-7-500">Criar anúncio</h2>
-              <GrClose />
-            </Header>
+      <Backdrop>
+        <Main onSubmit={handleSubmit(onSubmitFunction)}>
+          <Header>
+            <h2 className="heading-7-500">Criar anúncio</h2>
+            <GrClose onClick={()=> setModal(null)} />
+          </Header>
 
-            <Content>
-              <h2 className="body-2-500">Tipo de anúncio</h2>
-              <div className="input-group">
-                <Button
-                  background={
-                    sellType === "sell" ? "var(--brand-1)" : "transparent"
+          <Content>
+            <h2 className="body-2-500">Tipo de anúncio</h2>
+            <div className="input-group">
+          <Button
+                background={
+                  sellType === "sell" ? "var(--brand-1)" : "transparent"
                   }
-                  border={
-                    sellType === "sell"
-                      ? "1.5px solid var(--brand-1)"
-                      : "1.5px solid var(--grey-4)"
+                border={
+                  sellType === "sell"
+                    ? "1.5px solid var(--brand-1)"
+                    : "1.5px solid var(--grey-4)"
                   }
-                  color={
-                    sellType === "sell" ? "var(--grey-10)" : "var(--grey-0)"
-                  }
-                  description="Venda"
-                  border_radius={4}
-                  padding="12px 28px"
-                  font_size={16}
-                  font_weight={600}
-                  width="100%"
-                  type="button"
-                  onClick={() => {
-                    setSellType("sell");
+                color={
+                  sellType === "sell" ? "var(--grey-10)" : "var(--grey-0)"
+                }
+                description="Venda"
+                border_radius={4}
+                padding="12px 28px"
+                font_size={16}
+                font_weight={600}
+                width="100%"
+                type="button"
+                onClick={() => {
+                setSellType("sell");
                   }}
                 />
                 <Button
@@ -429,7 +433,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
             </Content>
 
             <Footer>
-              <button className="button-big-text delete-button">
+              <button className="button-big-text delete-button" onClick={()=> setModal(null)}>
                 Cancelar
               </button>
               <button type="submit" className="button-big-text save-button">
@@ -438,7 +442,7 @@ const CreateAnnouncementModal = ({ open }: IProps) => {
             </Footer>
           </Main>
         </Backdrop>
-      )}
+      
     </>
   );
 };
