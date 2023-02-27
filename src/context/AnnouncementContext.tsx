@@ -8,16 +8,23 @@ interface IAnnouncementsProviderProps {
   showMotorcycle: () => Promise<void>;
   goProduct: () => void;
   showUserAnnouncements: (userId: string) => Promise<void>;
+  getAnnouncement: (announcementId: string) => Promise<void>;
   cars: IAnnouncementsData[];
   motorcycles: IAnnouncementsData[];
   auctions: IAnnouncementsData[];
   admCar: IAnnouncementsData[];
+  announcement: IAnnouncementsData | null;
   modal: string | null;
   setModal: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 interface IUserProps {
   children: ReactNode;
+}
+
+interface IImg {
+  id: string;
+  link: string;
 }
 
 interface IAnnouncementsData {
@@ -34,6 +41,7 @@ interface IAnnouncementsData {
   year: string;
   isSold: boolean | undefined;
   isActive: boolean;
+  imgs?: IImg[];
 }
 
 export const AnnouncementContext = createContext(
@@ -46,6 +54,7 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
   const [auctions, setAuctions] = useState<IAnnouncementsData[]>([]);
   const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([]);
   const [modal, setModal] = useState<string | null>(null);
+  const [announcement, setAnnouncement] = useState(null);
   const navigate = useNavigate();
 
   const showCar = async () => {
@@ -93,13 +102,24 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
     navigate("/product");
   };
 
-  const openModalEdit = () => {};
+  const getAnnouncement = async (announcementId: string) => {
+    await api
+      .get(`/announcements/${announcementId}`)
+      .then((res) => {
+        console.log(res.data);
+
+        setAnnouncement(res.data);
+      })
+      .catch((res) => console.log(res));
+  };
 
   return (
     <AnnouncementContext.Provider
       value={{
         showCar,
         showMotorcycle,
+        getAnnouncement,
+        announcement,
         cars,
         motorcycles,
         auctions,
