@@ -24,24 +24,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 
-interface IProps {
-  open?: boolean;
-}
+
 
 const EditAnnouncementModal = (announcement: any) => {
   const [sellType, setSellType] = useState("sell");
   const [vehicleType, setVehicleType] = useState("car");
   const [images, setImages] = useState<String[]>([]);
-  const [urls, setUrls] = useState<String[]>([]);
   const [im1, setIm1] = useState("");
   const [im2, setIm2] = useState("");
   const [im3, setIm3] = useState("");
   const [im4, setIm4] = useState("");
   const [im5, setIm5] = useState("");
   const [im6, setIm6] = useState("");
-
   const {setModal} = useContext(AnnouncementContext)
+  
 
+
+  
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
     year: yup.number().required("Ano obrigatório"),
@@ -71,21 +70,45 @@ const EditAnnouncementModal = (announcement: any) => {
     const { title, year, mileage, price, description, imgMain } = data;
     const isAuction = sellType === "sell" ? false : true;
     if (isAuction === true) {
-      const obj = {
+      const announcement: IAnnouncementCreate = {
         isAuction,
         title,
-        year,
+        year: String(year),
+        vehicleType,
         mileage,
         description,
         imgMain,
         initialBid: price,
       };
+      if (images.length > 0) {
+        let imgs: IImgs = {};
+
+        if (img1.length > 0) {
+          imgs.img1 = img1;
+        }
+        if (img2.length > 0) {
+          imgs.img2 = img2;
+        }
+        if (img3.length > 0) {
+          imgs.img3 = img3;
+        }
+        if (img4.length > 0) {
+          imgs.img4 = img4;
+        }
+        if (img5.length > 0) {
+          imgs.img5 = img5;
+        }
+        if (img6.length > 0) {
+          imgs.img6 = img6;
+        }
+        announcement.imgs = imgs;
+      }
       await api
-        .patch(`/announcements/${announcement.id}`, obj, config)
+        .patch(`/announcements/${announce.id}`, announcement, config)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
-    const obj = {
+    const announcement: IAnnouncementCreate = {
       isAuction,
       title,
       year: String(year),
@@ -96,8 +119,9 @@ const EditAnnouncementModal = (announcement: any) => {
       imgMain,
     };
 
+
     await api
-      .patch(`/announcements/${announcement.id}`, obj, config)
+      .post(`/announcements/${announce.id}`, announcement, config)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -278,81 +302,85 @@ const EditAnnouncementModal = (announcement: any) => {
                   placeholder="https://image.com"
                 />
               </InputDiv>
-              {images.map((i) => {
-                return (
-                  <>
-                    {i[0] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm1(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                    {i[1] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm2(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                    {i[2] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm3(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                    {i[3] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm4(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                    {i[4] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm5(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                    {i[5] && (
-                      <InputDiv>
-                        <Title>Imagem da galeria</Title>
-                        <Input
-                          onChange={(e) => setIm6(e.target.value)}
-                          type="text"
-                          // label="Imagem da capa"
-                          placeholder="https://image.com"
-                        />
-                      </InputDiv>
-                    )}
-                  </>
-                );
-              })}
+              {images.length > 0 && (
+                <InputDiv>
+                  <Title>1º Imagem da galeria</Title>
+                  <Input
+                    value={img1}
+                    onChange={(e) => setImg1(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
+              {images.length > 1 && (
+                <InputDiv>
+                  <Title>2º Imagem da galeria</Title>
+                  <Input
+                    value={img2}
+                    onChange={(e) => setImg2(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
+              {images.length > 2 && (
+                <InputDiv>
+                  <Title>3º Imagem da galeria</Title>
+                  <Input
+                    value={img3}
+                    onChange={(e) => setImg3(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
+              {images.length > 3 && (
+                <InputDiv>
+                  <Title>4º Imagem da galeria</Title>
+                  <Input
+                    value={img4}
+                    onChange={(e) => setImg4(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
+              {images.length > 4 && (
+                <InputDiv>
+                  <Title>5º Imagem da galeria</Title>
+                  <Input
+                    value={img5}
+                    onChange={(e) => setImg5(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
+              {images.length > 5 && (
+                <InputDiv>
+                  <Title>6º Imagem da galeria</Title>
+                  <Input
+                    value={img6}
+                    onChange={(e) => setImg6(e.target.value)}
+                    type="text"
+                    // label="Imagem da capa"
+                    placeholder="https://image.com"
+                  />
+                </InputDiv>
+              )}
               <ButtonForAdd
                 type="button"
-                onClick={() => setImages([...images, "1"])}
+                onClick={() => {
+                  if (images.length < 6) {
+                    setImages([...images, "1"]);
+                  }
+                }}
               >
                 Adicionar campo para imagem da galeria
               </ButtonForAdd>
