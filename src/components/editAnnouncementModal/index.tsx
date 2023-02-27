@@ -22,7 +22,15 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
+import { toast } from "react-toastify";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
+
+interface IProps {
+  setOpenEditAnnouncement: any;
+  announce: any;
+  setOpenDeleteAnnouncement: any;
+  setAnnouncement: any;
+}
 
 interface IImgs {
   img1?: string;
@@ -47,19 +55,50 @@ interface IAnnouncementCreate {
 }
 
 const EditAnnouncementModal = ({
-  announce,
-  setOpenEditAnnouncement,
   setAnnouncement,
-}: any) => {
-  const [sellType, setSellType] = useState("sell");
-  const [vehicleType, setVehicleType] = useState("car");
-  const [images, setImages] = useState<String[]>([]);
-  const [img1, setImg1] = useState("");
-  const [img2, setImg2] = useState("");
-  const [img3, setImg3] = useState("");
-  const [img4, setImg4] = useState("");
-  const [img5, setImg5] = useState("");
-  const [img6, setImg6] = useState("");
+  setOpenEditAnnouncement,
+  announce,
+  setOpenDeleteAnnouncement,
+}: IProps) => {
+  const { showUserAnnouncements } = useContext(AnnouncementContext);
+
+  const person = localStorage.getItem("@motorshop: userId");
+  const [sellType, setSellType] = useState(
+    announce.isAuction === false ? "sell" : "auction"
+  );
+
+  const [vehicleType, setVehicleType] = useState(announce.vehicleType);
+  const [images, setImages] = useState<Object[]>(announce.imgs || []);
+  const [img1, setImg1] = useState(
+    announce.imgs && announce.imgs[0] ? announce.imgs[0].link : ""
+  );
+  const [img2, setImg2] = useState(
+    announce.imgs && announce.imgs[1] ? announce.imgs[1].link : ""
+  );
+  const [img3, setImg3] = useState(
+    announce.imgs && announce.imgs[2] ? announce.imgs[2].link : ""
+  );
+  const [img4, setImg4] = useState(
+    announce.imgs && announce.imgs[3] ? announce.imgs[3].link : ""
+  );
+  const [img5, setImg5] = useState(
+    announce.imgs && announce.imgs[4] ? announce.imgs[4].link : ""
+  );
+  const [img6, setImg6] = useState(
+    announce.imgs && announce.imgs[5] ? announce.imgs[5].link : ""
+  );
+
+  useEffect(() => {
+    setValue("title", announce.title);
+    setValue("year", announce.year);
+    setValue("mileage", announce.mileage);
+    setValue(
+      "price",
+      announce.isAuction === false ? announce.price : announce.initialBid
+    );
+    setValue("description", announce.description);
+    setValue("imgMain", announce.imgMain);
+  }, []);
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -73,6 +112,7 @@ const EditAnnouncementModal = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
@@ -125,7 +165,22 @@ const EditAnnouncementModal = ({
       }
       await api
         .patch(`/announcements/${announce.id}`, announcement, config)
-        .then((res) => console.log(res))
+        .then((res) => {
+          showUserAnnouncements(person!);
+          toast.success(" Anúncio editado com sucesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setOpenEditAnnouncement(false);
+          setAnnouncement({});
+          console.log(res);
+        })
         .catch((err) => console.log(err));
     }
     const announcement: IAnnouncementCreate = {
@@ -162,10 +217,24 @@ const EditAnnouncementModal = ({
       }
       announcement.imgs = imgs;
     }
-
     await api
-      .post("/announcements", announcement, config)
-      .then((res) => console.log(res))
+      .patch(`/announcements/${announce.id}`, announcement, config)
+      .then((res) => {
+        showUserAnnouncements(person!);
+        toast.success(" Anúncio editado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setOpenEditAnnouncement(false);
+        setAnnouncement({});
+        console.log(res);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -176,6 +245,7 @@ const EditAnnouncementModal = ({
           <Header>
             <h2 className="heading-7-500">Editar anúncio</h2>
             <GrClose
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setAnnouncement({});
                 setOpenEditAnnouncement(false);
@@ -443,7 +513,10 @@ const EditAnnouncementModal = ({
           <Footer>
             <button
               className="button-big-text delete-button"
-              onClick={(e) => console.log(e.target)}
+              onClick={() => {
+                setOpenEditAnnouncement(false);
+                setOpenDeleteAnnouncement(true);
+              }}
             >
               Excluir anúncio
             </button>

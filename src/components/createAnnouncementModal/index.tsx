@@ -23,9 +23,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
+import { toast } from "react-toastify";
 
 interface IProps {
-  open?: boolean;
+  setOpenCreateAnnouncement: any;
 }
 interface IImgs {
   img1?: string;
@@ -49,11 +50,10 @@ interface IAnnouncementCreate {
   imgs?: IImgs;
 }
 
-const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: any) => {
+const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
   const [sellType, setSellType] = useState("sell");
   const [vehicleType, setVehicleType] = useState("car");
   const [images, setImages] = useState<String[]>([]);
-  const [urls, setUrls] = useState<String[]>([]);
   const [img1, setImg1] = useState("");
   const [img2, setImg2] = useState("");
   const [img3, setImg3] = useState("");
@@ -61,7 +61,8 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: any) => {
   const [img5, setImg5] = useState("");
   const [img6, setImg6] = useState("");
 
-  const { setModal } = useContext(AnnouncementContext);
+  const { showUserAnnouncements } = useContext(AnnouncementContext);
+  const person = localStorage.getItem("@motorshop: userId");
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Campo obrigatório"),
@@ -127,7 +128,20 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: any) => {
       }
       await api
         .post("/announcements", announcement, config)
-        .then((res) => console.log(res))
+        .then((res) => {
+          showUserAnnouncements(person!);
+          toast.success(" Anúncio editado com sucesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          console.log(res);
+        })
         .catch((err) => console.log(err));
     }
     const announcement: IAnnouncementCreate = {
@@ -430,7 +444,7 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: any) => {
           <Footer>
             <button
               className="button-big-text delete-button"
-              onClick={() => setModal(null)}
+              onClick={() => setOpenCreateAnnouncement(false)}
             >
               Cancelar
             </button>

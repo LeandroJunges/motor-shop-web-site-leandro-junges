@@ -15,9 +15,11 @@ import Modal from "../../components/Modal";
 import { useNavigate } from "react-router-dom";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
+import ProductDeleteModal from "../../components/ProductDeleteModal";
 
 const ProfileViewAdmin = () => {
   const {
+    admCar,
     cars,
     motorcycles,
     auctions,
@@ -29,9 +31,8 @@ const ProfileViewAdmin = () => {
   const [width, setWidth] = useState(0);
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
+  const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
   const [announcement, setAnnouncement] = useState({});
-
-  console.log("AQUI", openCreateAnnoncement);
 
   const token = localStorage.getItem("@motorshop: token");
   const person = localStorage.getItem("@motorshop: userId");
@@ -55,8 +56,16 @@ const ProfileViewAdmin = () => {
           )}
           {openEditAnnoncement && (
             <EditAnnouncementModal
+              setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
+              setAnnouncement={setAnnouncement}
               announce={announcement}
               setOpenEditAnnouncement={setOpenEditAnnouncement}
+            />
+          )}
+          {openDeleteAnnouncement && (
+            <ProductDeleteModal
+              announcement={announcement}
+              setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
           <HeaderMocado />
@@ -102,7 +111,7 @@ const ProfileViewAdmin = () => {
           <ContainerListCar>
             <h4>Carros</h4>
             <ul>
-              {cars.map((car) => {
+              {admCar.map((car) => {
                 return (
                   <li key={car.id}>
                     <ProductCard product={car} />
