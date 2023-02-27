@@ -8,11 +8,18 @@ export interface IUserContextProps {
   registerUser: (user: IUserLogin) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
   user: IUserResponse["user"] | undefined;
+  userRecovery: (data: IUserRecovery) => Promise<any>;
 }
 
 interface IUserLogin {
   email: string;
   password: string;
+}
+
+interface IUserRecovery {
+  email: string;
+  password?: string;
+  token?: string;
 }
 export const UserContext = createContext<IUserContextProps>(
   {} as IUserContextProps
@@ -59,14 +66,48 @@ export const UserProvider = ({ children }: IChildren) => {
         progress: undefined,
         theme: "light",
       });
-      
+
       navigate("/admin");
     } catch (error) {
       console.log(error);
     }
   };
+
+  const userRecovery = async (data: IUserRecovery) => {
+    const email = data.email;
+    if (data.token) {
+      toast.success("Senha alterada!", {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+      return await api
+        .patch(
+          "/users/",
+          { password: data.password },
+          { headers: { Authorization: `Bearer ${data.token}` } }
+        )
+        .then((res) => navigate("/login"));
+    }
+    toast.success("Email enviado!", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+    });
+
+    await api.post("/users/recovery", { email });
+  };
+
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user }}>
+    <UserContext.Provider
+      value={{ loginUser, registerUser, user, userRecovery }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -10,6 +10,7 @@ function App() {
       <GlobalStyle />
       <ToastContainer />
       <Routes />
+      <EditAnnouncementModal />
     </>
   );
 }
