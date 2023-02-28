@@ -8,11 +8,11 @@ import {UserProvider } from './context/userContext'
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-    <AnnouncementsProvider>
     <UserProvider>
+    <AnnouncementsProvider>
       <App />
-    </UserProvider>
     </AnnouncementsProvider>
+    </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )

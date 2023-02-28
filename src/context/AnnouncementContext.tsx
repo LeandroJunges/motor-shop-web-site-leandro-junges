@@ -4,18 +4,18 @@ import { IUser } from "../components/ProductCard/interface";
 import { api } from "../services";
 
 interface IAnnouncementsProviderProps {
-  showCar: () => Promise<void>;
-  showMotorcycle: () => Promise<void>;
-  goProduct: () => void;
-  showUserAnnouncements: (userId: string) => Promise<void>;
-  getAnnouncement: (announcementId: string) => Promise<void>;
-  cars: IAnnouncementsData[];
-  motorcycles: IAnnouncementsData[];
-  auctions: IAnnouncementsData[];
-  admCar: IAnnouncementsData[];
-  announcement: IAnnouncementsData | null;
-  modal: string | null;
-  setModal: React.Dispatch<React.SetStateAction<string | null>>;
+    showCar: () => Promise<void>
+    showMotorcycle: () => Promise<void>
+    showUserAnnouncements: (userId: string) => Promise<void>
+    getAnnouncement: (announcementId: string) => Promise<void>;
+    cars: IAnnouncementsData[]
+    motorcycles: IAnnouncementsData[]
+    auctions: IAnnouncementsData[]
+    admCar: IAnnouncementsData[]
+    admMotorcycle: IAnnouncementsData[]
+    announcement: IAnnouncementsData | null;
+    modal: string | null
+    setModal: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 interface IUserProps {
@@ -53,6 +53,7 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
   const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]>([]);
   const [auctions, setAuctions] = useState<IAnnouncementsData[]>([]);
   const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([]);
+  const [admMotorcycle, setAdmMotorcycle] = useState<IAnnouncementsData[]>([])
   const [modal, setModal] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState(null);
   const navigate = useNavigate();
@@ -98,9 +99,7 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
       .catch((error) => console.log(error));
   };
 
-  const goProduct = () => {
-    navigate("/product");
-  };
+  
 
   const getAnnouncement = async (announcementId: string) => {
     await api
@@ -123,9 +122,9 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
         cars,
         motorcycles,
         auctions,
-        goProduct,
         showUserAnnouncements,
         admCar,
+        admMotorcycle,
         modal,
         setModal,
       }}

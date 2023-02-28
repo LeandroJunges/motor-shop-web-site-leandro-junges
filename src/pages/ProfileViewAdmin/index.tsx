@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
+import { UserContext } from "../../context/userContext"
 
 const ProfileViewAdmin = () => {
   const {
@@ -23,12 +24,13 @@ const ProfileViewAdmin = () => {
     cars,
     motorcycles,
     auctions,
-    goProduct,
+    admMotorcycle,
     showUserAnnouncements,
     setModal,
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
+  const {user, setLoading} = useContext(UserContext)
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
@@ -71,20 +73,13 @@ const ProfileViewAdmin = () => {
           <HeaderMocado />
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
-              <div className="content">
-                <abbr title="Samuel Leao">SL</abbr>
-                <p>
-                  Samuel Leão <span>Anunciante</span>
-                </p>
-              </div>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s
-              </p>
-              <button onClick={() => setOpenCreateAnnouncement(true)}>
-                Criar anuncio
-              </button>
+                <div className="content">
+                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
+                <p>{user!.name} <span>{user!.isAdvertiser && "Anunciante" }</span></p>
+                </div>
+                <p>{user?.description}</p>
+                <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
+                </button>
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
@@ -134,10 +129,9 @@ const ProfileViewAdmin = () => {
           <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-              {motorcycles.map((motorcycle) => {
-                return (
-                  <li key={motorcycle.id}>
-                    <ProductCard product={motorcycle} />
+                {admMotorcycle.map((motorcycle)=>{
+                  return(
+                    <li key={motorcycle.id}><ProductCard  product={motorcycle} />
                     <div>
                       <button
                         onClick={() => {
