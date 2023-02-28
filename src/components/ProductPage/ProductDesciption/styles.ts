@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 export const UpperDiv = styled.div`
   width: 100%;
-  height: 700px;
+  height: 630px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -50,7 +50,7 @@ export const DescriptionContainer = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 4px;
-  height: 46%;
+  height: 40%;
 `;
 
 export const DescriptionContainerCentered = styled.div`
@@ -75,6 +75,10 @@ export const StatsDiv = styled.div`
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-between;
+  @media (min-width: 769px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export const UpperStats = styled.div`

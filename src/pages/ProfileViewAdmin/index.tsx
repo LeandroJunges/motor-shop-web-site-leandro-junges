@@ -1,18 +1,15 @@
-import HeaderMocado from "../../components/HeaderMocado";
-import { motion } from "framer-motion";
-import {
-  ContainerAuction,
-  ContainerListCar,
-  ContainerListMotorcycle,
-} from "../Home/styles";
-import ProductCard from "../../components/ProductCard";
-import ProductionCardAuction from "../../components/ProductionCardAuction";
-import Footer from "../../components/Footer";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AnnouncementContext } from "../../context/AnnouncementContext";
-import { ContainerBannerAdmin } from "./styles";
-import Modal from "../../components/Modal";
-import { useNavigate } from "react-router-dom";
+
+import {motion} from "framer-motion"
+import { ContainerAuction, ContainerListCar, ContainerListMotorcycle } from "../Home/styles"
+import ProductCard from "../../components/ProductCard"
+import ProductionCardAuction from "../../components/ProductionCardAuction"
+import Footer from "../../components/Footer"
+import { useContext, useEffect, useRef, useState } from "react"
+import { AnnouncementContext } from "../../context/AnnouncementContext"
+import { ContainerBannerAdmin } from "./styles"
+import Modal from "../../components/Modal"
+import { useNavigate } from "react-router-dom"
+import Header from "../../components/Header"
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
@@ -51,6 +48,11 @@ const ProfileViewAdmin = () => {
     <>
       {token ? (
         <>
+        {token ? (
+            <>
+            {modal && <Modal />}
+                <Header/>
+            <ContainerBannerAdmin>
           {openCreateAnnoncement && (
             <CreateAnnouncementModal
               setOpenCreateAnnouncement={setOpenCreateAnnouncement}
@@ -70,8 +72,8 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-          <HeaderMocado />
           <ContainerBannerAdmin>
+
             <div className="containerContentAdmin">
                 <div className="content">
                 <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
