@@ -56,7 +56,6 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
   const [admMotorcycle, setAdmMotorcycle] = useState<IAnnouncementsData[]>([])
   const [modal, setModal] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState(null);
-  const navigate = useNavigate();
 
   const showCar = async () => {
     await api
@@ -88,15 +87,24 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
     showAuction();
     showCar();
     showMotorcycle();
-  }, []);
+  }, [admCar, admMotorcycle]);
 
   const showUserAnnouncements = async (userId: string) => {
     await api
       .get(`announcements/user/${userId}?isAuction=false&vehicleType=car`)
       .then((response) => {
         setAdmCar(response.data);
+        
+      })
+
+      .catch((error) => console.log(error));
+      await api
+      .get(`announcements/user/${userId}?isAuction=false&vehicleType=motorcycle`)
+      .then((response) => {
+        setAdmMotorcycle(response.data);
       })
       .catch((error) => console.log(error));
+
   };
 
   

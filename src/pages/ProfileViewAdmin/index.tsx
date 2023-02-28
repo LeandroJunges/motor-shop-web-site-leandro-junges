@@ -4,22 +4,19 @@ import { ContainerAuction, ContainerListCar, ContainerListMotorcycle } from "../
 import ProductCard from "../../components/ProductCard"
 import ProductionCardAuction from "../../components/ProductionCardAuction"
 import Footer from "../../components/Footer"
+import Header from "../../components/Header"
 import { useContext, useEffect, useRef, useState } from "react"
 import { AnnouncementContext } from "../../context/AnnouncementContext"
 import { ContainerBannerAdmin } from "./styles"
-import Modal from "../../components/Modal"
-import { useNavigate } from "react-router-dom"
-import Header from "../../components/Header"
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
 import { UserContext } from "../../context/userContext"
+import { useNavigate } from "react-router-dom"
 
 const ProfileViewAdmin = () => {
   const {
     admCar,
-    cars,
-    motorcycles,
     auctions,
     admMotorcycle,
     showUserAnnouncements,
@@ -33,9 +30,10 @@ const ProfileViewAdmin = () => {
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
   const [announcement, setAnnouncement] = useState({});
 
+  const navigate = useNavigate()
+
   const token = localStorage.getItem("@motorshop: token");
   const person = localStorage.getItem("@motorshop: userId");
-  const navigate = useNavigate();
 
   const carousel = useRef<HTMLUListElement>(null);
   useEffect(() => {
@@ -48,11 +46,6 @@ const ProfileViewAdmin = () => {
     <>
       {token ? (
         <>
-        {token ? (
-            <>
-            {modal && <Modal />}
-                <Header/>
-            <ContainerBannerAdmin>
           {openCreateAnnoncement && (
             <CreateAnnouncementModal
               setOpenCreateAnnouncement={setOpenCreateAnnouncement}
@@ -72,8 +65,8 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
+          <Header/>
           <ContainerBannerAdmin>
-
             <div className="containerContentAdmin">
                 <div className="content">
                 <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>

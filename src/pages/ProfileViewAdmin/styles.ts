@@ -30,12 +30,18 @@ export const ContainerBannerAdmin = styled.div`
       flex-direction: column;
       align-items: baseline;
 
+              abbr{
+                width: 50px;
+                height: 50px;
+                border-radius: 50px ;
+                
                 img{
                     width: 100%;
                     height: 100%;
                     border-radius: 50px;
                   }
-
+                  
+              }
             
             p{  display: flex;
                 font-size: 20px;
