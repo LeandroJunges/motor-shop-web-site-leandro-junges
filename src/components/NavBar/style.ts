@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Container = styled.nav`
 width: 100%;
 background: var(--grey-10);
@@ -37,22 +36,11 @@ box-sizing: border-box;
         align-items: center;
         padding: 20px 0;
         border-bottom: 1px solid var(--grey-4);
-        div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50px;
-        }
-        ul {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-        }
     }
 `
-export const divUl = styled
+export const UlStyle = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+`

@@ -75,3 +75,25 @@ align-items: center;
         height: 100%;
     }
 `
+export const NavBar = styled.button`
+background-color: var(--whiteFixed);
+border: none;
+display: flex;
+align-items: center;
+cursor: pointer;
+gap: 5px;
+`
+export const DivNavBar = styled.div`
+    position: absolute;
+    background: var(--whiteFixed);
+    top: 70px;
+    right: 0;
+    padding: 20px;
+    box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+
+`

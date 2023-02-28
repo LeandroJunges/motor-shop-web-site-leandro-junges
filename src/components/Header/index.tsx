@@ -1,4 +1,4 @@
-import { HeaderStyle, FigureStyle, NavStyle, DivAvatar} from "./style"
+import { HeaderStyle, FigureStyle, NavStyle, DivAvatar, NavBar as NavBarDesk, DivNavBar} from "./style"
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import ButtonIcon from "../ButtonIcon";
 import { useContext, useState } from "react";
@@ -10,6 +10,7 @@ import NavBar from "../NavBar";
 
 const Header = () => {
   const [ isOpen, setIsOpen] = useState(false)
+  const [ navBar, setNavBar] = useState(false)
   const navigate = useNavigate()
   const {user} = useContext(UserContext)
   const backHome = ()=>{
@@ -34,12 +35,21 @@ const Header = () => {
           </section>
           <section className="session">
             {user ? 
-            <>
+            <NavBarDesk onClick={() => setNavBar(!navBar)}>
               <DivAvatar>
                 <img src={user.img} alt = {`avatar${user.name}`} />
               </DivAvatar> 
               <Text description={user.name} color="grey-2" size={16} weight={400}/>
-            </>
+              {navBar && 
+              <DivNavBar>
+                <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço"/>
+                    {user.isAdvertiser &&
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios"/>
+                    }
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair"/>
+              </DivNavBar>}
+            </NavBarDesk>
               : 
             <ul>
                 <Link to={"/login/"} className="login">Fazer login</Link>
