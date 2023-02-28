@@ -8,6 +8,8 @@ import Button from "../../components/Button"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationRegister } from "../../validations";
+import { useContext } from "react"
+import { UserContext } from "../../context/userContext"
 interface IRegister {
   name: string
   email: string
@@ -24,19 +26,17 @@ interface IRegister {
   number: string
   city: string
   complement: string
-  image: string
+  img: string
 }
 const Register = () => {
   const {register, handleSubmit, formState: {errors},  } = useForm<IRegister>({resolver:yupResolver(validationRegister)})
-  const registe = (data:any) => {
-   console.log(data)
-  }
+  const {registerUser} =useContext(UserContext)
   console.log(errors)
   return(
     <>
       <Header/>
       <Container>
-        <Form section1="Informações Pessoais" title="Cadastrar" onSubmit={handleSubmit(registe)}>
+        <Form section1="Informações Pessoais" title="Cadastrar" onSubmit={handleSubmit(registerUser)}>
           <Fields placeholder="Ex: Samuel Leão" description="Nome" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" register={{...register("name")}}/>
           <Fields placeholder="Ex: samuel@mail.com" description="Email" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="email" register={{...register("email")}}/>
           <Fields placeholder="Ex: 000.000.000-00" description="CPF" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="number" register={{...register("cpf")}}/>
@@ -56,11 +56,15 @@ const Register = () => {
           </div>
           <Text family="Inter" weight={500} size={14} color="--black-1" description="Tipo de conta"/>
           <div className="info">
-            <Button background="var(--brand-1)" border="1px solid var(--brand-1)" border_radius={4}  color="var(--grey-10)" font_size={16} description="Comprador" width="100%" height="3rem" font_weight={600} onClick={(e) => e.currentTarget.value = "Comprador"} register={{...register("isAdvertiser")}} type="button"/>
-            <Button  background="var(--grey-10)" border="1px solid var(--grey-4)" border_radius={4}  color="var(--grey-0)" font_size={16} description = "Anunciante" width="100%" height="3rem" onClick={(e) => e.currentTarget.value = "Anuncinate"} register={{...register("isAdvertiser")}} type="button" disabled={true}/>
+            <select {...register("isAdvertiser")}>
+              <option  value="false">Comprador</option>
+              <option   value="true">Anunciante</option>
+            </select>
           </div>
           <Fields placeholder="Digitar senha" description="Senha" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="password"register={{...register("password")}}/>
           <Fields placeholder="Digitar senha" description="Confirmar Senha" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="password" register={{...register("confirmPassword")}}/>
+          <Text family="Inter" weight={500} size={14} color="--black-1" description="Imagem"/>
+          <Fields placeholder="Url da imagem" description="URL" color="var(--grey-1)" size={14} weight={500} padding="0px 16px" type="url"register={{...register("img")}}/>
           <Button background="var(--brand-1)" border=" 1.5px solid var(--brand-1)"  color="var(--grey-10)" description="Finalizar cadastro" border_radius={4} padding="12px 28px" font_size={16} font_weight={600} width="100%" type="submit"/>
         </Form>
       </Container>

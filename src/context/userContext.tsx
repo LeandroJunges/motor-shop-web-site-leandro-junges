@@ -37,14 +37,25 @@ export const UserProvider = ({ children }: IChildren) => {
   }, []);
   const registerUser = async (user: any): Promise<void> => {
     try {
-      // await
+      const response = await api.post("/users", user)
+      console.log(response)
+      toast.success(" Conta criada!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/login/")
     } catch (error) {
       console.log(error);
     }
   };
   const loginUser = async (user: IUserLogin) => {
     try {
-      // await
       const { data } = await api.post("/login", user);
       setUser(data.user);
       localStorage.setItem("@motorshop: token", data.token);
