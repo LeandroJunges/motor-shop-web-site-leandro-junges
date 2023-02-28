@@ -19,13 +19,12 @@ export const validationRegister = yup.object().shape({
   description: yup.string().required("Campo obrigatório"),
   dateOfBirth: yup.date().required("Campo obrigatório"),
   isAdvertiser: yup
-    .boolean()
-    .transform((v) => (v === "Comprador" ? (v = false) : (v = true))),
+    .boolean(),
   cep: yup.number().required("Campo obrigatório"),
   state: yup.string().required("Campo obrigatório"),
   street: yup.string().required("Campo obrigatório"),
   number: yup.string().required("Campo obrigatório"),
   city: yup.string().required("Campo obrigatório"),
   complement: yup.string().notRequired(),
-  Image: yup.string().url().notRequired(),
+  img: yup.string().url().required(),
 });

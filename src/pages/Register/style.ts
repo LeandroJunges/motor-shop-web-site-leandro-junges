@@ -15,4 +15,14 @@ export const Container = styled.main`
             width: 80%;
         }
     }
+    select {
+        background-color: var(--brand-1);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        color: var(--whiteFixed);
+        border-radius: 4px;
+        font-weight: 600;
+    }
 `

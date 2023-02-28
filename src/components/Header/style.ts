@@ -19,7 +19,10 @@ cursor: pointer;
 export const NavStyle = styled.nav`
     height: 100%;
     display: flex;
-    section {
+    .itens {
+        display: none;
+    }
+    .session {
         display: none;
     }
     @media (min-width: 665px) {
@@ -27,6 +30,10 @@ export const NavStyle = styled.nav`
         gap: 20px;
         .itens {
             border-right: 2px solid var(--grey-6);
+            display: flex;
+        }
+        .session {
+            display: flex;
         }
         section{
             height: 100%;
@@ -63,5 +70,8 @@ border-radius: 150px;
 display: flex;
 justify-content: center;
 align-items: center;
-
+    img {
+        width: 100%;
+        height: 100%;
+    }
 `
