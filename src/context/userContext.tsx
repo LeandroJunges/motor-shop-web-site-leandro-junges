@@ -10,11 +10,18 @@ export interface IUserContextProps {
   user: IUserResponse["user"] | undefined;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  userRecovery: (data: IUserRecovery) => Promise<any>;
 }
 
 interface IUserLogin {
   email: string;
   password: string;
+}
+
+interface IUserRecovery {
+  email: string;
+  password?: string;
+  token?: string;
 }
 export const UserContext = createContext<IUserContextProps>(
   {} as IUserContextProps
@@ -68,7 +75,7 @@ export const UserProvider = ({ children }: IChildren) => {
         progress: undefined,
         theme: "light",
       });
-      
+
       navigate("/admin");
     } catch (error) {
       localStorage.clear()
@@ -76,8 +83,40 @@ export const UserProvider = ({ children }: IChildren) => {
       console.log(error);
     }
   };
+
+  const userRecovery = async (data: IUserRecovery) => {
+    const email = data.email;
+    if (data.token) {
+      toast.success("Senha alterada!", {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+      return await api
+        .patch(
+          "/users/",
+          { password: data.password },
+          { headers: { Authorization: `Bearer ${data.token}` } }
+        )
+        .then((res) => navigate("/login"));
+    }
+    toast.success("Email enviado!", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+    });
+
+    await api.post("/users/recovery", { email });
+  };
+
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery }}>
       {children}
     </UserContext.Provider>
   );
