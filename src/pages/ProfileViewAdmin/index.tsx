@@ -10,10 +10,12 @@ import { AnnouncementContext } from "../../context/AnnouncementContext"
 import { ContainerBannerAdmin } from "./styles"
 import Modal from "../../components/Modal"
 import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../context/userContext"
 
 const ProfileViewAdmin = ()=>{
 
-    const {cars,motorcycles, auctions, goProduct,showUserAnnouncements, setModal, modal} = useContext(AnnouncementContext)
+    const {admCar,admMotorcycle, auctions, goProduct,showUserAnnouncements, setModal, modal} = useContext(AnnouncementContext)
+    const {user, setLoading} = useContext(UserContext)
     const [width, setWidth] = useState(0)
 
     const token = localStorage.getItem("@motorshop: token")
@@ -36,10 +38,10 @@ const ProfileViewAdmin = ()=>{
             <ContainerBannerAdmin>
             <div className="containerContentAdmin">
                 <div className="content">
-                <abbr title="Samuel Leao">SL</abbr>
-                <p>Samuel Leão <span>Anunciante</span></p>
+                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
+                <p>{user!.name} <span>{user!.isAdvertiser && "Anunciante" }</span></p>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                <p>{user?.description}</p>
                 <button onClick={()=> setModal("add")}>Criar anuncio</button>
             </div>
         </ContainerBannerAdmin>
@@ -58,10 +60,10 @@ const ProfileViewAdmin = ()=>{
             <ContainerListCar>
             <h4>Carros</h4>
             <ul>               
-            {cars.map((car)=>{
+            {admCar.map((car)=>{
                return (
                    <li  key={car.id}><ProductCard  product={car} />
-                    <div>
+                    <div className="buttonsProfileCard">
                         <button onClick={()=> setModal("edit")} >editar</button>
                         <button>ver como</button>
                     </div>
@@ -75,7 +77,7 @@ const ProfileViewAdmin = ()=>{
             <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-                {motorcycles.map((motorcycle)=>{
+                {admMotorcycle.map((motorcycle)=>{
                   return(
                     <li key={motorcycle.id}><ProductCard  product={motorcycle} />
                     <div>

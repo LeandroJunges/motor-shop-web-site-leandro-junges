@@ -12,6 +12,7 @@ interface IAnnouncementsProviderProps {
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
     admCar: IAnnouncementsData[]
+    admMotorcycle: IAnnouncementsData[]
     modal: string | null
     setModal: React.Dispatch<React.SetStateAction<string | null>>
 }
@@ -45,6 +46,7 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
     const [motorcycles, setMotorcycles] = useState<IAnnouncementsData[]> ([])
     const [auctions, setAuctions] = useState<IAnnouncementsData[]>([])
     const [admCar, setAdmCar] = useState<IAnnouncementsData[]>([])
+    const [admMotorcycle, setAdmMotorcycle] = useState<IAnnouncementsData[]>([])
     const [modal, setModal] = useState<string | null>(null)
     const navigate = useNavigate()
 
@@ -85,6 +87,10 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
         await api.get(`announcements/user/${userId}?isAuction=false&vehicleType=car`).then((response)=>{
             setAdmCar(response.data)
         }).catch((error)=> console.log(error))
+
+        await api.get(`announcements/user/${userId}?isAuction=false&vehicleType=motorcycle`).then((response)=>{
+            setAdmMotorcycle(response.data)
+        }).catch((error)=> console.log(error))
     }
 
     const goProduct = ()=>{
@@ -97,7 +103,7 @@ const AnnouncementsProvider = ({children}:IUserProps)=>{
 
 
     return (
-    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar, modal, setModal}}>
+    <AnnouncementContext.Provider value={{showCar, showMotorcycle, cars, motorcycles, auctions, goProduct, showUserAnnouncements, admCar,admMotorcycle, modal, setModal}}>
         {children}
     </AnnouncementContext.Provider>
     )

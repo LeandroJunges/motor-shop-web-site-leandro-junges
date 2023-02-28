@@ -8,6 +8,8 @@ export interface IUserContextProps {
   registerUser: (user: IUserLogin) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
   user: IUserResponse["user"] | undefined;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IUserLogin {
@@ -19,8 +21,11 @@ export const UserContext = createContext<IUserContextProps>(
 );
 export const UserProvider = ({ children }: IChildren) => {
   const [user, setUser] = useState<IUserResponse["user"] | undefined>();
+  const [loading, setLoading]= useState<boolean>(true)
   const navigate = useNavigate();
+
   useEffect(() => {
+
     const loadUser = async () => {
       const token = localStorage.getItem("@motorshop: token");
       const userId = localStorage.getItem("@motorshop: userId");
@@ -29,12 +34,16 @@ export const UserProvider = ({ children }: IChildren) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
         } catch (error) {
+          
           console.log(error);
         }
       }
+      setLoading(false)
     };
     loadUser();
   }, []);
+
+  
   const registerUser = async (user: any): Promise<void> => {
     try {
       // await
@@ -62,11 +71,13 @@ export const UserProvider = ({ children }: IChildren) => {
       
       navigate("/admin");
     } catch (error) {
+      localStorage.clear()
+      toast.error("Ops! Tem algo errado! Verifique seu e-mail e senha !");
       console.log(error);
     }
   };
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading }}>
       {children}
     </UserContext.Provider>
   );

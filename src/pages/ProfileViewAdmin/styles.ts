@@ -38,6 +38,12 @@ export const ContainerBannerAdmin = styled.div`
                 justify-content: center;
                 align-items: center;
 
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                }
+
             }
             p{  display: flex;
                 font-size: 20px;
@@ -73,6 +79,16 @@ export const ContainerBannerAdmin = styled.div`
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        .buttonsProfileCard{
+            width: 140px;
+            display: flex;
+            justify-content: space-between;
+
+            button{
+                
+            }
         }
     }
 `
