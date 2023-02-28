@@ -32,15 +32,19 @@ export const Img = styled.img`
   }
   @media (min-width: 768px) {
     width: 90%;
+    max-height: 90%;
   }
   @media (min-width: 990px) {
     width: 420px;
+    max-height: 90%;
   }
   @media (min-width: 1064px) {
     width: 320px;
+    max-height: 90%;
   }
   @media (min-width: 1500px) {
     width: 420px;
+    max-height: 90%;
   }
 `;
 export const DescriptionContainer = styled.div`
