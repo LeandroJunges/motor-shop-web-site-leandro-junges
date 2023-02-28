@@ -11,6 +11,7 @@ const Routes = () => {
   return (
     <RouteComponent>
       <Route element={<Home />} path="/" />
+      <Route element={<AnnouncementPage />} path="/product/:id" />
       <Route element={<Login />} path="/login/" />
       <Route element={<Register />} path="/register/" />
       <Route element={<PasswordChange />} path="/recovery/" />
