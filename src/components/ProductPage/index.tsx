@@ -11,7 +11,7 @@ import {
 import ProductDescription from "./ProductDesciption";
 import ProductImage from "./ProductImage";
 import ProductOwner from "./ProductOwner";
-import { ProductComments } from "./ProductComments";
+import { CommentContent, ProductComments } from "./ProductComments";
 import ProductCreateComment from "./ProductCreateComment";
 import { api } from "../../services";
 import { useState } from "react";
@@ -19,6 +19,7 @@ import Header from "../Header";
 import { useParams } from "react-router-dom";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import Footer from "../Footer";
+import { CommentsContext } from "../../context/CommentsContext";
 
 interface IImg {
   id: string;
@@ -60,20 +61,13 @@ interface IComment {
 
 const AnnouncementPage = () => {
   const { id } = useParams();
-  const [comments, setComments] = useState<IComment>();
 
   const { getAnnouncement, announcement } = useContext(AnnouncementContext);
+  const { announcementComments, showAnnouncementComments } =
+    useContext(CommentsContext);
   useEffect(() => {
-    const getData = async () => {
-      await api
-        .get(`/comments/${id}`)
-        .then((res) => {
-          setComments(res.data);
-        })
-        .catch((res) => console.log(res));
-    };
     getAnnouncement(id!);
-    getData();
+    showAnnouncementComments(id!);
   }, []);
   return (
     <Container>
@@ -90,8 +84,12 @@ const AnnouncementPage = () => {
         </UpperMain>
         <BottomMain>
           <SubBottomMain>
-            {comments && <ProductComments comments={comments} />}
-            {announcement && <ProductCreateComment user={announcement!.user} />}
+            {announcementComments && (
+              <ProductComments comments={announcementComments} />
+            )}
+            {announcement && (
+              <ProductCreateComment announcementId={announcement.id} />
+            )}
           </SubBottomMain>
         </BottomMain>
         {/* <Footer /> */}

@@ -14,10 +14,9 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { cars, motorcycles, auctions, goProduct } =
-    useContext(AnnouncementContext);
+  const { cars, motorcycles, auctions } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const carousel = useRef<HTMLUListElement>(null);
   useEffect(() => {
@@ -75,7 +74,10 @@ const Home = () => {
         <ul>
           {motorcycles.map((motorcycle) => {
             return (
-              <li key={motorcycle.id} onClick={() => navigate(`/product/${motorcycle.id}`)} >
+              <li
+                key={motorcycle.id}
+                onClick={() => navigate(`/product/${motorcycle.id}`)}
+              >
                 <ProductCard product={motorcycle} />
               </li>
             );

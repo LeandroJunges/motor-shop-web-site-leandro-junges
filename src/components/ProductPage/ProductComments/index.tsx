@@ -12,6 +12,7 @@ import { GiPlainCircle } from "react-icons/gi";
 export const CommentContent = ({ comment }: any) => {
   const now = new Date().getDate();
   const date = new Date(comment.createdAt).getDate();
+  const days = now - date;
 
   const handleRedirectUserPage = () => {
     //redirecionar pra pagina de usuario
@@ -25,9 +26,9 @@ export const CommentContent = ({ comment }: any) => {
           {comment.user.name}
         </DescriptionWeighted>
         <GiPlainCircle fontSize="6px" color="var(--grey-3)" />
-        <Description color="var(--grey-3)">{`há ${
-          now - date
-        } dias`}</Description>
+        <Description color="var(--grey-3)">
+          {days < 1 ? "Hoje" : `há ${days} dias`}
+        </Description>
       </NameAndDate>
       <Description color="var(--grey-3)">{comment.description}</Description>
     </ContainerComment>
