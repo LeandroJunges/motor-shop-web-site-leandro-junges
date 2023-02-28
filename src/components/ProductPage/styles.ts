@@ -60,19 +60,16 @@ export const UpperUpper = styled.div`
 `;
 export const UpperBottom = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
   align-items: center;
   justify-content: center;
   @media (min-width: 769px) {
-    height: 100%;
+    height: 790px;
     width: 45%;
     justify-content: flex-start;
-    /* align-items: flex-end; */
-
-    /* justify-content: center; */
   }
 `;
 
