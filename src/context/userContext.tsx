@@ -7,16 +7,31 @@ import { api } from "../services";
 export interface IUserContextProps {
   registerUser: (user: IUserLogin) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
-  user: IUserResponse["user"] | undefined;
-  loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRecovery: (data: IUserRecovery) => Promise<any>;
+  // editUser: (data: IUser) => Promise<void>
+  user: IUserResponse["user"] | undefined;
+  loading: boolean;
+}
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  cellphone: string;
+  description: string;
+  dateOfBirth: Date;
+  isAdvertiser?: boolean;
+  isActive?: boolean;
+  img?: string;
 }
 
 interface IUserLogin {
   email: string;
   password: string;
 }
+
 
 interface IUserRecovery {
   email: string;
@@ -112,7 +127,7 @@ export const UserProvider = ({ children }: IChildren) => {
           { password: data.password },
           { headers: { Authorization: `Bearer ${data.token}` } }
         )
-        .then((res) => navigate("/login"));
+        .then(() => navigate("/login"));
     }
     toast.success("Email enviado!", {
       position: "top-right",
@@ -126,8 +141,37 @@ export const UserProvider = ({ children }: IChildren) => {
     await api.post("/users/recovery", { email });
   };
 
+  // const editUser = async (data :IUser)=>{
+  //   const token = localStorage.getItem("@motorshop: token");
+  //   const {name,email, cpf, dateOfBirth, cellphone, description} = data
+  //   const updatedUser = {
+  //     name,
+  //     email,
+  //     cpf,
+  //     cellphone,
+  //     dateOfBirth,
+  //     description
+  //   }
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   };
+
+  //   try{
+  //     console.log(data)
+      
+  //     await api.patch(`/users/${user!.id}`, updatedUser, config ).then((res)=>console.log(res.data))
+  //   }catch(error) {
+  //     console.error(error)
+  //   }
+
+  // }
+
+
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery /*editUser*/ }}>
       {children}
     </UserContext.Provider>
   );

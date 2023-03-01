@@ -28,3 +28,17 @@ export const validationRegister = yup.object().shape({
   complement: yup.string().notRequired(),
   img: yup.string().url().required(),
 });
+
+
+export const validationEditUser = yup.object().shape({
+  name: yup.string().required("Campo obrigatório"),
+  email: yup.string().email("Digite um email valido").required("Campo obrigatório"),
+  cpf: yup.string().length(11).required("Campo obrigatório"),
+  cellphone: yup.string().required("Campo obrigatório"),
+  barthDate: yup.string().required("Campo obrigatório"),
+  description:yup.string().required("Campo obrigatório"),
+
+
+
+
+})

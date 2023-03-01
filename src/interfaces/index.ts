@@ -33,8 +33,8 @@ export interface IUserResponse {
     cellphone: string;
     description: string;
     dateOfBirth: Date;
-    isAdvertiser: boolean;
-    isActive: boolean;
+    isAdvertiser?: boolean;
+    isActive?: boolean;
     img?: string;
     address: {
       id: string;

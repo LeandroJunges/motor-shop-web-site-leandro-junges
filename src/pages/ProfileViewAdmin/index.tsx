@@ -13,6 +13,7 @@ import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
 import { UserContext } from "../../context/userContext"
 import { useNavigate } from "react-router-dom"
+import { ModalEditUser } from "../../components/ModalEditUSer"
 
 const ProfileViewAdmin = () => {
   const {
@@ -28,6 +29,7 @@ const ProfileViewAdmin = () => {
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
+  const [openModalEditUser, setOpenModalEditUser] = useState(false)
   const [announcement, setAnnouncement] = useState({});
 
   const navigate = useNavigate()
@@ -65,11 +67,14 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
+          {openModalEditUser && (
+            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} user={user!} />
+          )}
           <Header/>
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
                 <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
+                <abbr title={user!.name}><img src={user?.img} alt={user?.name} onClick={()=> setOpenModalEditUser(true)} /></abbr>
                 <p>{user!.name} <span>{user!.isAdvertiser && "Anunciante" }</span></p>
                 </div>
                 <p>{user?.description}</p>
