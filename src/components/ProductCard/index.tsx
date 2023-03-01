@@ -3,10 +3,11 @@ import { Main } from "./style";
 
 const ProductCard = ({ product, isOwner }: IProps) => {
   const token = localStorage.getItem("@motorshop: token")
+  
   const { user } = product;
   return (
     <>
-      {!token? (
+      {!token  || window.location.pathname !== "/admin" ? (
               <Main isActive={product.isActive}>
               <section className="img-wrapper">
       

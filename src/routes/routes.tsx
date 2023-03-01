@@ -4,7 +4,6 @@ import Login from "../pages/Login";
 import AnnouncementPage from "../components/ProductPage";
 import Home from "../pages/Home";
 import ProfileViewAdmin from "../pages/ProfileViewAdmin";
-import ProductDeleteModal from "../components/ProductDeleteModal";
 import ProtectRoute from "../components/ProtectRoute";
 import PasswordChange from "../pages/PasswordChange";
 import AdvertiserPage from "../components/AdvertiserPage";
