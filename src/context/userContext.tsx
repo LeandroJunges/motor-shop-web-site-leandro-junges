@@ -8,6 +8,7 @@ export interface IUserContextProps {
   registerUser: (user: IUserLogin) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
   user: IUserResponse["user"] | undefined;
+  logout: () => void;
 }
 
 interface IUserLogin {
@@ -76,8 +77,12 @@ export const UserProvider = ({ children }: IChildren) => {
       console.log(error);
     }
   };
+  const logout = () => {
+    localStorage.clear()
+    navigate("/login/")
+  }
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, logout }}>
       {children}
     </UserContext.Provider>
   );

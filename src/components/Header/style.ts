@@ -75,7 +75,7 @@ align-items: center;
         height: 100%;
     }
 `
-export const NavBar = styled.button`
+export const NavBar = styled.div`
 background-color: var(--whiteFixed);
 border: none;
 display: flex;
