@@ -92,8 +92,8 @@ const AnnouncementPage = () => {
             )}
           </SubBottomMain>
         </BottomMain>
-        {/* <Footer /> */}
       </Main>
+      <Footer />
     </Container>
   );
 };

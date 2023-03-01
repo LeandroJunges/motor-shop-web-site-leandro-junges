@@ -7,6 +7,7 @@ import ProfileViewAdmin from "../pages/ProfileViewAdmin";
 import ProductDeleteModal from "../components/ProductDeleteModal";
 import ProtectRoute from "../components/ProtectRoute";
 import PasswordChange from "../pages/PasswordChange";
+import AdvertiserPage from "../components/AdvertiserPage";
 
 const Routes = () => {
   return (
@@ -14,10 +15,11 @@ const Routes = () => {
       <Route element={<Home />} path="/" />
       <Route element={<AnnouncementPage />} path="/product/:id" />
       <Route element={<Login />} path="/login/" />
+      <Route element={<AdvertiserPage />} path="/advertiser/:userId" />
       <Route element={<Register />} path="/register/" />
       <Route element={<PasswordChange />} path="/recovery/:token" />
-      <Route element={<ProtectRoute /> }>
-          <Route element={<ProfileViewAdmin />} path="/admin" />
+      <Route element={<ProtectRoute />}>
+        <Route element={<ProfileViewAdmin />} path="/admin" />
       </Route>
       <Route path="*" element={<Navigate replace to={"/"} />} />
     </RouteComponent>
