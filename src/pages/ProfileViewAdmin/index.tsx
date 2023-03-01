@@ -70,7 +70,7 @@ const ProfileViewAdmin = () => {
             />
           )}
           {openModalEditUser && (
-            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} user={user!} />
+            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} />
           )}
           {openModalEditAddress && (
             <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />

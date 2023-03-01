@@ -12,7 +12,7 @@ const Header = () => {
   const [ isOpen, setIsOpen] = useState(false)
   const [ navBar, setNavBar] = useState(false)
   const navigate = useNavigate()
-  const {user, logout} = useContext(UserContext)
+  const {user, logout,  setOpenModalEditUser, setOpenModalEditAddress} = useContext(UserContext)
   const backHome = ()=>{
     navigate("/")
   }
@@ -42,11 +42,12 @@ const Header = () => {
               <Text description={user.name} color="grey-2" size={16} weight={400}/>
               {navBar && 
               <DivNavBar>
-                  <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil"/>
-                  <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço"/>
+                  <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil" onClick={()=> setOpenModalEditUser(true)}/>
+                  <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço" onClick={()=> setOpenModalEditAddress(true)} />
                     {user.isAdvertiser &&
                     <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios"/>
-                    }
+                  }
+                  
                     <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair" onClick={()=> logout()}/>
               </DivNavBar>}
             </NavBarDesk>
