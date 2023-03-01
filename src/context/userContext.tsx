@@ -8,6 +8,7 @@ export interface IUserContextProps {
   registerUser: (user: IUserLogin) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
   user: IUserResponse["user"] | undefined;
+  logout: () => void;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRecovery: (data: IUserRecovery) => Promise<any>;
@@ -95,6 +96,11 @@ export const UserProvider = ({ children }: IChildren) => {
     }
   };
 
+  const logout = () => {
+    localStorage.clear()
+    navigate("/login/")
+  }
+
   const userRecovery = async (data: IUserRecovery) => {
     const email = data.email;
     if (data.token) {
@@ -127,7 +133,7 @@ export const UserProvider = ({ children }: IChildren) => {
   };
 
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery, logout }}>
       {children}
     </UserContext.Provider>
   );

@@ -59,8 +59,16 @@ export const NavStyle = styled.nav`
     .login {
       color: var(--brand-1);
     }
-  }
-`;
+`
+export const NavBar = styled.div`
+background-color: var(--whiteFixed);
+border: none;
+display: flex;
+align-items: center;
+cursor: pointer;
+gap: 5px;
+`
+ 
 export const DivAvatar = styled.div`
   background: var(--brand-1);
   width: 32px;
@@ -75,14 +83,9 @@ export const DivAvatar = styled.div`
     border-radius: 100%;
   }
 `;
-export const NavBar = styled.button`
-  background-color: var(--whiteFixed);
-  border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 5px;
-`;
+
+
+
 export const DivNavBar = styled.div`
   position: absolute;
   background: var(--whiteFixed);
