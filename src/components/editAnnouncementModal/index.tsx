@@ -24,34 +24,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
 import { toast } from "react-toastify";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
+import { IImgs, IAnnouncementCreate, IAnnouncement } from "../../interfaces";
 
 interface IProps {
-  setOpenEditAnnouncement: any;
+  setOpenEditAnnouncement: (value: boolean) => void;
   announce: any;
-  setOpenDeleteAnnouncement: any;
-  setAnnouncement: any;
-}
-
-interface IImgs {
-  img1?: string;
-  img2?: string;
-  img3?: string;
-  img4?: string;
-  img5?: string;
-  img6?: string;
-}
-
-interface IAnnouncementCreate {
-  isAuction: boolean;
-  title: string;
-  year: number | string;
-  mileage: number;
-  vehicleType: string;
-  description: string;
-  imgMain: string;
-  initialBid?: number;
-  price?: number;
-  imgs?: IImgs;
+  setOpenDeleteAnnouncement: (value: boolean) => void;
+  setAnnouncement: (value: IAnnouncement | {}) => void;
 }
 
 const EditAnnouncementModal = ({

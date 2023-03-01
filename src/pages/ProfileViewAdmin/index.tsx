@@ -1,13 +1,16 @@
-
-import {motion} from "framer-motion"
-import { ContainerAuction, ContainerListCar, ContainerListMotorcycle } from "../Home/styles"
-import ProductCard from "../../components/ProductCard"
-import ProductionCardAuction from "../../components/ProductionCardAuction"
-import Footer from "../../components/Footer"
-import Header from "../../components/Header"
-import { useContext, useEffect, useRef, useState } from "react"
-import { AnnouncementContext } from "../../context/AnnouncementContext"
-import { ContainerBannerAdmin } from "./styles"
+import { motion } from "framer-motion";
+import {
+  ContainerAuction,
+  ContainerListCar,
+  ContainerListMotorcycle,
+} from "../Home/styles";
+import ProductCard from "../../components/ProductCard";
+import ProductionCardAuction from "../../components/ProductionCardAuction";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AnnouncementContext } from "../../context/AnnouncementContext";
+import { ContainerBannerAdmin } from "./styles";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
@@ -31,7 +34,7 @@ const ProfileViewAdmin = () => {
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
   const [announcement, setAnnouncement] = useState({});
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("@motorshop: token");
   const person = localStorage.getItem("@motorshop: userId");
@@ -131,9 +134,10 @@ const ProfileViewAdmin = () => {
           <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-                {admMotorcycle.map((motorcycle)=>{
-                  return(
-                    <li key={motorcycle.id}><ProductCard  product={motorcycle} />
+              {admMotorcycle.map((motorcycle) => {
+                return (
+                  <li key={motorcycle.id}>
+                    <ProductCard product={motorcycle} />
                     <div>
                       <button
                         onClick={() => {

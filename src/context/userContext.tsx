@@ -12,10 +12,10 @@ export interface IUserContextProps {
   setOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>
   setOpenModalEditAddress: React.Dispatch<React.SetStateAction<boolean>>
   userRecovery: (data: IUserRecovery) => Promise<any>;
-  logoutUser: () => void
   editUser: (data: IUser) => Promise<void>
   editAddressUser: (data: IAddress) => Promise<void>
   user: IUserResponse["user"] | undefined;
+  logout: () => void;
   loading: boolean;
   openModalEditUser: boolean;
   openModalEditAddress:boolean;
@@ -121,6 +121,11 @@ export const UserProvider = ({ children }: IChildren) => {
     }
   };
 
+  const logout = () => {
+    localStorage.clear()
+    navigate("/login/")
+  }
+
   const userRecovery = async (data: IUserRecovery) => {
     const email = data.email;
     if (data.token) {
@@ -197,14 +202,10 @@ export const UserProvider = ({ children }: IChildren) => {
         console.log(res.data)})
 
     }
-
-
-  const logoutUser = ()=>{
-    return localStorage.clear()
-  }
+ 
 
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery, logoutUser, editUser,setOpenModalEditUser, openModalEditUser, editAddressUser, openModalEditAddress, setOpenModalEditAddress }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery, logout, editUser,setOpenModalEditUser, openModalEditUser, editAddressUser, openModalEditAddress, setOpenModalEditAddress }}>
       {children}
     </UserContext.Provider>
   );

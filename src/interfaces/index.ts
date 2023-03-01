@@ -24,6 +24,50 @@ export interface ITextProps extends HtmlHTMLAttributes<HTMLParagraphElement> {
   family?: string;
 }
 
+export interface IImgs {
+  img1?: string;
+  img2?: string;
+  img3?: string;
+  img4?: string;
+  img5?: string;
+  img6?: string;
+}
+
+export interface IAnnouncementCreate {
+  isAuction: boolean;
+  title: string;
+  year: number | string;
+  mileage: number;
+  vehicleType: string;
+  description: string;
+  imgMain: string;
+  initialBid?: number;
+  price?: number;
+  imgs?: IImgs;
+}
+
+export interface IAnnouncement {
+  id: string;
+  isAuction: boolean;
+  title: string;
+  year: number | string;
+  mileage: number;
+  vehicleType: string;
+  description: string;
+  imgMain: string;
+  initialBid?: number;
+  actualBid?: number;
+  isSold: boolean;
+  price?: number;
+  imgs?: IImg[];
+  user: IUserResponse["user"];
+}
+
+export interface IImg {
+  id: string;
+  link: string;
+}
+
 export interface IUserResponse {
   user: {
     id: string;
@@ -36,7 +80,7 @@ export interface IUserResponse {
     isAdvertiser?: boolean;
     isActive?: boolean;
     img?: string;
-    address: {
+    address?: {
       id: string;
       cep: string;
       state: string;
@@ -47,4 +91,21 @@ export interface IUserResponse {
     };
   };
   token: string;
+}
+
+export interface IAnnouncementForProductCard {
+  id: string;
+  isAuction: boolean;
+  title: string;
+  year: string;
+  mileage: number;
+  vehicleType: string;
+  description: string;
+  imgMain: string;
+  initialBid: number;
+  price: number;
+  isActive: boolean;
+  actualBid: number;
+  isSold: boolean;
+  user: IUserResponse["user"];
 }
