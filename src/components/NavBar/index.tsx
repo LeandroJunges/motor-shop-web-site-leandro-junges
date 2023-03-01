@@ -1,9 +1,7 @@
-import { Container } from "./style"
+import { Container, UlStyle } from "./style"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../../context/userContext"
-import { DivAvatar } from "../Header/style"
-import Text from "../Text"
 import Button from "../Button"
 const NavBar = () =>{
     const {user} = useContext(UserContext)
@@ -18,13 +16,15 @@ const NavBar = () =>{
                 </ul>
             </section>
             <section className="nav-session">
-                {user? 
-                <>
-                <div>
-                    <img src={user.img} alt = {`avatar${user.name}`} />
-                    <Text description={user.name} color="grey-2" size={16} weight={400}/>
-                </div>
-                </> 
+                {user ? 
+                <UlStyle>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço"/>
+                    {user.isAdvertiser &&
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios"/>
+                    }
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair"/>
+                </UlStyle> 
                 :
                 <ul>
                     <Link to={"/login/"} className="login">Fazer login</Link>
