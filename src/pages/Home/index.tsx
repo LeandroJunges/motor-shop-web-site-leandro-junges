@@ -12,9 +12,12 @@ import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
+import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer";
 
 const Home = () => {
   const { cars, motorcycles, auctions } = useContext(AnnouncementContext);
+  const {openModalEditUser,setOpenModalEditUser, openModalEditAddress, setOpenModalEditAddress}= useContext(UserContext)
   const [width, setWidth] = useState(0);
   const navigate = useNavigate();
 
@@ -25,6 +28,12 @@ const Home = () => {
 
   return (
     <div>
+      {openModalEditUser && (
+          <ModalEditUser setOpenModalEditUser={setOpenModalEditUser}  />
+      )}
+      {openModalEditAddress && (
+          <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
+      )}
       <Header />
       <ContainerBannerHome>
         <div className="containerBannerContent ">

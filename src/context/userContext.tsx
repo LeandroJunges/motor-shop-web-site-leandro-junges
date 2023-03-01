@@ -123,7 +123,7 @@ export const UserProvider = ({ children }: IChildren) => {
 
   const logout = () => {
     localStorage.clear()
-    navigate("/login/")
+    navigate("/")
   }
 
   const userRecovery = async (data: IUserRecovery) => {

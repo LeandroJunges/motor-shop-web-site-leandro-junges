@@ -8,7 +8,6 @@ import { UserContext } from "../../context/userContext";
 
 interface IProps {
     setOpenModalEditUser: any;
-    user: IUserModal
 }
 
 export interface IUserModal{
