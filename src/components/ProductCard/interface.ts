@@ -10,10 +10,9 @@ export interface IProduct {
   user: IUser;
   mileage: number;
   year: string;
-  price: number | undefined
+  price: number | undefined;
   isActive: boolean;
   imgMain: string;
-
 }
 
 export interface IUser {

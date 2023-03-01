@@ -82,8 +82,8 @@ const GlobalStyle = createGlobalStyle`
     	border-spacing: 0;
     }
     #root {
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         font-family: 'Inter';
     }
 
@@ -236,9 +236,7 @@ const GlobalStyle = createGlobalStyle`
         line-height: 16.94px;
     }
 
-    #root {
-        height: 100vh;
-    }
+   
 
     .App {
         height: 100%;

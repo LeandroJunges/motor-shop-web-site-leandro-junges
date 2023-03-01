@@ -9,19 +9,31 @@ export interface IUserContextProps {
   loginUser: (user: any) => Promise<void>;
   user: IUserResponse["user"] | undefined;
   logout: () => void;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  userRecovery: (data: IUserRecovery) => Promise<any>;
 }
 
 interface IUserLogin {
   email: string;
   password: string;
 }
+
+interface IUserRecovery {
+  email: string;
+  password?: string;
+  token?: string;
+}
 export const UserContext = createContext<IUserContextProps>(
   {} as IUserContextProps
 );
 export const UserProvider = ({ children }: IChildren) => {
   const [user, setUser] = useState<IUserResponse["user"] | undefined>();
+  const [loading, setLoading]= useState<boolean>(true)
   const navigate = useNavigate();
+
   useEffect(() => {
+
     const loadUser = async () => {
       const token = localStorage.getItem("@motorshop: token");
       const userId = localStorage.getItem("@motorshop: userId");
@@ -30,12 +42,16 @@ export const UserProvider = ({ children }: IChildren) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
         } catch (error) {
+          
           console.log(error);
         }
       }
+      setLoading(false)
     };
     loadUser();
   }, []);
+
+  
   const registerUser = async (user: any): Promise<void> => {
     try {
       const response = await api.post("/users", user)
@@ -71,18 +87,53 @@ export const UserProvider = ({ children }: IChildren) => {
         progress: undefined,
         theme: "light",
       });
-      
+
       navigate("/admin");
     } catch (error) {
+      localStorage.clear()
+      toast.error("Ops! Tem algo errado! Verifique seu e-mail e senha !");
       console.log(error);
     }
   };
+
   const logout = () => {
     localStorage.clear()
     navigate("/login/")
   }
+
+  const userRecovery = async (data: IUserRecovery) => {
+    const email = data.email;
+    if (data.token) {
+      toast.success("Senha alterada!", {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+      return await api
+        .patch(
+          "/users/",
+          { password: data.password },
+          { headers: { Authorization: `Bearer ${data.token}` } }
+        )
+        .then((res) => navigate("/login"));
+    }
+    toast.success("Email enviado!", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+    });
+
+    await api.post("/users/recovery", { email });
+  };
+
   return (
-    <UserContext.Provider value={{ loginUser, registerUser, user, logout }}>
+    <UserContext.Provider value={{ loginUser, registerUser, user, loading, setLoading,userRecovery, logout }}>
       {children}
     </UserContext.Provider>
   );

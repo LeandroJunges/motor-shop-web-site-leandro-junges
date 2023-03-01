@@ -56,6 +56,8 @@ const Login = () => {
             size={14}
             weight={500}
             description="Esqueci minha senha"
+            onClick={() => navigate("/recovery/")}
+            style={{ cursor: "pointer" }}
           />
           <Button
             background="var(--brand-1)"

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../context/userContext";
 import {
   ASugestionDiv,
   Button,
@@ -13,18 +14,28 @@ import {
   Text,
   UserDiv,
 } from "./styles";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { api } from "../../../services";
+import { CommentsContext } from "../../../context/CommentsContext";
 
-const ProductCreateComment = ({ user }: any) => {
+interface IProps {
+  announcementId: string;
+}
+
+const ProductCreateComment = ({ announcementId }: IProps) => {
+  const navigate = useNavigate();
   const [description, setDescription] = useState("");
+  const { user } = useContext(UserContext);
+  const { createComment } = useContext(CommentsContext);
 
   const handleRedirect = () => {
     //redirecionar para login
+    navigate("/login");
   };
 
-  const handleSubmitComment = () => {
-    //criar comentário
-    console.log(description);
-    setDescription("");
+  const handleSubmitComment = async () => {
+    createComment(announcementId, description);
   };
 
   return (

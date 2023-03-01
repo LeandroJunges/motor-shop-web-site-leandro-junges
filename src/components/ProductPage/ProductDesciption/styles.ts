@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 export const UpperDiv = styled.div`
   width: 100%;
-  height: 700px;
+  height: 630px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -26,7 +26,26 @@ export const ImgDiv = styled.div`
 `;
 export const Img = styled.img`
   border-radius: 4px;
-  width: 295px;
+  width: 90%;
+  @media (min-width: 590px) {
+    width: 477px;
+  }
+  @media (min-width: 768px) {
+    width: 90%;
+    max-height: 90%;
+  }
+  @media (min-width: 990px) {
+    width: 420px;
+    max-height: 90%;
+  }
+  @media (min-width: 1064px) {
+    width: 320px;
+    max-height: 90%;
+  }
+  @media (min-width: 1500px) {
+    width: 420px;
+    max-height: 90%;
+  }
 `;
 export const DescriptionContainer = styled.div`
   width: 100%;
@@ -35,7 +54,7 @@ export const DescriptionContainer = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 4px;
-  height: 46%;
+  height: 40%;
 `;
 
 export const DescriptionContainerCentered = styled.div`
@@ -60,6 +79,10 @@ export const StatsDiv = styled.div`
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-between;
+  @media (min-width: 769px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export const UpperStats = styled.div`
