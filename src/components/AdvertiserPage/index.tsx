@@ -20,43 +20,16 @@ import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-
-interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  cpf: string;
-  cellphone: string;
-  description: string;
-  dateOfBirth: Date;
-  isAdvertiser: boolean;
-  img: string;
-  isActive: boolean;
-}
-
-interface IAnnouncement {
-  id: string;
-  isAuction: boolean;
-  title: string;
-  year: string;
-  mileage: number;
-  vehicleType: string;
-  description: string;
-  imgMain: string;
-  initialBid: number;
-  price: number;
-  isActive: boolean;
-  actualBid: number;
-  isSold: boolean;
-  user: IUser;
-}
+import { IAnnouncementForProductCard } from "../../interfaces";
 
 const AdvertiserPage = () => {
   const nav = useNavigate();
 
-  const [auctions, setAuctions] = useState<IAnnouncement[]>([]);
-  const [cars, setCars] = useState<IAnnouncement[]>([]);
-  const [motorcycle, setMotorcycle] = useState<IAnnouncement[]>([]);
+  const [auctions, setAuctions] = useState<IAnnouncementForProductCard[]>([]);
+  const [cars, setCars] = useState<IAnnouncementForProductCard[]>([]);
+  const [motorcycle, setMotorcycle] = useState<IAnnouncementForProductCard[]>(
+    []
+  );
 
   useEffect(() => {
     const getAuctions = async () => {

@@ -1,18 +1,22 @@
-
-import {motion} from "framer-motion"
-import { ContainerAuction, ContainerListCar, ContainerListMotorcycle } from "../Home/styles"
-import ProductCard from "../../components/ProductCard"
-import ProductionCardAuction from "../../components/ProductionCardAuction"
-import Footer from "../../components/Footer"
-import Header from "../../components/Header"
-import { useContext, useEffect, useRef, useState } from "react"
-import { AnnouncementContext } from "../../context/AnnouncementContext"
-import { ContainerBannerAdmin } from "./styles"
+import { motion } from "framer-motion";
+import {
+  ContainerAuction,
+  ContainerListCar,
+  ContainerListMotorcycle,
+} from "../Home/styles";
+import ProductCard from "../../components/ProductCard";
+import ProductionCardAuction from "../../components/ProductionCardAuction";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AnnouncementContext } from "../../context/AnnouncementContext";
+import { ContainerBannerAdmin } from "./styles";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
-import { UserContext } from "../../context/userContext"
-import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../context/userContext";
+import { useNavigate } from "react-router-dom";
+import { IAnnouncement } from "../../interfaces";
 
 const ProfileViewAdmin = () => {
   const {
@@ -24,13 +28,13 @@ const ProfileViewAdmin = () => {
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const {user, setLoading} = useContext(UserContext)
+  const { user, setLoading } = useContext(UserContext);
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
   const [announcement, setAnnouncement] = useState({});
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("@motorshop: token");
   const person = localStorage.getItem("@motorshop: userId");
@@ -65,16 +69,22 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-          <Header/>
+          <Header />
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
-                <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
-                <p>{user!.name} <span>{user!.isAdvertiser && "Anunciante" }</span></p>
-                </div>
-                <p>{user?.description}</p>
-                <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
-                </button>
+              <div className="content">
+                <abbr title={user!.name}>
+                  <img src={user?.img} alt={user?.name} />
+                </abbr>
+                <p>
+                  {user!.name} <span>{user!.isAdvertiser && "Anunciante"}</span>
+                </p>
+              </div>
+              <p>{user?.description}</p>
+              <button onClick={() => setOpenCreateAnnouncement(true)}>
+                {" "}
+                Criar anuncio
+              </button>
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
@@ -124,9 +134,10 @@ const ProfileViewAdmin = () => {
           <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-                {admMotorcycle.map((motorcycle)=>{
-                  return(
-                    <li key={motorcycle.id}><ProductCard  product={motorcycle} />
+              {admMotorcycle.map((motorcycle) => {
+                return (
+                  <li key={motorcycle.id}>
+                    <ProductCard product={motorcycle} />
                     <div>
                       <button
                         onClick={() => {
