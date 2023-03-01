@@ -31,14 +31,24 @@ export const validationRegister = yup.object().shape({
 
 
 export const validationEditUser = yup.object().shape({
-  name: yup.string().required("Campo obrigatório"),
-  email: yup.string().email("Digite um email valido").required("Campo obrigatório"),
-  cpf: yup.string().length(11).required("Campo obrigatório"),
-  cellphone: yup.string().required("Campo obrigatório"),
-  barthDate: yup.string().required("Campo obrigatório"),
-  description:yup.string().required("Campo obrigatório"),
+  name: yup.string(),
+  email: yup.string().email("Digite um email valido"),
+  cpf: yup.string().notRequired(),
+  cellphone: yup.string(),
+  dateOfBirth: yup.string().notRequired(),
+  description:yup.string().notRequired(),
 
 
 
+
+})
+
+export const validationAddresUser = yup.object().shape({
+  cep: yup.string(),
+  state: yup.string(),
+  city: yup.string(),
+  street: yup.string(),
+  number: yup.string(),
+  complement: yup.string().notRequired()
 
 })

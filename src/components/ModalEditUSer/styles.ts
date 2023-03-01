@@ -55,7 +55,7 @@ export const ContainerModal = styled.div`
       border: 1.5px solid var(--grey-7);
     }
     textarea{
-        margin: 0 auto;
+      margin: 0 auto;
       width: 90%;
       border-radius: 4px;
       border: 1.5px solid var(--grey-7);
@@ -64,7 +64,6 @@ export const ContainerModal = styled.div`
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        gap:10px;
 
         button {
             width: 40%;
@@ -103,8 +102,6 @@ export const ContainerModal = styled.div`
 
 `;
 
-
-
 export const ModalHeader = styled.div`
   width: 100%;
   height: 50px;
@@ -129,3 +126,45 @@ export const ModalHeader = styled.div`
     cursor: pointer;
   }
 `;
+
+
+
+export const ContainerInput = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  .contentSmall{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 23px;
+    width: 50%;
+
+    .label{
+      margin: 0;
+     
+    }
+
+    #cState{
+      width: 100%;
+    }
+    #cCity{
+      width: 97%;
+    }
+    #cNumber{
+      width: 100%;
+    }
+    #cComplement{
+      width: 97%;
+    }
+    
+  }
+  
+
+  
+  
+  
+  
+`
