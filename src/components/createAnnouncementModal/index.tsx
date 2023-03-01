@@ -24,30 +24,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import { toast } from "react-toastify";
+import { IImgs, IAnnouncementCreate } from "../../interfaces";
 
 interface IProps {
   setOpenCreateAnnouncement: any;
-}
-interface IImgs {
-  img1?: string;
-  img2?: string;
-  img3?: string;
-  img4?: string;
-  img5?: string;
-  img6?: string;
-}
-
-interface IAnnouncementCreate {
-  isAuction: boolean;
-  title: string;
-  year: number | string;
-  mileage: number;
-  vehicleType: string;
-  description: string;
-  imgMain: string;
-  initialBid?: number;
-  price?: number;
-  imgs?: IImgs;
 }
 
 const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {

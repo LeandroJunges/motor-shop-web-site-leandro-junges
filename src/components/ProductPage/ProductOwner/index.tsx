@@ -1,8 +1,10 @@
 import { Button, Centered, Container, Description, Img, Title } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const ProductOwner = ({ user }: any) => {
+  const nav = useNavigate();
   const handleGoToAnnouncements = () => {
-    // IR PARA ANUNCIOS DO USUÁRIO
+    nav(`/advertiser/${user.id}`);
   };
 
   return (
