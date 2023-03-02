@@ -12,6 +12,7 @@ flex-direction: column;
 padding: 5px;
 box-sizing: border-box;
 
+
     a{
         text-decoration: none;
         color: var(--grey-2);
@@ -28,6 +29,7 @@ box-sizing: border-box;
             padding-left: 10px;
             padding-bottom: 44px;
             border-bottom: 1px solid var(--grey-4);
+            
         }
         
     }
@@ -43,4 +45,5 @@ export const UlStyle = styled.ul`
     flex-direction: column;
     gap: 20px;
     align-items: flex-start;
+    
 `

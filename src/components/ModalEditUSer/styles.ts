@@ -27,7 +27,7 @@ export const ContainerModal = styled.div`
     width: 100%;
     height: auto;
     padding: 6px;
-    gap: 8px;
+    gap: 3px;
     border-radius: 4px;
     p{
         font-family: 'Inter';
@@ -80,7 +80,6 @@ export const ContainerModal = styled.div`
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
-            line-height: 0px;
             color: var(--grey-2);
             width: 30%;
         }
@@ -92,12 +91,22 @@ export const ContainerModal = styled.div`
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
-            line-height: 0px;
             color: var(--whiteFixed) ;
         }
     }
     
     
+  }
+
+  @media (min-width: 769px){
+    form{
+      gap: 4px;
+    }
+  }
+  @media(min-width: 1200px){
+    form{
+      gap: 8px;
+    }
   }
 
 `;
