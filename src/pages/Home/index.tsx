@@ -57,24 +57,15 @@ const Home = () => {
       </ContainerBannerHome>
       <ContainerAuction>
         <h4>Leilão</h4>
-        <motion.ul
-          ref={carousel}
-          className="carousel"
-          whileTap={{ cursor: "grabbing" }}
-        >
+        <ul ref={carousel} className="carousel" >
           {auctions.map((auction) => {
             return (
-              <motion.li
-                drag="x"
-                dragConstraints={{ right: 0, left: -width }}
-                className="inner"
-                key={auction.id}
-              >
+              <li key={auction.id} >
                 <ProductionCardAuction product={auction} />
-              </motion.li>
+              </li>
             );
           })}
-        </motion.ul>
+        </ul>
       </ContainerAuction>
       <ContainerListCar>
         <h4>Carros</h4>

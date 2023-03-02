@@ -14,14 +14,15 @@ import { MdClose } from "react-icons/md";
 import { api } from "../../services";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
+import { UserContext } from "../../context/userContext";
 
-const ProductDeleteModal = ({
-  announcement,
-  setOpenDeleteAnnouncement,
-}: any) => {
-  const { showUserAnnouncements } = useContext(AnnouncementContext);
+const UserDeleteModal = () => {
+  const { setOpenModalDeleteUser } = useContext(UserContext);
+
+  const nav = useNavigate();
 
   const person = localStorage.getItem("@motorshop: userId");
 
@@ -36,11 +37,12 @@ const ProductDeleteModal = ({
     };
 
     await api
-      .delete(`/announcements/${announcement.id}`, config)
+      .delete(`/users/${person}`, config)
       .then((res) => {
         //TOAST
-        showUserAnnouncements(person!);
-        toast.success(" Anúncio deletado!", {
+        nav("/");
+        localStorage.clear();
+        toast.success(" Conta deletada!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -50,7 +52,7 @@ const ProductDeleteModal = ({
           progress: undefined,
           theme: "light",
         });
-        setOpenDeleteAnnouncement(false);
+        setOpenModalDeleteUser(false);
         //FECHAR MODAL
       })
       .catch((res) => console.log(res));
@@ -58,7 +60,7 @@ const ProductDeleteModal = ({
 
   const handleCancel = () => {
     //FECHAR MODAL
-    setOpenDeleteAnnouncement(false);
+    setOpenModalDeleteUser(false);
   };
 
   return (
@@ -66,7 +68,7 @@ const ProductDeleteModal = ({
       <Container>
         <Centered>
           <UpperDiv>
-            <Title>Excluir anúncio</Title>
+            <Title>Excluir conta</Title>
             <MdClose
               fontSize="20px"
               color="#ADB5BD"
@@ -74,16 +76,16 @@ const ProductDeleteModal = ({
             />
           </UpperDiv>
           <MiddleDiv>
-            <Title>Tem certeza que deseja remover este anúncio?</Title>
+            <Title>Tem certeza que deseja excluir sua conta?</Title>
             <Description>
-              Essa ação não pode ser desfeita. Isso excluirá permanentemente seu
-              anúncio.
+              Essa ação não pode ser desfeita. Isso excluirá permanentemente sua
+              conta e removerá seus dados de nossos servidores.
             </Description>
           </MiddleDiv>
           <BottomDiv>
             <ButtonCancel onClick={() => handleCancel()}>Cancelar</ButtonCancel>
             <ButtonSubmit onClick={() => handleDelete()}>
-              Sim, excluir anúncio
+              Sim, excluir conta
             </ButtonSubmit>
           </BottomDiv>
         </Centered>
@@ -91,4 +93,4 @@ const ProductDeleteModal = ({
     </Backdrop>
   );
 };
-export default ProductDeleteModal;
+export default UserDeleteModal;

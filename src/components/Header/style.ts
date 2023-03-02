@@ -59,6 +59,7 @@ export const NavStyle = styled.nav`
     .login {
       color: var(--brand-1);
     }
+    }
 `
 export const NavBar = styled.div`
 background-color: var(--whiteFixed);
@@ -98,4 +99,6 @@ export const DivNavBar = styled.div`
   flex-direction: column;
   gap: 10px;
   align-items: flex-start;
+  z-index: 10;
+
 `;

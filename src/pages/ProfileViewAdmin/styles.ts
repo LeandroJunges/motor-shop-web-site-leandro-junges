@@ -17,12 +17,15 @@ export const ContainerBannerAdmin = styled.div`
 
   .containerContentAdmin {
     width: 80%;
-    height: 297px;
+    height: 350px;
+    
     position: absolute;
     background-color: #fdfdfd;
-    top: 100px;
+    top: 60px;
+    
     z-index: 1;
-    left: 95px;
+    left: 35px;
+    
 
     .content {
       margin: 50px auto;
@@ -65,7 +68,7 @@ export const ContainerBannerAdmin = styled.div`
 
         }
         p{
-            margin: 0 50px;
+            margin: 0 6px;
         }
         button{
             margin: 20px 50px;
@@ -102,6 +105,30 @@ export const ContainerBannerAdmin = styled.div`
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
+    }
+
+    @media(min-width: 425px){
+      .containerContentAdmin{
+        left: 45px ;
+      }
+    }
+    @media(min-width: 768px){
+      .containerContentAdmin{
+        left: 80px;
+      }
+    }
+
+    @media(min-width: 1024px){
+      .containerContentAdmin{
+         height: 297px; 
+         top: 100px; 
+         left: 95px; 
+      }
+      .content{
+        p{
+            margin: 0 50px;
+        }
+      }
     }
   
 `;

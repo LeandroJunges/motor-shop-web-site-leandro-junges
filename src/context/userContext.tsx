@@ -13,6 +13,8 @@ export interface IUserContextProps {
   setOpenModalEditAddress: React.Dispatch<React.SetStateAction<boolean>>;
   userRecovery: (data: IUserRecovery) => Promise<any>;
   editUser: (data: IUser) => Promise<void>;
+  openModalDeleteUser: boolean;
+  setOpenModalDeleteUser: (value: boolean) => void;
   editAddressUser: (data: IAddress) => Promise<void>;
   user: IUserResponse["user"] | undefined;
   logout: () => void;
@@ -54,6 +56,9 @@ export const UserProvider = ({ children }: IChildren) => {
   const [openModalEditAddress, setOpenModalEditAddress] =
     useState<boolean>(false);
 
+  const [openModalDeleteUser, setOpenModalDeleteUser] =
+    useState<boolean>(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -88,7 +93,7 @@ export const UserProvider = ({ children }: IChildren) => {
         theme: "light",
       });
       navigate("/login/");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err.response.data.message, {
         position: "top-right",
         autoClose: 5000,
@@ -99,6 +104,7 @@ export const UserProvider = ({ children }: IChildren) => {
         progress: undefined,
         theme: "light",
       });
+
     }
   };
   const loginUser = async (user: IUserLogin) => {
@@ -128,6 +134,7 @@ export const UserProvider = ({ children }: IChildren) => {
 
   const logout = () => {
     localStorage.clear();
+    location.reload();
     navigate("/");
   };
 
@@ -211,6 +218,8 @@ export const UserProvider = ({ children }: IChildren) => {
     <UserContext.Provider
       value={{
         loginUser,
+        openModalDeleteUser,
+        setOpenModalDeleteUser,
         registerUser,
         user,
         loading,
