@@ -93,10 +93,7 @@ const Home = () => {
         <ul>
           {motorcycles.map((motorcycle) => {
             return (
-              <li
-                key={motorcycle.id}
-                onClick={() => navigate(`/product/${motorcycle.id}`)}
-              >
+              <li key={motorcycle.id}>
                 <ProductCard product={motorcycle} />
               </li>
             );

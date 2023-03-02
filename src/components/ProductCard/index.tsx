@@ -14,7 +14,7 @@ const ProductCard = ({ product, isOwner }: IProps) => {
     <>
       {!token || window.location.pathname !== "/admin" ? (
         <Main isActive={!product.isSold}>
-          <Link to={`tete`}>
+          <Link to={`/product/${product.id}`}>
             <section className="img-wrapper">
               {userId === product.user.id && (
                 <span className="ad-status body-2-500">
