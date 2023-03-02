@@ -36,8 +36,6 @@ const ProductOwner = ({ id }: Props) => {
     getUser();
   }, []);
 
-  console.log("AIHSUHS", document.referrer);
-
   return (
     <>
       {user && (

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
+  min-width: 450px;
   max-width: 550px;
   height: 300px;
   position: relative;
@@ -20,6 +21,8 @@ export const Main = styled.div`
 
     .img-wrapper > img {
       transform: scale(1.2);
+      max-height: 100%;
+      max-width: 100%;
     }
 
     .button-wrapper > .button-container > svg {

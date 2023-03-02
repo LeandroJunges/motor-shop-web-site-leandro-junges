@@ -12,6 +12,10 @@ export const Main = styled.div<IProps>`
   flex-direction: column;
   gap: 16px;
 
+  a {
+    text-decoration: none;
+  }
+
   .product-description {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -31,6 +35,8 @@ export const Main = styled.div<IProps>`
     transition: 300ms all;
 
     img {
+      max-height: 100%;
+      max-width: 100%;
       height: 100%;
     }
 
