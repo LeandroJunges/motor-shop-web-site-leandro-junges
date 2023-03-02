@@ -19,7 +19,7 @@ export const Main = styled.div<IProps>`
   }
 
   .img-wrapper {
-    width: 100%;
+    width: 95%;
     height: 152px;
     position: relative;
 
@@ -31,6 +31,7 @@ export const Main = styled.div<IProps>`
     transition: 300ms all;
 
     img {
+      width: 85%;
       height: 100%;
     }
 
@@ -114,6 +115,11 @@ export const Main = styled.div<IProps>`
         border-radius: 4px;
         background-color: var(--brand-4);
       }
+    }
+  }
+  @media (min-width:769px){
+    .img-wrapper{
+      width: 100%;
     }
   }
 `;

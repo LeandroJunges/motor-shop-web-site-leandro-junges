@@ -45,7 +45,7 @@ const Header = () => {
                   <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil" onClick={()=> setOpenModalEditUser(true)}/>
                   <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço" onClick={()=> setOpenModalEditAddress(true)} />
                     {user.isAdvertiser &&
-                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios" onClick={()=> navigate("/admin")}/>
                   }
                   
                     <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair" onClick={()=> logout()}/>

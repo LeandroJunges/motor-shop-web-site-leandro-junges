@@ -123,6 +123,7 @@ export const UserProvider = ({ children }: IChildren) => {
 
   const logout = () => {
     localStorage.clear()
+    location.reload()
     navigate("/")
   }
 
