@@ -54,6 +54,9 @@ const UserDeleteModal = () => {
         });
         setOpenModalDeleteUser(false);
         //FECHAR MODAL
+        setTimeout(() => {
+          location.reload();
+        }, 5000);
       })
       .catch((res) => console.log(res));
   };

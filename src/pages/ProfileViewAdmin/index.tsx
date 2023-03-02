@@ -114,26 +114,17 @@ const ProfileViewAdmin = () => {
           </ContainerBannerAdmin>
           <ContainerAuction>
             <h4>Leilão</h4>
-            <motion.ul
-              ref={carousel}
-              className="carousel"
-              whileTap={{ cursor: "grabbing" }}
-            >
+            <ul className="carousel" style={{ height: "340px" }}>
               {auctions.map((auction) => {
                 return (
                   auction.user.id === person && (
-                    <motion.li
-                      drag="x"
-                      dragConstraints={{ right: 0, left: -width }}
-                      className="inner"
-                      key={auction.id}
-                    >
+                    <li className="inner" key={auction.id}>
                       <ProductionCardAuction product={auction} />
-                    </motion.li>
+                    </li>
                   )
                 );
               })}
-            </motion.ul>
+            </ul>
           </ContainerAuction>
           <ContainerListCar>
             <h4>Carros</h4>
