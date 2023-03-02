@@ -14,9 +14,12 @@ import { ContainerBannerAdmin } from "./styles";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
-import { UserContext } from "../../context/userContext"
-import { useNavigate } from "react-router-dom"
-import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer"
+import { UserContext } from "../../context/userContext";
+import { useNavigate } from "react-router-dom";
+import {
+  ModalEditAddressUser,
+  ModalEditUser,
+} from "../../components/ModalEditUSer";
 
 const ProfileViewAdmin = () => {
   const {
@@ -28,7 +31,14 @@ const ProfileViewAdmin = () => {
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const {user, setLoading, setOpenModalEditUser,openModalEditUser,openModalEditAddress,setOpenModalEditAddress} = useContext(UserContext)
+  const {
+    user,
+    setLoading,
+    setOpenModalEditUser,
+    openModalEditUser,
+    openModalEditAddress,
+    setOpenModalEditAddress,
+  } = useContext(UserContext);
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
@@ -73,18 +83,33 @@ const ProfileViewAdmin = () => {
             <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} />
           )}
           {openModalEditAddress && (
-            <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
+            <ModalEditAddressUser
+              setOpenModalEditAddress={setOpenModalEditAddress}
+            />
           )}
-          <Header/>
+          <Header />
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
-                <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} onClick={()=> setOpenModalEditUser(true)} /></abbr>
-                <p>{user!.name} <span onClick={()=> setOpenModalEditAddress(true)} >{user!.isAdvertiser && "Anunciante" }</span></p>
-                </div>
-                <p>{user?.description}</p>
-                <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
-                </button>
+              <div className="content">
+                <abbr title={user!.name}>
+                  <img
+                    src={user?.img}
+                    alt={user?.name}
+                    onClick={() => setOpenModalEditUser(true)}
+                  />
+                </abbr>
+                <p>
+                  {user!.name}{" "}
+                  <span onClick={() => setOpenModalEditAddress(true)}>
+                    {user!.isAdvertiser && "Anunciante"}
+                  </span>
+                </p>
+              </div>
+              <p>{user?.description}</p>
+              <button onClick={() => setOpenCreateAnnouncement(true)}>
+                {" "}
+                Criar anuncio
+              </button>
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
@@ -96,14 +121,16 @@ const ProfileViewAdmin = () => {
             >
               {auctions.map((auction) => {
                 return (
-                  <motion.li
-                    drag="x"
-                    dragConstraints={{ right: 0, left: -width }}
-                    className="inner"
-                    key={auction.id}
-                  >
-                    <ProductionCardAuction product={auction} />
-                  </motion.li>
+                  auction.user.id === person && (
+                    <motion.li
+                      drag="x"
+                      dragConstraints={{ right: 0, left: -width }}
+                      className="inner"
+                      key={auction.id}
+                    >
+                      <ProductionCardAuction product={auction} />
+                    </motion.li>
+                  )
                 );
               })}
             </motion.ul>
