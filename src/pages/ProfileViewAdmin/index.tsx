@@ -103,7 +103,8 @@ const ProfileViewAdmin = () => {
           <ContainerListCar>
             <h4>Carros</h4>
             <ul>
-              {admCar.map((car) => {
+             
+              {!admCar ?  <h1>Você não possui anuncios de Carros !</h1> : admCar?.map((car) => {
                 return (
                   <li key={car.id}>
                     <ProductCard product={car} />
@@ -120,7 +121,8 @@ const ProfileViewAdmin = () => {
                     </div>
                   </li>
                 );
-              })}
+              })
+              }
             </ul>
           </ContainerListCar>
           <ContainerListMotorcycle>
