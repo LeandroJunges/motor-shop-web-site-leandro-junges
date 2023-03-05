@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { IUser } from "../components/ProductCard/interface";
 import { api } from "../services";
 
@@ -63,7 +62,7 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
       .then((response) => {
         setCars(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.error(err));
   };
   const showMotorcycle = async () => {
     await api
@@ -97,13 +96,13 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
         
       })
 
-      .catch((error) => console.log(error));
+      .catch((err) => console.error(err));
       await api
       .get(`announcements/user/${userId}?isAuction=false&vehicleType=motorcycle`)
       .then((response) => {
         setAdmMotorcycle(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.error(err));
 
   };
 
@@ -113,11 +112,9 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
     await api
       .get(`/announcements/${announcementId}`)
       .then((res) => {
-        console.log(res.data);
-
         setAnnouncement(res.data);
       })
-      .catch((res) => console.log(res));
+      .catch((err) => console.error(err));
   };
 
   return (

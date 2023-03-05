@@ -31,12 +31,11 @@ const ProductOwner = ({ id }: Props) => {
         .then((res) => {
           setUser(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     };
     getUser();
   }, []);
 
-  console.log("AIHSUHS", document.referrer);
 
   return (
     <>

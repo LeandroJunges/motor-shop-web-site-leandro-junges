@@ -16,7 +16,6 @@ import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
 import { UserContext } from "../../context/userContext"
 import { useNavigate } from "react-router-dom"
-import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer"
 
 const ProfileViewAdmin = () => {
   const {
@@ -69,18 +68,13 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-          {openModalEditUser && (
-            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} />
-          )}
-          {openModalEditAddress && (
-            <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
-          )}
+          
           <Header/>
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
                 <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} onClick={()=> setOpenModalEditUser(true)} /></abbr>
-                <p>{user!.name} <span onClick={()=> setOpenModalEditAddress(true)} >{user!.isAdvertiser && "Anunciante" }</span></p>
+                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
+                <p>{user!.name} <span  >{user!.isAdvertiser && "Anunciante" }</span></p>
                 </div>
                 <p>{user?.description}</p>
                 <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
@@ -89,24 +83,22 @@ const ProfileViewAdmin = () => {
           </ContainerBannerAdmin>
           <ContainerAuction>
             <h4>Leilão</h4>
-            <motion.ul
+            <ul
               ref={carousel}
               className="carousel"
-              whileTap={{ cursor: "grabbing" }}
+            
             >
               {auctions.map((auction) => {
                 return (
-                  <motion.li
-                    drag="x"
-                    dragConstraints={{ right: 0, left: -width }}
+                  <li
                     className="inner"
                     key={auction.id}
                   >
                     <ProductionCardAuction product={auction} />
-                  </motion.li>
+                  </li>
                 );
               })}
-            </motion.ul>
+            </ul>
           </ContainerAuction>
           <ContainerListCar>
             <h4>Carros</h4>

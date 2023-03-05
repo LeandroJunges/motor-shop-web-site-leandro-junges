@@ -55,7 +55,7 @@ const UserDeleteModal = () => {
         setOpenModalDeleteUser(false);
         //FECHAR MODAL
       })
-      .catch((res) => console.log(res));
+      .catch((err) => console.error(err));
   };
 
   const handleCancel = () => {
