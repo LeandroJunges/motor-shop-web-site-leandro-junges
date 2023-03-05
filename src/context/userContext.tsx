@@ -68,8 +68,8 @@ export const UserProvider = ({ children }: IChildren) => {
         try {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
-        } catch (error) {
-          console.log(error);
+        } catch (err) {
+          console.error(err);
         }
       }
       setLoading(false);
@@ -80,7 +80,6 @@ export const UserProvider = ({ children }: IChildren) => {
   const registerUser = async (user: any): Promise<void> => {
     try {
       const response = await api.post("/users", user);
-      console.log(response);
       toast.success(" Conta criada!", {
         position: "top-right",
         autoClose: 5000,
@@ -92,8 +91,8 @@ export const UserProvider = ({ children }: IChildren) => {
         theme: "light",
       });
       navigate("/login/");
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
   };
   const loginUser = async (user: IUserLogin) => {
@@ -114,10 +113,10 @@ export const UserProvider = ({ children }: IChildren) => {
       });
 
       navigate("/admin");
-    } catch (error) {
+    } catch (err) {
       localStorage.clear();
       toast.error("Ops! Tem algo errado! Verifique seu e-mail e senha !");
-      console.log(error);
+      console.error(err);
     }
   };
 
@@ -199,7 +198,6 @@ export const UserProvider = ({ children }: IChildren) => {
     await api.patch("/address", data, config).then((res) => {
       setOpenModalEditAddress(false);
       toast.success("Endereço alterado com sucesso");
-      console.log(res.data);
     });
   };
 

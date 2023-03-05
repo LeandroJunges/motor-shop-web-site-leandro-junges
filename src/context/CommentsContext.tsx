@@ -39,7 +39,7 @@ export const CommentsProvider = ({ children }: IChildren) => {
       .then((res) => {
         setAnnouncementsComments(res.data);
       })
-      .catch((res) => console.log(res));
+      .catch((err) => console.error(err));
   };
 
   const createComment = async (announcementId: string, description: string) => {
@@ -67,7 +67,7 @@ export const CommentsProvider = ({ children }: IChildren) => {
           theme: "light",
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const deleteComment = async (commentId: string, announcementId: string) => {
@@ -82,7 +82,7 @@ export const CommentsProvider = ({ children }: IChildren) => {
 
     await api
       .delete(`/comments/${commentId}`, config)
-      .then((res) => {
+      .then(() => {
         showAnnouncementComments(announcementId!);
         toast.success(" Comentário deletado com sucesso!", {
           position: "top-right",
@@ -95,7 +95,7 @@ export const CommentsProvider = ({ children }: IChildren) => {
           theme: "light",
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const editComment = async (
@@ -127,7 +127,7 @@ export const CommentsProvider = ({ children }: IChildren) => {
           theme: "light",
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   return (

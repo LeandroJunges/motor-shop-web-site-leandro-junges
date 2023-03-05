@@ -10,7 +10,6 @@ import { AnnouncementContext } from "../../context/AnnouncementContext";
 import ProductCard from "../../components/ProductCard";
 import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer";
@@ -22,9 +21,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const carousel = useRef<HTMLUListElement>(null);
-  useEffect(() => {
-    setWidth(carousel.current!.scrollWidth - carousel.current!.offsetWidth);
-  }, []);
+  
 
   return (
     <div>

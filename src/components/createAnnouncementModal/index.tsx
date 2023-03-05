@@ -120,9 +120,8 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
             progress: undefined,
             theme: "light",
           });
-          console.log(res);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
     const announcement: IAnnouncementCreate = {
       isAuction,
@@ -161,8 +160,7 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
 
     await api
       .post("/announcements", announcement, config)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then().catch((err) => console.error(err));
   };
 
   return (

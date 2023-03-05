@@ -11,6 +11,7 @@ display: flex;
 flex-direction: column;
 padding: 5px;
 box-sizing: border-box;
+z-index: 10;
 
 
     a{

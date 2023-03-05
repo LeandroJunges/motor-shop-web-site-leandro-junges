@@ -31,7 +31,6 @@ interface IRegister {
 const Register = () => {
   const {register, handleSubmit, formState: {errors},  } = useForm<IRegister>({resolver:yupResolver(validationRegister)})
   const {registerUser} =useContext(UserContext)
-  console.log(errors)
   return(
     <>
       <Header/>

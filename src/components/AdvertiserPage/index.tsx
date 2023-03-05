@@ -38,7 +38,7 @@ const AdvertiserPage = () => {
         .then((res) => {
           setAuctions(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
 
       await api
         .get(
@@ -47,13 +47,13 @@ const AdvertiserPage = () => {
         .then((res) => {
           setMotorcycle(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
       await api
         .get(`/announcements/user/${userId}?isAuction=false&vehicleType=car`)
         .then((res) => {
           setCars(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     };
     getAuctions();
   }, []);

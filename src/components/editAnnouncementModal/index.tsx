@@ -1,4 +1,9 @@
 import {
+  InputDiv,
+  InputArea,
+  Input,
+  InputDivLarge,
+  InputDivSmall,
   Backdrop,
   ButtonForAdd,
   Content,
@@ -9,13 +14,6 @@ import {
 } from "../createAnnouncementModal/style";
 import { Footer } from "./style";
 import { GrClose } from "react-icons/gr";
-import {
-  InputDiv,
-  Input,
-  InputArea,
-  InputDivLarge,
-  InputDivSmall,
-} from "../createAnnouncementModal/style";
 import Button from "../Button";
 import { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
@@ -104,6 +102,7 @@ const EditAnnouncementModal = ({
       Authorization: `Bearer ${userToken}`,
     },
   };
+  
 
   const onSubmitFunction = async (data: any) => {
     const { title, year, mileage, price, description, imgMain } = data;
@@ -158,9 +157,8 @@ const EditAnnouncementModal = ({
           });
           setOpenEditAnnouncement(false);
           setAnnouncement({});
-          console.log(res);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
     const announcement: IAnnouncementCreate = {
       isAuction,
@@ -212,9 +210,8 @@ const EditAnnouncementModal = ({
         });
         setOpenEditAnnouncement(false);
         setAnnouncement({});
-        console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   return (
