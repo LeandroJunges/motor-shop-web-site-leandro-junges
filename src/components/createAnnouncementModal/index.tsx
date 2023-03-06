@@ -160,7 +160,11 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
 
     await api
       .post("/announcements", announcement, config)
-      .then().catch((err) => console.error(err));
+      .then((res) => {
+        setOpenCreateAnnouncement(false);
+        showUserAnnouncements(person!);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

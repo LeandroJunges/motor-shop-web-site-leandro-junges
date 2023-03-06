@@ -26,7 +26,7 @@ interface IImg {
   link: string;
 }
 
-interface IAnnouncementsData {
+export interface IAnnouncementsData {
   id: string;
   user: IUser;
   mileage: number;
