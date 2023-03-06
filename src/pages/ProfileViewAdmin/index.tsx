@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   ContainerAuction,
   ContainerListCar,
@@ -27,7 +26,7 @@ const ProfileViewAdmin = () => {
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const {user, setLoading, setOpenModalEditUser,openModalEditUser,openModalEditAddress,setOpenModalEditAddress} = useContext(UserContext)
+  const {user} = useContext(UserContext)
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
@@ -104,31 +103,31 @@ const ProfileViewAdmin = () => {
             <h4>Carros</h4>
             <ul>
              
-              {!admCar ?  <h1>Você não possui anuncios de Carros !</h1> : admCar?.map((car) => {
+              {admCar.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Carros !</h1> </div> : admCar?.map((car) => {
                 return (
-                  <li key={car.id}>
-                    <ProductCard product={car} />
-                    <div>
-                      <button
-                        onClick={() => {
+                    <li key={car.id}>
+                      <ProductCard product={car} />
+                      <div>
+                        <button
+                          onClick={() => {
                           setAnnouncement(car);
                           setOpenEditAnnouncement(true);
-                        }}
-                      >
-                        editar
-                      </button>
-                      <button>ver como</button>
-                    </div>
-                  </li>
-                );
-              })
+                          }}
+                        >
+                          editar
+                        </button>
+                        <button>ver como</button>
+                      </div>
+                    </li>
+                  );
+                })
               }
             </ul>
           </ContainerListCar>
           <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-              {admMotorcycle.map((motorcycle) => {
+              {admMotorcycle.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Motos !</h1> </div> : admMotorcycle.map((motorcycle) => {
                 return (
                   <li key={motorcycle.id}>
                     <ProductCard product={motorcycle} />

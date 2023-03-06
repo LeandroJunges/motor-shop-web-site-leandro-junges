@@ -132,5 +132,7 @@ export const ContainerBannerAdmin = styled.div`
         }
       }
     }
+
+
   
 `;
