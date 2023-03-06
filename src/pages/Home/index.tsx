@@ -37,12 +37,12 @@ const Home = () => {
           <h2> Velocidade e experiência em um lugar feito para você </h2>
           <span> Um ambiente feito para você explorar o seu melhor </span>
           <div className="containerButton">
-            <button>Carros</button>
-            <button>Motos</button>
+            <a href="#listCar">Carros</a>
+            <a href="#listMotorcycle">Motos</a>
           </div>
         </div>
       </ContainerBannerHome>
-      <ContainerAuction>
+      <ContainerAuction id="auction">
         <h4>Leilão</h4>
         <ul ref={carousel} className="carousel" >
           {auctions.map((auction) => {
@@ -54,7 +54,7 @@ const Home = () => {
           })}
         </ul>
       </ContainerAuction>
-      <ContainerListCar>
+      <ContainerListCar id="listCar">
         <h4>Carros</h4>
         <ul>
           {cars.map((car) => {
@@ -66,7 +66,7 @@ const Home = () => {
           })}
         </ul>
       </ContainerListCar>
-      <ContainerListMotorcycle>
+      <ContainerListMotorcycle id="listMotorcycle">
         <h4>Motos</h4>
         <ul>
           {motorcycles.map((motorcycle) => {

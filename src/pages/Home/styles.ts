@@ -35,27 +35,32 @@ export const ContainerBannerHome = styled.div`
         display: flex;
         justify-content: space-evenly;
 
-        button{
-            width: 85px;
+        a{
+            width: 60px;
             border: 1.5px solid var(--grey-10);
             border-radius: 4px;
             height: 48px;
             background-color: transparent;
             color: var(--whiteFixed);
+            text-decoration: none;
             cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
-    @media (min-width: 769px ){
+    @media (min-width: 768px ){
         h2{
             font-size: 44px;
         }
 
         .containerButton{
-            width: 50%;
+            width: 60%;
 
-            button{
-                width: 150px;
+            a{
+                width: 120px;
             }
         }
     }
@@ -92,7 +97,7 @@ export const ContainerAuction = styled.div`
 
     }
 
-    @media (min-width: 769px){
+    @media (min-width: 768px){
         .carousel{
             width: 100%;
             /* overflow: hidden; */
@@ -123,6 +128,16 @@ export const ContainerListCar = styled.div`
         font-family: "Inter", sans-serif;
         margin-left: 10px;
     }
+    .listEmpty {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        h1{
+            font-size: 26px;
+            font-weight: 900;
+        }
+    }
 `
 
 export const ContainerListMotorcycle = styled.div`
@@ -138,6 +153,17 @@ export const ContainerListMotorcycle = styled.div`
         font-weight: 600;
         font-family: "Inter", sans-serif;
         margin-left: 10px;
+    }
+    .listEmpty {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        h1{
+            font-size: 26px;
+            font-weight: 900;
+        }
+
     }
 
 `
