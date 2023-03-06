@@ -3,8 +3,9 @@ import { ContainerGeneral,ContainerInput,ContainerModal, ModalHeader } from "./s
 import { MdClose } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationAddresUser, validationEditUser } from "../../validations";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { UserContext } from "../../context/userContext";
+import "animate.css"
 
 interface IProps {
     setOpenModalEditUser: any;
@@ -31,7 +32,7 @@ export const ModalEditUser = ({setOpenModalEditUser}:IProps)=>{
 
     return (
         <ContainerGeneral>
-            <ContainerModal>
+            <ContainerModal className="animate__animated animate__backInDown ">
             <ModalHeader>
           <h4>Editar perfil</h4>
           <button >
@@ -95,7 +96,7 @@ export const ModalEditAddressUser = ({setOpenModalEditAddress}:any) =>{
 
     return (
         <ContainerGeneral>
-            <ContainerModal>
+            <ContainerModal className="animate__animated animate__backInDown ">
             <ModalHeader>
           <h4>Editar endereço</h4>
           <button >

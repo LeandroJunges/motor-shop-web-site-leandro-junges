@@ -48,6 +48,7 @@ export const CarrAuction = styled.div`
   overflow-x: auto;
   gap: 12px;
   display: flex;
+  flex-direction: column;
 `;
 
 export const OutCarroussel = styled.div`

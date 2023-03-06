@@ -1,14 +1,19 @@
 import  styled  from 'styled-components';
 
 export const ContainerGeneral = styled.div`
-  position: fixed;
   width: 100%;
-  min-height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 1732px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: absolute;
+  top: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
+ 
 `;
 
 export const ContainerModal = styled.div`

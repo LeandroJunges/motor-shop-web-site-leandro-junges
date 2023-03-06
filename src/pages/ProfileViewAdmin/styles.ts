@@ -136,3 +136,12 @@ export const ContainerBannerAdmin = styled.div`
 
   
 `;
+
+export const Title = styled.h4`
+    font-weight: 600;
+    font-family: "Lexend";
+    font-size: 24px;
+    line-height: 30px;
+    margin: 10px;
+    
+`

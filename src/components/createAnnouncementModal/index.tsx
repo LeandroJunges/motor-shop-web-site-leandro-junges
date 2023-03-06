@@ -25,7 +25,7 @@ import { api } from "../../services";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import { toast } from "react-toastify";
 import { IImgs, IAnnouncementCreate } from "../../interfaces";
-
+import "animate.css"
 interface IProps {
   setOpenCreateAnnouncement: any;
 }
@@ -170,7 +170,7 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
   return (
     <>
       <Backdrop>
-        <Main onSubmit={handleSubmit(onSubmitFunction)}>
+        <Main onSubmit={handleSubmit(onSubmitFunction)} className="animate__animated animate__backInDown ">
           <Header>
             <h2 className="heading-7-500">Criar anúncio</h2>
             <GrClose

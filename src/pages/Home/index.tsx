@@ -4,6 +4,7 @@ import {
   ContainerBannerHome,
   ContainerListCar,
   ContainerListMotorcycle,
+  Title,
 } from "./styles";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
@@ -32,7 +33,7 @@ const Home = () => {
   
 
   return (
-    <div>
+    <div className="ContainerHomeGenneral">
       {openModalEditUser && (
         <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} />
       )}
@@ -53,7 +54,7 @@ const Home = () => {
         </div>
       </ContainerBannerHome>
       <ContainerAuction id="auction">
-        <h4>Leilão</h4>
+        <Title>Leilão</Title>
         <ul ref={carousel} className="carousel" >
           {auctions.map((auction) => {
             return (
@@ -65,7 +66,7 @@ const Home = () => {
         </ul>
       </ContainerAuction>
       <ContainerListCar id="listCar">
-        <h4>Carros</h4>
+        <Title>Carros</Title>
         <ul>
           {cars.map((car) => {
             return (
@@ -77,7 +78,7 @@ const Home = () => {
         </ul>
       </ContainerListCar>
       <ContainerListMotorcycle id="listMotorcycle">
-        <h4>Motos</h4>
+        <Title>Motos</Title>
         <ul>
           {motorcycles.map((motorcycle) => {
             return (
