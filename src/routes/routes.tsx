@@ -16,6 +16,7 @@ const Routes = () => {
       <Route element={<Login />} path="/login/" />
       <Route element={<AdvertiserPage />} path="/advertiser/:userId" />
       <Route element={<Register />} path="/register/" />
+      <Route element={<PasswordChange />} path="/recovery/" />
       <Route element={<PasswordChange />} path="/recovery/:token" />
       <Route element={<ProtectRoute />}>
         <Route element={<ProfileViewAdmin />} path="/admin" />

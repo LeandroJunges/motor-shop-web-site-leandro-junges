@@ -26,9 +26,10 @@ export const ImgDiv = styled.div`
 `;
 export const Img = styled.img`
   border-radius: 4px;
-  width: 90%;
+  max-height: 340px;
   @media (min-width: 590px) {
     width: 477px;
+    max-height: 340px;
   }
   @media (min-width: 768px) {
     width: 90%;

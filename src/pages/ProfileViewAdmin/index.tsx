@@ -77,17 +77,23 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-          
-          <Header/>
+
+          <Header />
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
-                <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
-                <p>{user!.name} <span  >{user!.isAdvertiser && "Anunciante" }</span></p>
-                </div>
-                <p>{user?.description}</p>
-                <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
-                </button>
+              <div className="content">
+                <abbr title={user!.name}>
+                  <img src={user?.img} alt={user?.name} />
+                </abbr>
+                <p>
+                  {user!.name} <span>{user!.isAdvertiser && "Anunciante"}</span>
+                </p>
+              </div>
+              <p>{user?.description}</p>
+              <button onClick={() => setOpenCreateAnnouncement(true)}>
+                {" "}
+                Criar anuncio
+              </button>
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
@@ -105,16 +111,21 @@ const ProfileViewAdmin = () => {
           <ContainerListCar>
             <Title>Carros</Title>
             <ul>
-             
-              {admCar.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Carros !</h1> </div> : admCar?.map((car) => {
-                return (
+              {admCar.length === 0 ? (
+                <div className="listEmpty">
+                  {" "}
+                  <h1>Você não possui anúncios de Carros !</h1>{" "}
+                </div>
+              ) : (
+                admCar?.map((car) => {
+                  return (
                     <li key={car.id}>
                       <ProductCard product={car} />
                       <div>
                         <button
                           onClick={() => {
-                          setAnnouncement(car);
-                          setOpenEditAnnouncement(true);
+                            setAnnouncement(car);
+                            setOpenEditAnnouncement(true);
                           }}
                         >
                           editar
@@ -124,30 +135,37 @@ const ProfileViewAdmin = () => {
                     </li>
                   );
                 })
-              }
+              )}
             </ul>
           </ContainerListCar>
           <ContainerListMotorcycle>
             <Title>Motos</Title>
             <ul>
-              {admMotorcycle.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Motos !</h1> </div> : admMotorcycle.map((motorcycle) => {
-                return (
-                  <li key={motorcycle.id}>
-                    <ProductCard product={motorcycle} />
-                    <div>
-                      <button
-                        onClick={() => {
-                          setAnnouncement(motorcycle);
-                          setOpenEditAnnouncement(true);
-                        }}
-                      >
-                        editar
-                      </button>
-                      <button>ver como</button>
-                    </div>
-                  </li>
-                );
-              })}
+              {admMotorcycle.length === 0 ? (
+                <div className="listEmpty">
+                  {" "}
+                  <h1>Você não possui anúncios de Motos !</h1>{" "}
+                </div>
+              ) : (
+                admMotorcycle.map((motorcycle) => {
+                  return (
+                    <li key={motorcycle.id}>
+                      <ProductCard product={motorcycle} />
+                      <div>
+                        <button
+                          onClick={() => {
+                            setAnnouncement(motorcycle);
+                            setOpenEditAnnouncement(true);
+                          }}
+                        >
+                          editar
+                        </button>
+                        <button>ver como</button>
+                      </div>
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </ContainerListMotorcycle>
           <Footer />

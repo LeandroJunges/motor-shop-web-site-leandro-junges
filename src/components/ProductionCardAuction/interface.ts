@@ -1,5 +1,5 @@
-import { IProduct } from "../ProductCard/interface";
+import { IAnnouncementsData } from "../../context/AnnouncementContext";
 
-export interface IProps{
-    product: IProduct
+export interface IProps {
+  product: IAnnouncementsData;
 }

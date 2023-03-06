@@ -11,13 +11,21 @@ import { AnnouncementContext } from "../../context/AnnouncementContext";
 import ProductCard from "../../components/ProductCard";
 import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer";
+import {
+  ModalEditAddressUser,
+  ModalEditUser,
+} from "../../components/ModalEditUSer";
 
 const Home = () => {
   const { cars, motorcycles, auctions } = useContext(AnnouncementContext);
-  const {openModalEditUser,setOpenModalEditUser, openModalEditAddress, setOpenModalEditAddress}= useContext(UserContext)
+  const {
+    openModalEditUser,
+    setOpenModalEditUser,
+    openModalEditAddress,
+    setOpenModalEditAddress,
+  } = useContext(UserContext);
   const [width, setWidth] = useState(0);
   const navigate = useNavigate();
 
@@ -27,10 +35,12 @@ const Home = () => {
   return (
     <div className="ContainerHomeGenneral">
       {openModalEditUser && (
-          <ModalEditUser setOpenModalEditUser={setOpenModalEditUser}  />
+        <ModalEditUser setOpenModalEditUser={setOpenModalEditUser} />
       )}
       {openModalEditAddress && (
-          <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
+        <ModalEditAddressUser
+          setOpenModalEditAddress={setOpenModalEditAddress}
+        />
       )}
       <Header />
       <ContainerBannerHome>
@@ -60,7 +70,7 @@ const Home = () => {
         <ul>
           {cars.map((car) => {
             return (
-              <li onClick={() => navigate(`/product/${car.id}`)} key={car.id}>
+              <li key={car.id}>
                 <ProductCard product={car} />
               </li>
             );
@@ -72,10 +82,7 @@ const Home = () => {
         <ul>
           {motorcycles.map((motorcycle) => {
             return (
-              <li
-                key={motorcycle.id}
-                onClick={() => navigate(`/product/${motorcycle.id}`)}
-              >
+              <li key={motorcycle.id}>
                 <ProductCard product={motorcycle} />
               </li>
             );

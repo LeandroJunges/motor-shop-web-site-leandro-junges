@@ -35,6 +35,70 @@ export const Img = styled.img`
   width: 32px;
 `;
 
+export const Input = styled.textarea`
+  width: 90%;
+  height: 70px;
+  border: 1.5px solid #e9ecef;
+  border-radius: 4px;
+  background-color: white;
+  padding-left: 15px;
+  font-weight: 400;
+  font-size: 16px;
+  padding-top: 8px;
+  font-family: "Inter";
+  :focus {
+    background-color: white;
+    outline: none;
+  }
+  ::placeholder {
+    padding-top: 5px;
+    color: var(--grey-3);
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Inter";
+  }
+`;
+export const ButtonDiv = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  gap: 15px;
+`;
+
+export const Button = styled.button`
+  cursor: pointer;
+  background-color: var(--brand-1);
+  height: 38px;
+  width: 100px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  border: 0;
+  font-family: "Inter";
+`;
+
+export const ButtonC = styled.button`
+  cursor: pointer;
+  background-color: white;
+
+  height: 38px;
+  width: 100px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--brand-1);
+  border: 1.5px solid var(--brand-1);
+  font-family: "Inter";
+`;
+
+export const EditAndDeleteDiv = styled.div`
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 15px;
+`;
+
 export const TitleDiv = styled.div`
   width: 90%;
   display: flex;
