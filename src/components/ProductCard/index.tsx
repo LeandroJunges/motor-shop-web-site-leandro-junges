@@ -32,7 +32,13 @@ const ProductCard = ({ product, isOwner }: IProps) => {
             </p>
           </Link>
 
-          <Link to={`/advertiser/${product.user.id}`}>
+          <Link
+            to={
+              product.user.id === userId
+                ? "/admin"
+                : `/advertiser/${product.user.id}`
+            }
+          >
             <section className="user-wrapper">
               <span className="user-icon">
                 {user.img ? (
