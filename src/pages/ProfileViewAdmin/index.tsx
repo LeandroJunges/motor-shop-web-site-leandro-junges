@@ -9,24 +9,27 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
-import { ContainerBannerAdmin } from "./styles";
+import { ContainerBannerAdmin, Title } from "./styles";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
 import { UserContext } from "../../context/userContext"
 import { useNavigate } from "react-router-dom"
+import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer";
 
 const ProfileViewAdmin = () => {
   const {
     admCar,
-    auctions,
+    auctionsUser,
     admMotorcycle,
     showUserAnnouncements,
+    getAuctions,
     setModal,
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const {user} = useContext(UserContext)
+  const {user,openModalEditUser,setOpenModalEditUser, openModalEditAddress, setOpenModalEditAddress}= useContext(UserContext)
+  
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
@@ -41,6 +44,7 @@ const ProfileViewAdmin = () => {
   useEffect(() => {
     if (token) {
       showUserAnnouncements(person!);
+      getAuctions(person!)
     }
   }, []);
 
@@ -48,6 +52,12 @@ const ProfileViewAdmin = () => {
     <>
       {token ? (
         <>
+          {openModalEditUser && (
+            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser}  />
+          )}
+          {openModalEditAddress && (
+            <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
+          )}
           {openCreateAnnoncement && (
             <CreateAnnouncementModal
               setOpenCreateAnnouncement={setOpenCreateAnnouncement}
@@ -81,18 +91,11 @@ const ProfileViewAdmin = () => {
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
-            <h4>Leilão</h4>
-            <ul
-              ref={carousel}
-              className="carousel"
-            
-            >
-              {auctions.map((auction) => {
+            <Title>Leilão</Title>
+            <ul className="carousel" >
+              {auctionsUser.map((auction) => {
                 return (
-                  <li
-                    className="inner"
-                    key={auction.id}
-                  >
+                  <li className="inner" key={auction.id} >
                     <ProductionCardAuction product={auction} />
                   </li>
                 );
@@ -100,7 +103,7 @@ const ProfileViewAdmin = () => {
             </ul>
           </ContainerAuction>
           <ContainerListCar>
-            <h4>Carros</h4>
+            <Title>Carros</Title>
             <ul>
              
               {admCar.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Carros !</h1> </div> : admCar?.map((car) => {
@@ -125,7 +128,7 @@ const ProfileViewAdmin = () => {
             </ul>
           </ContainerListCar>
           <ContainerListMotorcycle>
-            <h4>Motos</h4>
+            <Title>Motos</Title>
             <ul>
               {admMotorcycle.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Motos !</h1> </div> : admMotorcycle.map((motorcycle) => {
                 return (
@@ -149,7 +152,7 @@ const ProfileViewAdmin = () => {
           </ContainerListMotorcycle>
           <Footer />
         </>
-      ) : (
+        ) : (
         navigate("/")
       )}
     </>

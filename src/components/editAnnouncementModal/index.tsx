@@ -23,6 +23,7 @@ import { api } from "../../services";
 import { toast } from "react-toastify";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import { IImgs, IAnnouncementCreate, IAnnouncement } from "../../interfaces";
+import "animate.css"
 
 interface IProps {
   setOpenEditAnnouncement: (value: boolean) => void;
@@ -217,7 +218,7 @@ const EditAnnouncementModal = ({
   return (
     <>
       <Backdrop>
-        <Main onSubmit={handleSubmit(onSubmitFunction)}>
+        <Main onSubmit={handleSubmit(onSubmitFunction)} className="animate__animated animate__backInDown" >
           <Header>
             <h2 className="heading-7-500">Editar anúncio</h2>
             <GrClose

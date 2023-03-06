@@ -6,7 +6,7 @@ import Home from "../pages/Home";
 import ProfileViewAdmin from "../pages/ProfileViewAdmin";
 import ProtectRoute from "../components/ProtectRoute";
 import PasswordChange from "../pages/PasswordChange";
-import AdvertiserPage from "../components/AdvertiserPage";
+import AdvertiserPage from "../pages/AdvertiserPage";
 
 const Routes = () => {
   return (

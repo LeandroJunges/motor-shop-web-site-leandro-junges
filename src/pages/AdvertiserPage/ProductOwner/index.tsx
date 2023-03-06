@@ -42,7 +42,6 @@ const ProductOwner = ({ id }: Props) => {
       {user && (
         <Container>
           <Centered>
-            {/* <Link to={docume}>To product page</Link> */}
             <ImgDiv>
               <Img src={user.img} />
             </ImgDiv>

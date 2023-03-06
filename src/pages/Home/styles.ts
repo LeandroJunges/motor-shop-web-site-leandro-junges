@@ -1,5 +1,12 @@
 import styled from "styled-components"
 
+
+export const ContainerHomeGenneral = styled.div`
+    width: 100%;
+    height: 100vw;
+    position: relative;
+`
+
 export const ContainerBannerHome = styled.div`
     display: flex;
     background-color: var(--brand-2);
@@ -70,12 +77,6 @@ export const ContainerBannerHome = styled.div`
 
 export const ContainerAuction = styled.div`
 
-    h4{
-        font-size: 20px;
-        font-weight: 600;
-        font-family: "Inter", sans-serif;
-        margin-left: 10px;
-    }
     .carousel{
         width: 96%;
         height: 320px;
@@ -83,7 +84,7 @@ export const ContainerAuction = styled.div`
         display: flex;
         gap: 15px;
         overflow: auto;
-        cursor: grab;
+        cursor: pointer;
     }
     li{
         display: flex;
@@ -122,12 +123,7 @@ export const ContainerListCar = styled.div`
     li{
         margin: 10px 18px;
     }
-    h4{
-        font-size: 20px;
-        font-weight: 600;
-        font-family: "Inter", sans-serif;
-        margin-left: 10px;
-    }
+    
     .listEmpty {
         width: 100%;
         display: flex;
@@ -148,12 +144,7 @@ export const ContainerListMotorcycle = styled.div`
     li{
         margin: 10px 18px;
     }
-    h4{
-        font-size: 20px;
-        font-weight: 600;
-        font-family: "Inter", sans-serif;
-        margin-left: 10px;
-    }
+   
     .listEmpty {
         width: 100%;
         display: flex;
@@ -166,5 +157,14 @@ export const ContainerListMotorcycle = styled.div`
 
     }
 
+`
+
+export const Title = styled.h4`
+    font-weight: 600;
+    font-family: "Lexend";
+    font-size: 24px;
+    line-height: 30px;
+    margin: 10px;
+    
 `
 

@@ -7,6 +7,9 @@ interface IAnnouncementsProviderProps {
     showMotorcycle: () => Promise<void>
     showUserAnnouncements: (userId: string) => Promise<void>
     getAnnouncement: (announcementId: string) => Promise<void>;
+    getAuctions: (userId: string) => Promise<void>
+    setAuctionsUser: React.Dispatch<React.SetStateAction<IAnnouncementsData[]>>
+    auctionsUser: IAnnouncementsData[]
     cars: IAnnouncementsData[]
     motorcycles: IAnnouncementsData[]
     auctions: IAnnouncementsData[]
@@ -55,6 +58,10 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
   const [admMotorcycle, setAdmMotorcycle] = useState<IAnnouncementsData[]>([])
   const [modal, setModal] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState(null);
+  const [auctionsUser, setAuctionsUser] = useState<IAnnouncementsData[]>([]);
+
+
+  
 
   const showCar = async () => {
     await api
@@ -88,6 +95,17 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
     showMotorcycle();
   }, [admCar, admMotorcycle]);
 
+
+   // Request user by ID
+   const getAuctions = async (userId: string) => {
+    await api
+      .get(`/announcements/user/${userId}?isAuction=true`)
+      .then((res) => {
+        setAuctionsUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  }
+
   const showUserAnnouncements = async (userId: string) => {
     await api
       .get(`announcements/user/${userId}?isAuction=false&vehicleType=car`)
@@ -117,6 +135,8 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
       .catch((err) => console.error(err));
   };
 
+
+
   return (
     <AnnouncementContext.Provider
       value={{
@@ -132,6 +152,9 @@ const AnnouncementsProvider = ({ children }: IUserProps) => {
         admMotorcycle,
         modal,
         setModal,
+        getAuctions,
+        auctionsUser,
+        setAuctionsUser
       }}
     >
       {children}
