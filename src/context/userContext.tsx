@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IAddress, IUserModal } from "../components/ModalEditUSer";
 import { IChildren, IUserResponse } from "../interfaces";
+import { IRegister } from "../pages/Register";
 import { api } from "../services";
 
 export interface IUserContextProps {
-  registerUser: (user: IUserLogin) => Promise<void>;
+  registerUser: (user: IRegister) => Promise<void>;
   loginUser: (user: any) => Promise<void>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,6 +22,8 @@ export interface IUserContextProps {
   loading: boolean;
   openModalEditUser: boolean;
   openModalEditAddress: boolean;
+  registerErrors: IRegisterErrors;
+  setRegisterErrors: React.Dispatch<React.SetStateAction<IRegisterErrors>>;
 }
 
 export interface IUser {
@@ -46,11 +49,21 @@ interface IUserRecovery {
   password?: string;
   token?: string;
 }
+
+export interface IRegisterErrors {
+  email?: string;
+  cpf?: string;
+  cellphone?: string;
+}
+
 export const UserContext = createContext<IUserContextProps>(
   {} as IUserContextProps
 );
 export const UserProvider = ({ children }: IChildren) => {
   const [user, setUser] = useState<IUserResponse["user"] | undefined>();
+  const [registerErrors, setRegisterErrors] = useState<IRegisterErrors>(
+    {} as IRegisterErrors
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [openModalEditUser, setOpenModalEditUser] = useState<boolean>(false);
   const [openModalEditAddress, setOpenModalEditAddress] =
@@ -77,23 +90,28 @@ export const UserProvider = ({ children }: IChildren) => {
     loadUser();
   }, []);
 
-  const registerUser = async (user: any): Promise<void> => {
-    try {
-      const response = await api.post("/users", user);
-      toast.success(" Conta criada!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+  const registerUser = async (user: IRegister): Promise<void> => {
+    await api
+      .post("/users", user)
+      .then((res) => {
+        toast.success(" Conta criada!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate("/login/");
+      })
+      .catch((err) => {
+        const errorMessage = err.response.data.message;
+
+        setRegisterErrors(errorMessage);
       });
-      navigate("/login/");
-    } catch (err) {
-      console.error(err);
-    }
+    console.log(registerErrors);
   };
   const loginUser = async (user: IUserLogin) => {
     try {
@@ -219,6 +237,8 @@ export const UserProvider = ({ children }: IChildren) => {
         editAddressUser,
         openModalEditAddress,
         setOpenModalEditAddress,
+        registerErrors,
+        setRegisterErrors,
       }}
     >
       {children}
