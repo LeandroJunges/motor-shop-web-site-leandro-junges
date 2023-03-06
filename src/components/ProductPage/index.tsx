@@ -101,7 +101,10 @@ const AnnouncementPage = () => {
         <BottomMain>
           <SubBottomMain>
             {announcementComments && (
-              <ProductComments comments={announcementComments} />
+              <ProductComments
+                announcement={announcement}
+                comments={announcementComments}
+              />
             )}
             {announcement && (
               <ProductCreateComment announcementId={announcement.id} />
