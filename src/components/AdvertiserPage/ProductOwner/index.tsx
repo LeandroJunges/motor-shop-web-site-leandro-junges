@@ -36,7 +36,6 @@ const ProductOwner = ({ id }: Props) => {
     getUser();
   }, []);
 
-
   return (
     <>
       {user && (

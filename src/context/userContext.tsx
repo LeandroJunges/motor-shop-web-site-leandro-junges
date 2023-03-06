@@ -68,6 +68,7 @@ export const UserProvider = ({ children }: IChildren) => {
   const [openModalEditUser, setOpenModalEditUser] = useState<boolean>(false);
   const [openModalEditAddress, setOpenModalEditAddress] =
     useState<boolean>(false);
+
   const [openModalDeleteUser, setOpenModalDeleteUser] =
     useState<boolean>(false);
 
@@ -111,7 +112,6 @@ export const UserProvider = ({ children }: IChildren) => {
 
         setRegisterErrors(errorMessage);
       });
-    console.log(registerErrors);
   };
   const loginUser = async (user: IUserLogin) => {
     try {
@@ -130,7 +130,11 @@ export const UserProvider = ({ children }: IChildren) => {
         theme: "light",
       });
 
-      navigate("/admin");
+      if (data.user.isAdvertiser) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       localStorage.clear();
       toast.error("Ops! Tem algo errado! Verifique seu e-mail e senha !");

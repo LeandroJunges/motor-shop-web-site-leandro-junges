@@ -13,8 +13,8 @@ import { ContainerBannerAdmin } from "./styles";
 import CreateAnnouncementModal from "../../components/createAnnouncementModal";
 import EditAnnouncementModal from "../../components/editAnnouncementModal";
 import ProductDeleteModal from "../../components/ProductDeleteModal";
-import { UserContext } from "../../context/userContext"
-import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const ProfileViewAdmin = () => {
   const {
@@ -26,7 +26,7 @@ const ProfileViewAdmin = () => {
     modal,
   } = useContext(AnnouncementContext);
   const [width, setWidth] = useState(0);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const [openCreateAnnoncement, setOpenCreateAnnouncement] = useState(false);
   const [openEditAnnoncement, setOpenEditAnnouncement] = useState(false);
   const [openDeleteAnnouncement, setOpenDeleteAnnouncement] = useState(false);
@@ -67,32 +67,31 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-          
-          <Header/>
+
+          <Header />
           <ContainerBannerAdmin>
             <div className="containerContentAdmin">
-                <div className="content">
-                <abbr title={user!.name}><img src={user?.img} alt={user?.name} /></abbr>
-                <p>{user!.name} <span  >{user!.isAdvertiser && "Anunciante" }</span></p>
-                </div>
-                <p>{user?.description}</p>
-                <button onClick={() => setOpenCreateAnnouncement(true)}>  Criar anuncio
-                </button>
+              <div className="content">
+                <abbr title={user!.name}>
+                  <img src={user?.img} alt={user?.name} />
+                </abbr>
+                <p>
+                  {user!.name} <span>{user!.isAdvertiser && "Anunciante"}</span>
+                </p>
+              </div>
+              <p>{user?.description}</p>
+              <button onClick={() => setOpenCreateAnnouncement(true)}>
+                {" "}
+                Criar anuncio
+              </button>
             </div>
           </ContainerBannerAdmin>
           <ContainerAuction>
             <h4>Leilão</h4>
-            <ul
-              ref={carousel}
-              className="carousel"
-            
-            >
+            <ul ref={carousel} className="carousel">
               {auctions.map((auction) => {
                 return (
-                  <li
-                    className="inner"
-                    key={auction.id}
-                  >
+                  <li className="inner" key={auction.id}>
                     <ProductionCardAuction product={auction} />
                   </li>
                 );
@@ -102,16 +101,21 @@ const ProfileViewAdmin = () => {
           <ContainerListCar>
             <h4>Carros</h4>
             <ul>
-             
-              {admCar.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Carros !</h1> </div> : admCar?.map((car) => {
-                return (
+              {admCar.length === 0 ? (
+                <div className="listEmpty">
+                  {" "}
+                  <h1>Você não possui anúncios de Carros !</h1>{" "}
+                </div>
+              ) : (
+                admCar?.map((car) => {
+                  return (
                     <li key={car.id}>
                       <ProductCard product={car} />
                       <div>
                         <button
                           onClick={() => {
-                          setAnnouncement(car);
-                          setOpenEditAnnouncement(true);
+                            setAnnouncement(car);
+                            setOpenEditAnnouncement(true);
                           }}
                         >
                           editar
@@ -121,30 +125,37 @@ const ProfileViewAdmin = () => {
                     </li>
                   );
                 })
-              }
+              )}
             </ul>
           </ContainerListCar>
           <ContainerListMotorcycle>
             <h4>Motos</h4>
             <ul>
-              {admMotorcycle.length === 0 ? <div className="listEmpty"> <h1>Você não possui anúncios de Motos !</h1> </div> : admMotorcycle.map((motorcycle) => {
-                return (
-                  <li key={motorcycle.id}>
-                    <ProductCard product={motorcycle} />
-                    <div>
-                      <button
-                        onClick={() => {
-                          setAnnouncement(motorcycle);
-                          setOpenEditAnnouncement(true);
-                        }}
-                      >
-                        editar
-                      </button>
-                      <button>ver como</button>
-                    </div>
-                  </li>
-                );
-              })}
+              {admMotorcycle.length === 0 ? (
+                <div className="listEmpty">
+                  {" "}
+                  <h1>Você não possui anúncios de Motos !</h1>{" "}
+                </div>
+              ) : (
+                admMotorcycle.map((motorcycle) => {
+                  return (
+                    <li key={motorcycle.id}>
+                      <ProductCard product={motorcycle} />
+                      <div>
+                        <button
+                          onClick={() => {
+                            setAnnouncement(motorcycle);
+                            setOpenEditAnnouncement(true);
+                          }}
+                        >
+                          editar
+                        </button>
+                        <button>ver como</button>
+                      </div>
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </ContainerListMotorcycle>
           <Footer />
