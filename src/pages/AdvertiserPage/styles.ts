@@ -13,6 +13,7 @@ export const Container = styled.div`
     var(--grey-8) 100%
   );
   gap: 16px;
+  position: relative;
   /* justify-content: space-around; */
 `;
 
@@ -94,3 +95,25 @@ export const LinkBack = styled.button`
     left: 18.5%;
   }
 `;
+
+export const ContainerWpp = styled.div`
+  min-width: 4.5rem;
+  height: 4.5rem;
+  margin-right: 50px;
+  border-radius: 100px;
+  background : linear-gradient(180deg, #50c571 0%, #50cf9a 100% ) ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  position: fixed;
+  right: 0;
+  bottom: 120px;
+  left: auto;
+
+  @media(min-width: 768px){
+    bottom: 180px;
+    left: initial;
+  }
+
+`

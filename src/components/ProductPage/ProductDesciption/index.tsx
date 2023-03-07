@@ -1,3 +1,6 @@
+import { useContext, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 import {
   BottomDiv,
   BottomDivCentered,
@@ -20,10 +23,12 @@ import {
 } from "./styles";
 
 const ProductDescription = ({ product }: any) => {
-  const handleBuy = () => {
-    //COMPRAR ?
-  };
-
+  const {userAdvertiser, getUserAdivertiser} = useContext(UserContext)
+  useEffect(()=>{
+    getUserAdivertiser(userId!)
+  },[])
+  
+  const { userId } = useParams();
   return (
     <>
       <Container>
@@ -57,7 +62,7 @@ const ProductDescription = ({ product }: any) => {
                 </Price>
               </StatsDiv>
               <ButtonDiv>
-                <Button onClick={() => handleBuy()}>Comprar</Button>
+                <Button href={`https://api.whatsapp.com/send?phone=+55+${userAdvertiser?.cellphone}&text=Ol%C3%A1%2C%20venho%20por%20meio%20da%20sua%20p%C3%A1gina%20de%20produto%2C%20gostaria%20de%20comprar%20seu%20carro%20ou%20moto`} /*target="_blank"*/ > Comprar </Button>
               </ButtonDiv>
             </DescriptionContainerCentered>
           </DescriptionContainer>

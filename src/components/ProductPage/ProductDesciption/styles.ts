@@ -125,14 +125,18 @@ export const ButtonDiv = styled.div`
   border-radius: 4px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.a`
+  display: felx;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   cursor: pointer;
   background-color: var(--brand-1);
   height: 38px;
   width: 100px;
   border-radius: 4px;
   font-size: 14px;
-  color: white;
+  color: var(--whiteFixed);
   border: 0;
   font-family: "Inter";
 `;
