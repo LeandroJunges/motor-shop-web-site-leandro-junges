@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { UserContext } from "../../context/userContext"
 import Button from "../Button"
 const NavBar = () =>{
-    const {user} = useContext(UserContext)
+    const {user, setOpenModalDeleteUser, setOpenModalEditAddress, setOpenModalEditUser, logout} = useContext(UserContext)
     const navigate = useNavigate()
     return(
         <Container>
@@ -18,12 +18,14 @@ const NavBar = () =>{
             <section className="nav-session">
                 {user ? 
                 <UlStyle>
-                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil"/>
-                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Perfil" onClick={ () => setOpenModalEditUser(true)}/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Editar Endereço"onClick={() => setOpenModalEditAddress(true)}/>
                     {user.isAdvertiser &&
-                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Meus Anúncios" onClick={() => navigate("/admin")}/>
                     }
-                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair"/>
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Excluir conta" onClick={() => setOpenModalDeleteUser(true)}
+                  />
+                    <Button font_size={16} font_weight={400} background="var(--whiteFixed)" border="none" color="var(--grey-2)" description="Sair" onClick={() => logout()}/>
                 </UlStyle> 
                 :
                 <ul>
