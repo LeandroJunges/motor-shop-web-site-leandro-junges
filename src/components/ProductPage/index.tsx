@@ -11,7 +11,7 @@ import {
 import ProductDescription from "./ProductDesciption";
 import ProductImage from "./ProductImage";
 import ProductOwner from "./ProductOwner";
-import { CommentContent, ProductComments } from "./ProductComments";
+import { ProductComments } from "./ProductComments";
 import ProductCreateComment from "./ProductCreateComment";
 import { api } from "../../services";
 import { useState } from "react";
@@ -29,7 +29,6 @@ const AnnouncementPage = () => {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
-  // const [openImageLarge, setOpenImageLarge] = useState(false);
   const { id } = useParams();
 
   const { getAnnouncement, announcement } = useContext(AnnouncementContext);
