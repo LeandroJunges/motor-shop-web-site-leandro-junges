@@ -95,7 +95,7 @@ export const Main = styled.div<IProps>`
   }
 
   .info-wrapper {
-    width: 100%;
+    width: 90%;
     height: 32px;
 
     display: flex;

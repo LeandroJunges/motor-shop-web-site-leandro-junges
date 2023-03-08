@@ -19,18 +19,16 @@ import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
 import { BiArrowBack } from "react-icons/bi";
 import { UserContext } from "../../context/userContext";
-import { ModalEditAddressUser, ModalEditUser } from "../../components/ModalEditUSer";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import {FaWhatsapp} from "react-icons/fa"
 
 const AdvertiserPage = () => {
   const nav = useNavigate();
 
-  const {userAdvertiser, openModalEditUser,setOpenModalEditUser, openModalEditAddress, setOpenModalEditAddress, getUserAdivertiser}= useContext(UserContext)
+  const {userAdvertiser, getUserAdivertiser}= useContext(UserContext)
   const {admCar, admMotorcycle, getAuctions, auctionsUser, showUserAnnouncements} = useContext(AnnouncementContext)
 
-  console.log(userAdvertiser)
-  console.log(window.location.pathname)
+ 
 
   useEffect(() => {
         getAuctions(userId!);
@@ -44,13 +42,7 @@ const AdvertiserPage = () => {
     <>
     
         <>
-            {openModalEditUser && (
-              <ModalEditUser setOpenModalEditUser={setOpenModalEditUser}  />
-            )}
-            {openModalEditAddress && (
-              <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
-              )}
-            
+                        
             <ContainerWpp className="animate__animated animate__pulse animate__infinite"  >
               <Link to={`https://api.whatsapp.com/send?phone=+55+${userAdvertiser?.cellphone}&text=Ol%C3%A1%2C%20venho%20por%20meio%20da%20sua%20p%C3%A1gina%20de%20produto%2C%20gostaria%20de%20comprar%20seu%20carro%20ou%20moto`} target="_blank"  ><FaWhatsapp color="#fff" size={35} /></Link>
             </ContainerWpp>

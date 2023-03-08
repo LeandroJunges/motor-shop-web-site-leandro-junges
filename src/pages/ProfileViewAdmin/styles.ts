@@ -5,143 +5,138 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-export const ContainerBannerAdmin = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #4529e6;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  background: linear-gradient(
+    180deg,
+    var(--brand-1) 20.25%,
+    var(--grey-8) 20.26%,
+    var(--grey-8) 100%
+  );
+  gap: 16px;
   position: relative;
-  margin-bottom: 150px;
+  /* justify-content: space-around; */
 
-  .containerContentAdmin {
-    width: 80%;
-    height: 350px;
-    
-    position: absolute;
-    background-color: #fdfdfd;
-    top: 60px;
-    
-    z-index: 1;
-    left: 35px;
-    
-
-    .content {
-      margin: 50px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: baseline;
-
-              abbr{
-                width: 50px;
-                height: 50px;
-                border-radius: 50px ;
-                
-                img{
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50px;
-                  }
-                  
-              }
-            
-            p{  display: flex;
-                font-size: 20px;
-                font-family: 'Lexend' ;
-                font-weight: 600 ;
-              }
-            span{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                padding: 4px 8px;
-                gap: 10px;
-                color: #4529E6;
-                background: #EDEAFD;
-                border-radius: 4px;
-                font-size: 14px;
-                font-weight: 500;
-
-              }
-
-        }
-        p{
-            margin: 0 6px;
-        }
-        button{
-            margin: 20px 50px;
-            padding: 10px;
-            border: solid 1px #4529E6;
-            background-color: transparent;
-            color: #4529E6;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .buttonsProfileCard{
-            width: 140px;
-            display: flex;
-            justify-content: space-between;
-
-            button{
-                
-            }
-        }
-    }
-    p {
-      margin: 0 50px;
-    }
-    button {
-      margin: 20px 50px;
-      padding: 10px;
-      border: solid 1px #4529e6;
-      background-color: transparent;
-      color: #4529e6;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    @media(min-width: 425px){
-      .containerContentAdmin{
-        left: 45px ;
-      }
-    }
-    @media(min-width: 768px){
-      .containerContentAdmin{
-        left: 80px;
-      }
-    }
-
-    @media(min-width: 1024px){
-      .containerContentAdmin{
-         height: 297px; 
-         top: 100px; 
-         left: 95px; 
-      }
-      .content{
-        p{
-            margin: 0 50px;
-        }
-      }
-    }
-
-
-  
+`
+export const LinkBack = styled.button`
+  width: 30px;
+  height: 30px;
+  padding-top: 3px;
+  border: none;
+  font-size: 14px;
+  font-family: "Inter";
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  top: 82px;
+  left: 5%;
+  background-color: white;
+  cursor: pointer;
+  position: absolute;
+  @media (min-width: 950px) {
+    left: 18.5%;
+  }
 `;
 
-export const Title = styled.h4`
-    font-weight: 600;
-    font-family: "Lexend";
-    font-size: 24px;
-    line-height: 30px;
-    margin: 10px;
-    
+export const UpperDiv = styled.div`
+  width: 100%;
+  height: 456px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 950px) {
+    width: 70%;
+  }
+`;
+
+export const BottomDiv = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const Centered = styled.div`
+  width: 90%;
+  height: fit-content;
+  gap: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const CarrAuction = styled.div`
+  height: 350px;
+  width: 100%;
+  overflow-x: auto;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+`;
+export const Title = styled.p`
+  font-weight: 600;
+  font-family: "Lexend";
+  font-size: 24px;
+  line-height: 30px;
+`;
+
+export const Carrossel = styled.div`
+  overflow-x: auto;
+  gap: 12px;
+  display: flex;
+  height: fit-content;
+  width: 100%;
+    .listEmpty {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+          h1{
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
+          }
+
+      }
+`;
+
+export const OutCarroussel = styled.div`
+  height: fit-content;
+  width: 100%;
+  gap: 63px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const ContainerCarroussel = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
 `
+export const ContainerButtons = styled.div`
+    width: 90%;
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    bottom: 20px;
+    
+    button{
+      border-radius: 4px;
+      border: 1.5px solid #212529;
+      padding: 10px;
+      box-sizing: border-box;
+
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      
+    }
+
+`
+
+

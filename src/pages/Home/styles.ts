@@ -116,6 +116,7 @@ export const ContainerAuction = styled.div`
         }
 
     }
+    
   }
 
     @media (min-width: 768px){
@@ -132,6 +133,20 @@ export const ContainerAuction = styled.div`
       }
     }
   }
+
+  .listEmpty {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        h1{
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
+        }
+
+    }
+
 `;
 
 export const ContainerListCar = styled.div`
@@ -149,8 +164,9 @@ export const ContainerListCar = styled.div`
         justify-content: center;
 
         h1{
-            font-size: 26px;
-            font-weight: 900;
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
         }
     }
 `
@@ -170,8 +186,9 @@ export const ContainerListMotorcycle = styled.div`
         justify-content: center;
         
         h1{
-            font-size: 26px;
-            font-weight: 900;
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
         }
 
     }

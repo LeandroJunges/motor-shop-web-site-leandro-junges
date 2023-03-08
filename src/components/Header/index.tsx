@@ -15,6 +15,7 @@ import { UserContext } from "../../context/userContext";
 import Text from "../Text";
 import NavBar from "../NavBar";
 import UserDeleteModal from "../UserDeleteModal";
+import { ModalEditAddressUser, ModalEditUser } from "../ModalEditUSer";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,8 @@ const Header = () => {
     user,
     logout,
     openModalDeleteUser,
+    openModalEditAddress,
+    openModalEditUser,
     setOpenModalEditUser,
     setOpenModalEditAddress,
     setOpenModalDeleteUser,
@@ -146,6 +149,12 @@ const Header = () => {
         </section>
       </NavStyle>
       {openModalDeleteUser && <UserDeleteModal />}
+      {openModalEditUser && (
+            <ModalEditUser setOpenModalEditUser={setOpenModalEditUser}  />
+          )}
+          {openModalEditAddress && (
+            <ModalEditAddressUser  setOpenModalEditAddress={setOpenModalEditAddress} />
+          )}
     </HeaderStyle>
   );
 };
