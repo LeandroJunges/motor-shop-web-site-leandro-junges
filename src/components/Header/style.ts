@@ -59,17 +59,17 @@ export const NavStyle = styled.nav`
     .login {
       color: var(--brand-1);
     }
-    }
-`
+  }
+`;
 export const NavBar = styled.div`
-background-color: var(--whiteFixed);
-border: none;
-display: flex;
-align-items: center;
-cursor: pointer;
-gap: 5px;
-`
- 
+  background-color: var(--whiteFixed);
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+`;
+
 export const DivAvatar = styled.div`
   background: var(--brand-1);
   width: 32px;
@@ -85,13 +85,11 @@ export const DivAvatar = styled.div`
   }
 `;
 
-
-
 export const DivNavBar = styled.div`
   position: absolute;
   background: var(--whiteFixed);
   top: 70px;
-  right: 0;
+  right: 10px;
   padding: 20px;
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -100,5 +98,4 @@ export const DivNavBar = styled.div`
   gap: 10px;
   align-items: flex-start;
   z-index: 10;
-
 `;

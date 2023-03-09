@@ -17,6 +17,9 @@ export const ContainerFooter = styled.footer`
   img {
     width: 153px;
     height: 26.34px;
+    @media (min-width: 1024px) {
+      margin-left: 30px;
+    }
   }
 
   span {

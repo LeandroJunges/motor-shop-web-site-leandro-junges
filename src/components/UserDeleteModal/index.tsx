@@ -73,6 +73,7 @@ const UserDeleteModal = () => {
           <UpperDiv>
             <Title>Excluir conta</Title>
             <MdClose
+              cursor={"pointer"}
               fontSize="20px"
               color="#ADB5BD"
               onClick={() => handleCancel()}
