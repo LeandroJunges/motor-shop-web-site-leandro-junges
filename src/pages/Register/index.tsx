@@ -2,7 +2,6 @@ import Fields from "../../components/Fields";
 import Header from "../../components/Header";
 import Form from "../../components/Form";
 import Text from "../../components/Text";
-import Input from "../../components/Input";
 import { Container } from "./style";
 import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
@@ -219,16 +218,10 @@ const Register = () => {
             type="password"
             register={{ ...register("confirmPassword") }}
           />
-          <Text
-            family="Inter"
-            weight={500}
-            size={14}
-            color="--black-1"
-            description="Imagem"
-          />
+         
           <Fields
             placeholder="Url da imagem"
-            description="URL"
+            description="Imagem"
             color="var(--grey-1)"
             size={14}
             weight={500}

@@ -12,9 +12,9 @@ export const MainContainer = styled.div`
     var(--grey-8) 20.26%,
     var(--grey-8) 100%
   );
-  gap: 16px;
+  gap: 24px;
   position: relative;
-`
+`;
 
 export const BottomDiv = styled.div`
   width: 100%;
@@ -40,6 +40,10 @@ export const CarrAuction = styled.div`
   gap: 12px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 425px) {
+    height: max-content;
+  }
 `;
 
 export const Title = styled.p`
@@ -54,19 +58,19 @@ export const Carrossel = styled.div`
   gap: 12px;
   display: flex;
   height: fit-content;
-  width: 100%;
-    .listEmpty {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        
-          h1{
-            font-size: 24px;
-            font-weight: 400;
-            padding: 20px;
-          }
+  max-width: 100%;
 
-      }
+  .listEmpty {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 400;
+      padding: 20px;
+    }
+  }
 `;
 export const OutCarroussel = styled.div`
   height: fit-content;
@@ -78,13 +82,12 @@ export const OutCarroussel = styled.div`
   justify-content: space-between;
 `;
 
-
 export const ContainerBannerHome = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 298px;
-    align-items: center;
-    width: 90%;
+  display: flex;
+  justify-content: center;
+  height: 298px;
+  align-items: center;
+  width: 90%;
 
   .containerBannerContent {
     width: 70%;
@@ -96,59 +99,57 @@ export const ContainerBannerHome = styled.div`
     flex-wrap: wrap;
     color: var(--whiteFixed);
   }
-  .contentText{
+  .contentText {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    
-        h2 {
-            font-size: 24px;
-            text-align: center;
-        }
-    
-        span {
-            font-size: 16px;
-            font-family: "inter";
-            text-align: center;
-        }
+
+    h2 {
+      font-size: 24px;
+      text-align: center;
     }
+
+    span {
+      font-size: 16px;
+      font-family: "inter";
+      text-align: center;
+    }
+  }
 
   .containerButton {
     width: 80%;
     display: flex;
     justify-content: space-evenly;
 
-        a{
-            width: 60px;
-            border: 1.5px solid var(--grey-10);
-            border-radius: 4px;
-            height: 48px;
-            background-color: transparent;
-            color: var(--whiteFixed);
-            text-decoration: none;
-            cursor: pointer;
+    a {
+      width: 60px;
+      border: 1.5px solid var(--grey-10);
+      border-radius: 4px;
+      height: 48px;
+      background-color: transparent;
+      color: var(--whiteFixed);
+      text-decoration: none;
+      cursor: pointer;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 44px;
     }
 
-    @media (min-width: 768px ){
-        h2{
-            font-size: 44px;
-        }
+    .containerButton {
+      width: 60%;
 
-        .containerButton{
-            width: 60%;
-
-            a{
-                width: 120px;
-            }
-        }
+      a {
+        width: 120px;
+      }
     }
-
-
-`
+  }
+`;
