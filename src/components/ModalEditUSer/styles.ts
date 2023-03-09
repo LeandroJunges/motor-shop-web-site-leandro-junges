@@ -1,15 +1,16 @@
 import  styled  from 'styled-components';
 
 export const ContainerGeneral = styled.div`
-  width: 100%;
-  height: 1732px;
+  width: 100vw;
+  height: 100%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   position: absolute;
-  top: 0;
+  top:0;
+  left: 0;
 
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
@@ -26,6 +27,7 @@ export const ContainerModal = styled.div`
   align-items: center;
   background-color: var(--whiteFixed);
   border-radius: 8px;
+  margin-top: 70px;
   form {
     display: flex;
     flex-direction: column;

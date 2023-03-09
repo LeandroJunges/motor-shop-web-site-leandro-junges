@@ -1,22 +1,93 @@
 import styled from "styled-components";
 
-
-export const ContainerHomeGenneral = styled.div`
-    width: 100%;
-    height: 100vw;
-    position: relative;
+export const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    var(--brand-1) 20.25%,
+    var(--grey-8) 20.26%,
+    var(--grey-8) 100%
+  );
+  gap: 16px;
+  position: relative;
 `
 
-export const ContainerBannerHome = styled.div`
+export const BottomDiv = styled.div`
+  width: 100%;
+  height: fit-content;
   display: flex;
-  background-color: var(--brand-2);
-  justify-content: center;
-  height: 400px;
   align-items: center;
-  min-width: 100%;
+  justify-content: center;
+`;
+
+export const Centered = styled.div`
+  width: 90%;
+  height: fit-content;
+  gap: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const CarrAuction = styled.div`
+  height: 370px;
+  width: 100%;
+  overflow-x: auto;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Title = styled.p`
+  font-weight: 600;
+  font-family: "Lexend";
+  font-size: 24px;
+  line-height: 30px;
+`;
+
+export const Carrossel = styled.div`
+  overflow-x: auto;
+  gap: 12px;
+  display: flex;
+  height: fit-content;
+  width: 100%;
+    .listEmpty {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+          h1{
+            font-size: 24px;
+            font-weight: 400;
+            padding: 20px;
+          }
+
+      }
+`;
+export const OutCarroussel = styled.div`
+  height: fit-content;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+
+export const ContainerBannerHome = styled.div`
+    display: flex;
+    justify-content: center;
+    height: 298px;
+    align-items: center;
+    width: 90%;
 
   .containerBannerContent {
-    width: 65%;
+    width: 70%;
     height: 250px;
     display: flex;
     flex-direction: column;
@@ -25,16 +96,24 @@ export const ContainerBannerHome = styled.div`
     flex-wrap: wrap;
     color: var(--whiteFixed);
   }
-
-  h2 {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  span {
-    font-size: 16px;
-    font-family: "inter";
-  }
+  .contentText{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+        h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+    
+        span {
+            font-size: 16px;
+            font-family: "inter";
+            text-align: center;
+        }
+    }
 
   .containerButton {
     width: 80%;
@@ -73,134 +152,3 @@ export const ContainerBannerHome = styled.div`
 
 
 `
-
-export const ContainerAuction = styled.div`
-  h4 {
-    font-size: 20px;
-    font-weight: 600;
-    font-family: "Inter", sans-serif;
-    margin-left: 10px;
-  }
-  .carousel {
-    width: 96%;
-    height: 340px;
-    margin-left: 10px;
-    display: flex;
-    gap: 15px;
-    overflow: auto;
-    cursor: pointer;
-  }
-  li {
-    display: flex;
-    min-width: 300px;
-    height: 293px;
-    justify-content: center;
-
-    .carousel{
-        width: 96%;
-        height: 320px;
-        margin-left: 10px;
-        display: flex;
-        gap: 15px;
-        overflow: auto;
-        cursor: pointer;
-    }
-    li{
-        display: flex;
-        min-width: 300px;
-        height: 293px;
-        justify-content: center;
-
-        img{
-            width: 90%;
-        }
-
-    }
-    
-  }
-
-    @media (min-width: 768px){
-        .carousel{
-            width: 100%;
-            /* overflow: hidden; */
-        }
-
-    li {
-      min-width: 500px;
-      height: 320px;
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  .listEmpty {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        
-        h1{
-            font-size: 24px;
-            font-weight: 400;
-            padding: 20px;
-        }
-
-    }
-
-`;
-
-export const ContainerListCar = styled.div`
-    ul{
-        display: flex;
-        overflow-x: auto;
-    }
-    li{
-        margin: 10px 18px;
-    }
-    
-    .listEmpty {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-
-        h1{
-            font-size: 24px;
-            font-weight: 400;
-            padding: 20px;
-        }
-    }
-`
-
-export const ContainerListMotorcycle = styled.div`
-    ul{
-        display: flex;
-        overflow-x: auto;
-    }
-    li{
-        margin: 10px 18px;
-    }
-   
-    .listEmpty {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        
-        h1{
-            font-size: 24px;
-            font-weight: 400;
-            padding: 20px;
-        }
-
-    }
-
-`
-
-export const Title = styled.h4`
-    font-weight: 600;
-    font-family: "Lexend";
-    font-size: 24px;
-    line-height: 30px;
-    margin: 10px;
-    
-`
-

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Backdrop = styled.div`
   width: 100vw;
-  height: 1300px;
+  height: 100%;
 
   display: flex;
   align-items: center;
