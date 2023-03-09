@@ -51,8 +51,15 @@ export const ContainerModal = styled.div`
         font-size: 14px;
         line-height: 17px;
         text-align: start;
-        margin-left: 25px;
+        margin-left: 11px;
         color: var(--grey-1);
+
+        @media(min-width: 375px){
+          label{
+            margin-left: 15px;
+          }
+        }
+        
     }
     input {
       margin: 0 auto;
@@ -101,8 +108,21 @@ export const ContainerModal = styled.div`
             color: var(--whiteFixed) ;
         }
     }
-    
-    
+    @media(min-width: 375px){
+          label{
+            margin-left: 15px;
+          }
+        }
+    @media(min-width: 425px){
+          label{
+            margin-left: 20px;
+          }
+        }
+    @media(min-width: 768px){
+          label{
+            margin-left: 25px;
+          }
+     }
   }
 
   @media (min-width: 769px){
@@ -155,7 +175,7 @@ export const ContainerInput = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 0 23px;
+    margin: 0 10px;
     width: 50%;
 
     .label{
@@ -179,7 +199,27 @@ export const ContainerInput = styled.div`
   }
   
 
-  
+  @media(min-width: 375px ){
+    .contentSmall{
+      
+      margin: 15px;
+
+    }
+  }
+  @media(min-width:425px){
+    .contentSmall{
+      
+      margin: 0 17px;
+
+    }
+  }
+  @media(min-width: 768px){
+    .contentSmall{
+
+      margin: 0 23px;
+
+    }
+  }
   
   
   
