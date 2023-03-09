@@ -2,8 +2,10 @@ import { IProps } from "./interface";
 import { Container, Main } from "./style";
 import { BsArrowRight } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const ProductionCardAuction = ({ product }: IProps) => {
+  const nav = useNavigate();
   const { user } = product;
 
   return (
@@ -46,13 +48,20 @@ const ProductionCardAuction = ({ product }: IProps) => {
           </div>
 
           <p className="heading-7-500 ad-price">
-            {Number(product.initialBid!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })}
+            {Number(product.initialBid!).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              style: "currency",
+              currency: "BRL",
+            })}
           </p>
         </section>
       </Container>
 
       <div className="button-wrapper">
-        <div className="button-container button-big-text">
+        <div
+          onClick={() => nav(`/auction/${product.id}`)}
+          className="button-container button-big-text"
+        >
           <span>Acessar página do leilão</span>
           <BsArrowRight />
         </div>
