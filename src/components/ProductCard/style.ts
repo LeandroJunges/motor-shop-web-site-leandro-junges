@@ -6,6 +6,7 @@ interface IProps {
 
 export const Main = styled.div<IProps>`
   width: 312px;
+  min-width: 300px;
   height: 350px;
 
   display: flex;
@@ -123,8 +124,8 @@ export const Main = styled.div<IProps>`
       }
     }
   }
-  @media (min-width:769px){
-    .img-wrapper{
+  @media (min-width: 769px) {
+    .img-wrapper {
       width: 100%;
     }
   }

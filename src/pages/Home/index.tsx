@@ -9,24 +9,19 @@ import {
   OutCarroussel,
   Title,
 } from "./styles";
-import { useContext} from "react";
+import { useContext } from "react";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import ProductCard from "../../components/ProductCard";
 import ProductionCardAuction from "../../components/ProductionCardAuction";
 import Header from "../../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 
-
-
 const Home = () => {
   const { cars, motorcycles, auctions } = useContext(AnnouncementContext);
   const navigate = useNavigate();
 
-  
-
   return (
-    
-      <MainContainer>
+    <MainContainer>
       <Header />
       <ContainerBannerHome>
         <div className="containerBannerContent ">
@@ -46,34 +41,32 @@ const Home = () => {
             <Title>Leilão</Title>
             <Carrossel>
               {auctions.map((auction) => {
-                return <ProductionCardAuction key={auction.id} product={auction}  />;
+                return (
+                  <ProductionCardAuction key={auction.id} product={auction} />
+                );
               })}
             </Carrossel>
           </CarrAuction>
           <OutCarroussel>
             <Title id="listCar">Carros</Title>
-              <Carrossel>
-                {cars.map((car) => {
-                  return (
-                    <ProductCard key={car.id} product={car} />
-                    );
-                })}
-              </Carrossel>
+            <Carrossel>
+              {cars.map((car) => {
+                return <ProductCard key={car.id} product={car} />;
+              })}
+            </Carrossel>
           </OutCarroussel>
           <OutCarroussel>
-            <Title id="listMotorcycle" >Motos</Title>
-              <Carrossel>
-                {motorcycles.map((motorcycle) => {
-            return (               
-                <ProductCard key={motorcycle.id} product={motorcycle} />
-              );
-          })}
-              </Carrossel>
+            <Title id="listMotorcycle">Motos</Title>
+            <Carrossel>
+              {motorcycles.map((motorcycle) => {
+                return <ProductCard key={motorcycle.id} product={motorcycle} />;
+              })}
+            </Carrossel>
           </OutCarroussel>
         </Centered>
       </BottomDiv>
-    <Footer />
-  </MainContainer>
+      <Footer />
+    </MainContainer>
   );
 };
 

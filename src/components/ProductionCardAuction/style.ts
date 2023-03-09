@@ -21,8 +21,6 @@ export const Main = styled.div`
 
     .img-wrapper > img {
       transform: scale(1.2);
-      max-height: 100%;
-      max-width: 100%;
     }
 
     .button-wrapper > .button-container > svg {
@@ -31,12 +29,15 @@ export const Main = styled.div`
   }
 
   .img-wrapper {
-    width: 90%;
-    height: 230px;
+    width: 100%;
+    height: 300px;
     position: relative;
 
     display: flex;
     justify-content: center;
+    overflow: hidden;
+
+    border-radius: 4px;
 
     .countdown {
       width: 100px;
@@ -48,7 +49,7 @@ export const Main = styled.div`
       box-sizing: border-box;
 
       position: absolute;
-      left: 0;
+      left: 22.5px;
       top: 24px;
       z-index: 10;
 
@@ -113,6 +114,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 16px;
 
   .ad-title {
