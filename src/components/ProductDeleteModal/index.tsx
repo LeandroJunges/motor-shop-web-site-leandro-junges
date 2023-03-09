@@ -69,6 +69,7 @@ const ProductDeleteModal = ({
             <Title>Excluir anúncio</Title>
             <MdClose
               fontSize="20px"
+              cursor={"pointer"}
               color="#ADB5BD"
               onClick={() => handleCancel()}
             />

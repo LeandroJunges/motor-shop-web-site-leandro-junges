@@ -51,6 +51,16 @@ export const Content = styled.div`
   }
 `;
 
+export const TitleForKm = styled.p`
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 17px;
+  @media (min-width: 400px) {
+    font-size: 14px;
+  }
+`;
+
 export const Footer = styled(Header)`
   width: 90%;
   gap: 11px;

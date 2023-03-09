@@ -27,6 +27,7 @@ export const ImgDiv = styled.div`
 export const Img = styled.img`
   border-radius: 4px;
   max-height: 340px;
+  max-width: 90%;
   @media (min-width: 590px) {
     width: 477px;
     max-height: 340px;
