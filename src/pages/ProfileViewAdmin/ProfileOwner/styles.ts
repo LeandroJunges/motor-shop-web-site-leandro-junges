@@ -91,3 +91,25 @@ export const Button = styled.button`
   border: 1.5px solid var(--brand-1);
   font-family: "Inter";
 `;
+
+export const ButtonCreate = styled.button`
+  
+           
+  padding: 10px;
+  border: solid 1px var(--brand-1);
+  background-color: transparent;
+  color: var(--brand-1);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+        
+`
+
+export const ContainerCreateButton = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+`

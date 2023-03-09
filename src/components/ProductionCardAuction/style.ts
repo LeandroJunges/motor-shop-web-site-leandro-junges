@@ -155,8 +155,8 @@ export const Container = styled.div`
 
     .user-img {
       width: 32px;
-
-      border-radius: 150px;
+      height: 32px;
+      border-radius: 100%;
     }
   }
 

@@ -46,7 +46,7 @@ const ProductionCardAuction = ({ product }: IProps) => {
           </div>
 
           <p className="heading-7-500 ad-price">
-            {Number(product.price!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })}
+            {Number(product.initialBid!).toLocaleString("pt-BR", { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' })}
           </p>
         </section>
       </Container>

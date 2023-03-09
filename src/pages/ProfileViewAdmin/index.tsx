@@ -45,8 +45,9 @@ const ProfileViewAdmin = () => {
 
   return (
     <>
-      {token ? (
-        <>
+    <MainContainer>
+      
+        
           
           {openCreateAnnoncement && (
             <CreateAnnouncementModal
@@ -67,14 +68,13 @@ const ProfileViewAdmin = () => {
               setOpenDeleteAnnouncement={setOpenDeleteAnnouncement}
             />
           )}
-            <MainContainer>
 
             <Header />
 
             <LinkBack onClick={() => navigate(-1)}>
             <BiArrowBack fontSize={"20px"} color="var(--brand-1)" />
             </LinkBack>
-            <UpperDiv>{person! && <ProfileOwner id={person} />}</UpperDiv>
+            <UpperDiv>{person! && <ProfileOwner id={person} setOpenCreateAnnouncement={setOpenCreateAnnouncement } />}</UpperDiv>
             <BottomDiv>
               <Centered>
                 <CarrAuction>
@@ -115,8 +115,8 @@ const ProfileViewAdmin = () => {
                                   onClick={() => {
                                     setAnnouncement(car);
                                     setOpenEditAnnouncement(true);
-                                    }}>editar </button>
-                                <button>ver como</button>
+                                    }}>Editar </button>
+                                <button onClick={()=> navigate(`/product/${car.id}`)} >Ver como</button>
                             </ContainerButtons>
                          </ContainerCarroussel>
                       
@@ -143,8 +143,8 @@ const ProfileViewAdmin = () => {
                               onClick={() => {
                               setAnnouncement(motorcycle);
                               setOpenEditAnnouncement(true);
-                              }}> editar </button>
-                            <button>ver como</button>
+                              }}> Editar </button>
+                            <button onClick={()=> navigate(`/product/${motorcycle.id}`)} >Ver como</button>
                         </ContainerButtons>
                       </ContainerCarroussel>
                       
@@ -157,11 +157,8 @@ const ProfileViewAdmin = () => {
               </Centered>
             </BottomDiv>
           <Footer />
-          </MainContainer>
-        </>
-        ) : (
-        navigate("/")
-      )}
+        
+        </MainContainer>
     </>
   );
 };

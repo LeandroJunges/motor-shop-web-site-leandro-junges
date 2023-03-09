@@ -129,6 +129,7 @@ export const ContainerButtons = styled.div`
       border: 1.5px solid #212529;
       padding: 10px;
       box-sizing: border-box;
+      cursor: pointer;
 
       font-family: 'Inter';
       font-style: normal;

@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../../services";
 import { IUserResponse } from "../../../interfaces";
-import { AnnnP, AnnouDiv, Centered, Container, DescDiv, Description, Img, ImgDiv, NameDiv } from "./styles";
+import { AnnnP, AnnouDiv, ButtonCreate, Centered, Container, ContainerCreateButton, DescDiv, Description, Img, ImgDiv, NameDiv } from "./styles";
 import { Title } from "../styles";
+import { AnnouncementContext } from "../../../context/AnnouncementContext";
 
 interface Props {
   id: string;
+  setOpenCreateAnnouncement : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ProfileOwner = ({ id }: Props) => {
+const ProfileOwner = ({ id, setOpenCreateAnnouncement }: Props) => {
   const [user, setUser] = useState<IUserResponse["user"]>();
+  
 
   useEffect(() => {
     const getUser = async () => {
@@ -40,6 +43,9 @@ const ProfileOwner = ({ id }: Props) => {
             <DescDiv>
               <Description>{user.description}</Description>
             </DescDiv>
+            <ContainerCreateButton>
+              <ButtonCreate onClick={()=> setOpenCreateAnnouncement(true)}>Criar anúncio</ButtonCreate>
+            </ContainerCreateButton>
           </Centered>
         </Container>
       )}

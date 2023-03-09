@@ -13,6 +13,7 @@ export const Container = styled.div`
     var(--grey-8) 100%
   );
   gap: 16px;
+  position: relative;
   /* justify-content: space-around; */
 `;
 
