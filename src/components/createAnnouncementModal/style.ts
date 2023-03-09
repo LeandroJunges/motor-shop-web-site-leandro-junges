@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Backdrop = styled.div`
   width: 100%;
-  height: 1874px;
+  height: 100%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   position: absolute;
@@ -73,7 +73,9 @@ export const Footer = styled(Header)`
   }
 
   .delete-button {
-    width: 25%;
+    width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
 
     background-color: var(--grey-6);
     color: var(--grey-2);
@@ -123,6 +125,15 @@ export const Title = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+`;
+export const TitleForKm = styled.p`
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 17px;
+  @media (min-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 export const InputDivSmall = styled.div`

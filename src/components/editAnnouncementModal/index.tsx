@@ -12,7 +12,7 @@ import {
   Main,
   Title,
 } from "../createAnnouncementModal/style";
-import { Footer } from "./style";
+import { Footer, TitleForKm } from "./style";
 import { GrClose } from "react-icons/gr";
 import Button from "../Button";
 import { useState, useEffect, useContext } from "react";
@@ -23,7 +23,7 @@ import { api } from "../../services";
 import { toast } from "react-toastify";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import { IImgs, IAnnouncementCreate, IAnnouncement } from "../../interfaces";
-import "animate.css"
+import "animate.css";
 
 interface IProps {
   setOpenEditAnnouncement: (value: boolean) => void;
@@ -103,7 +103,6 @@ const EditAnnouncementModal = ({
       Authorization: `Bearer ${userToken}`,
     },
   };
-  
 
   const onSubmitFunction = async (data: any) => {
     const { title, year, mileage, price, description, imgMain } = data;
@@ -218,7 +217,10 @@ const EditAnnouncementModal = ({
   return (
     <>
       <Backdrop>
-        <Main onSubmit={handleSubmit(onSubmitFunction)} className="animate__animated animate__backInDown" >
+        <Main
+          onSubmit={handleSubmit(onSubmitFunction)}
+          className="animate__animated animate__backInDown"
+        >
           <Header>
             <h2 className="heading-7-500">Editar anúncio</h2>
             <GrClose
@@ -299,7 +301,7 @@ const EditAnnouncementModal = ({
                 />
               </InputDivSmall>
               <InputDivSmall>
-                <Title>Quilometragem</Title>
+                <TitleForKm>Quilometragem</TitleForKm>
                 <Input
                   {...register("mileage")}
                   type="number"

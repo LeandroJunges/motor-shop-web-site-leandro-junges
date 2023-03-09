@@ -7,6 +7,7 @@ import {
   Header,
   Main,
   Title,
+  TitleForKm,
 } from "./style";
 import { GrClose } from "react-icons/gr";
 import {
@@ -25,7 +26,7 @@ import { api } from "../../services";
 import { AnnouncementContext } from "../../context/AnnouncementContext";
 import { toast } from "react-toastify";
 import { IImgs, IAnnouncementCreate } from "../../interfaces";
-import "animate.css"
+import "animate.css";
 interface IProps {
   setOpenCreateAnnouncement: any;
 }
@@ -170,7 +171,10 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
   return (
     <>
       <Backdrop>
-        <Main onSubmit={handleSubmit(onSubmitFunction)} className="animate__animated animate__backInDown ">
+        <Main
+          onSubmit={handleSubmit(onSubmitFunction)}
+          className="animate__animated animate__backInDown "
+        >
           <Header>
             <h2 className="heading-7-500">Criar anúncio</h2>
             <GrClose
@@ -248,7 +252,7 @@ const CreateAnnouncementModal = ({ setOpenCreateAnnouncement }: IProps) => {
                 />
               </InputDivSmall>
               <InputDivSmall>
-                <Title>Quilometragem</Title>
+                <TitleForKm>Quilometragem</TitleForKm>
                 <Input
                   {...register("mileage")}
                   type="number"

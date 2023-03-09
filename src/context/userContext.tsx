@@ -13,8 +13,8 @@ export interface IUserContextProps {
   setOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
   setOpenModalEditAddress: React.Dispatch<React.SetStateAction<boolean>>;
   userRecovery: (data: IUserRecovery) => Promise<any>;
-  editUser: (data: IUser) => Promise<void>;
-  getUserAdivertiser: (userId: string) => Promise<void>
+  editUser: (data: IUserModal) => Promise<void>;
+  getUserAdivertiser: (userId: string) => Promise<void>;
   openModalDeleteUser: boolean;
   setOpenModalDeleteUser: (value: boolean) => void;
   editAddressUser: (data: IAddress) => Promise<void>;
@@ -25,7 +25,7 @@ export interface IUserContextProps {
   openModalEditAddress: boolean;
   registerErrors: IRegisterErrors;
   setRegisterErrors: React.Dispatch<React.SetStateAction<IRegisterErrors>>;
-  userAdvertiser: IUserResponse["user"] | undefined
+  userAdvertiser: IUserResponse["user"] | undefined;
 }
 
 export interface IUser {
@@ -66,7 +66,9 @@ export const UserProvider = ({ children }: IChildren) => {
   const [registerErrors, setRegisterErrors] = useState<IRegisterErrors>(
     {} as IRegisterErrors
   );
-  const [userAdvertiser, setUserAdvertiser] = useState<IUserResponse["user"]| undefined >()
+  const [userAdvertiser, setUserAdvertiser] = useState<
+    IUserResponse["user"] | undefined
+  >();
   const [loading, setLoading] = useState<boolean>(true);
   const [openModalEditUser, setOpenModalEditUser] = useState<boolean>(false);
   const [openModalEditAddress, setOpenModalEditAddress] =
@@ -226,10 +228,10 @@ export const UserProvider = ({ children }: IChildren) => {
     });
   };
 
-  const getUserAdivertiser = async (userId:string)=>{
+  const getUserAdivertiser = async (userId: string) => {
     const { data } = await api.get(`/users/${userId}`);
-          setUserAdvertiser(data);
-  }
+    setUserAdvertiser(data);
+  };
 
   return (
     <UserContext.Provider
@@ -252,7 +254,7 @@ export const UserProvider = ({ children }: IChildren) => {
         registerErrors,
         setRegisterErrors,
         getUserAdivertiser,
-        userAdvertiser
+        userAdvertiser,
       }}
     >
       {children}
