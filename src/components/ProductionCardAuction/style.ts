@@ -69,6 +69,7 @@ export const Main = styled.div`
     img {
       transform: scale(1);
       transition: all 300ms;
+      filter: brightness(50%);
     }
   }
 
@@ -104,6 +105,16 @@ export const Main = styled.div`
       }
     }
   }
+
+  @media (max-width: 425px) {
+    width: 328px;
+    min-width: 328px;
+    height: 496px;
+
+    .img-wrapper {
+      height: 100%;
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -123,8 +134,8 @@ export const Container = styled.div`
 
   .product-description {
     text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    /* overflow: hidden; */
+    /* white-space: nowrap; */
     color: var(--grey-5);
   }
 
@@ -193,6 +204,18 @@ export const Container = styled.div`
 
     .ad-price {
       color: #fff;
+    }
+  }
+
+  @media (max-width: 425px) {
+    top: 80px;
+    height: 320px;
+
+    .info-wrapper {
+      width: fit-content;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
     }
   }
 `;

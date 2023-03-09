@@ -12,7 +12,7 @@ export const MainContainer = styled.div`
     var(--grey-8) 20.26%,
     var(--grey-8) 100%
   );
-  gap: 16px;
+  gap: 24px;
   position: relative;
 `;
 
@@ -40,6 +40,10 @@ export const CarrAuction = styled.div`
   gap: 12px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 425px) {
+    height: max-content;
+  }
 `;
 
 export const Title = styled.p`
