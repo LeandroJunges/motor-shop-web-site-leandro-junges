@@ -7,11 +7,13 @@ import ProfileViewAdmin from "../pages/ProfileViewAdmin";
 import ProtectRoute from "../components/ProtectRoute";
 import PasswordChange from "../pages/PasswordChange";
 import AdvertiserPage from "../pages/AdvertiserPage";
+import AuctionPage from "../components/ProductAuctonPage";
 
 const Routes = () => {
   return (
     <RouteComponent>
       <Route element={<Home />} path="/" />
+      <Route element={<AuctionPage />} path="/auction/:announcementId" />
       <Route element={<AnnouncementPage />} path="/product/:id" />
       <Route element={<Login />} path="/login/" />
       <Route element={<AdvertiserPage />} path="/advertiser/:userId" />

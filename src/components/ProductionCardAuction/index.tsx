@@ -3,6 +3,7 @@ import { Container, Main } from "./style";
 import { BsArrowRight } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ITimeLeft {
   hours: number;
@@ -11,6 +12,7 @@ interface ITimeLeft {
 }
 
 const ProductionCardAuction = ({ product }: IProps) => {
+  const nav = useNavigate();
   const { user } = product;
 
   const getTime = () => {
@@ -98,7 +100,10 @@ const ProductionCardAuction = ({ product }: IProps) => {
       </Container>
 
       <div className="button-wrapper">
-        <div className="button-container button-big-text">
+        <div
+          onClick={() => nav(`/auction/${product.id}`)}
+          className="button-container button-big-text"
+        >
           <span>Acessar página do leilão</span>
           <BsArrowRight />
         </div>
